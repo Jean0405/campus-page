@@ -3,6 +3,7 @@ import React from 'react'
 import NavigationBar from "@/components/NavigationBar"
 import HeaderHome from '@/components/HeaderHome'
 import AboutUs from '@/components/AboutUs'
+import CampersListing from '@/components/CampersListing'
 
 function Home() {
   return (
@@ -10,6 +11,7 @@ function Home() {
     <NavigationBar/>
     <HeaderHome/>
     <AboutUs/>
+    <CampersListing/>
     </>
   )
 }

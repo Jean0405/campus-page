@@ -17,27 +17,23 @@ export default function App() {
   const menuLinks = [
     {
       name: "Inicio",
-      href: "#",
+      href: "#headerHome",
     },
     {
       name: "Nosotros",
-      href: "#",
+      href: "#aboutUs",
     },
     {
       name: "Campers",
-      href: "#",
+      href: "#campers",
     },
     {
       name: "Éxitos",
-      href: "#",
-    },
-    {
-      name: "Contacto",
-      href: "#",
+      href: "#success_stories",
     },
     {
       name: "Admin",
-      href: "#",
+      href: "/pages/login",
     },
   ];
 
