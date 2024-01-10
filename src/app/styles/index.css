@@ -1,3 +1,43 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.group[data-filled-within=true] .group-data-\[filled-within\=true\]\:text-foreground {
+     color: #0070F0 !important;
+}
+
+@media (max-width: 1060px) {
+     .LoginBody {
+          display: flex;
+          flex-direction: column-reverse;
+     }
+
+     .loginRigth img {
+          width: 400px !important;
+     }
+
+     .loginMainText h1 {
+          margin-top: 2rem;
+     }
+
+     .loginButtons {
+          margin-bottom: 2rem;
+     }
+
+}
+
+@media (max-width: 440px) {
+     .loginRigth img {
+          width: 300px !important;
+     }
+
+     .loginMainText h1 {
+          font-size: 40px;
+     }
+
+     .links {
+          height: 35px;
+          font-size: 13px;
+     }
+
+}
