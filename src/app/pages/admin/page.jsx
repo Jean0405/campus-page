@@ -1,9 +1,11 @@
 "use client"
 import React from 'react';
-import {Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu , NavbarMenuItem, NavbarContent, NavbarItem, Link, Button} from "@nextui-org/react";
-import Image from "next/image";
+import { Navbar, NavbarBrand, NavbarMenuToggle, NavbarMenu, NavbarMenuItem, NavbarContent, NavbarItem, Link, Tabs, Tab } from "@nextui-org/react";
+import TablaAcceso from './tablaAcceso';
+import TablaValidar from './tablaValidar';
+import TablaUsuarios from './tablaUsuarios';
 
-export default function page() {
+export default function Page() {
 
      const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
@@ -15,14 +17,14 @@ export default function page() {
 
      return (
           <div>
-               <Navbar className='' style={{backgroundColor: "#2A4B9B"}} onMenuOpenChange={setIsMenuOpen}>
+               <Navbar className='' style={{ backgroundColor: "#2A4B9B" }} onMenuOpenChange={setIsMenuOpen}>
                     <NavbarContent>
                          <NavbarMenuToggle
                               aria-label={isMenuOpen ? "Close menu" : "Open menu"}
                               className="sm:hidden"
                          />
                          <NavbarBrand className=''>
-                              <img width={80} height={80} src="http://localhost:5173/src/assets/Img/logoBlanco.png"/>
+                              <img width={80} height={80} src="http://localhost:5173/src/assets/Img/logoBlanco.png" />
                          </NavbarBrand>
                     </NavbarContent>
 
@@ -78,6 +80,19 @@ export default function page() {
                               <h2 className='pt-5 text-1xl text-right mr-6' >Solicitudes</h2>
                               <h3 className=' font-bold text-7xl pb-6 ml-20'>0</h3>
                          </div>
+                    </div>
+                    <div className="flex w-full flex-col mt-10">
+                         <Tabs variant='underlined' aria-label="Disabled Options">
+                              <Tab key="Validar Cv" title="Validar Cv">
+                                   <TablaValidar></TablaValidar>
+                              </Tab>
+                              <Tab key="Lista Usuarios" title="Lista Usuarios">
+                                   <TablaUsuarios></TablaUsuarios>
+                              </Tab>
+                              <Tab key="Usuarios por permitir acceso" title="Usuarios por permitir acceso">
+                                   <TablaAcceso></TablaAcceso>
+                              </Tab>
+                         </Tabs>
                     </div>
                </div>
           </div>
