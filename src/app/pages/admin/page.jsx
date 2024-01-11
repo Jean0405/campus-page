@@ -62,8 +62,8 @@ export default function Page() {
                          ))}
                     </NavbarMenu>
                </Navbar>
-               <div className='body ml-96 mr-96'>
-                    <div className='cuadrados flex justify-center items-center gap-12 mt-10'>
+               <div className='body ml-80 mr-80'>
+                    <div className='cuadrados grid grid-cols-4 justify-center items-center gap-12 mt-10'>
                          <div className='cuadrado w-full flex flex-col content-center shadow-2xl'>
                               <h2 className=' pt-5 text-1xl text-right mr-6' >Usuarios</h2>
                               <h3 className=' font-bold text-7xl pb-6 ml-20'>7</h3>
@@ -84,13 +84,13 @@ export default function Page() {
                     <div className="flex w-full flex-col mt-10">
                          <Tabs variant='underlined' aria-label="Disabled Options">
                               <Tab key="Validar Cv" title="Validar Cv">
-                                   <TablaValidar className=" shadow-2xl" ></TablaValidar>
+                                   <TablaValidar/>
                               </Tab>
                               <Tab key="Lista Usuarios" title="Lista Usuarios">
-                                   <TablaUsuarios></TablaUsuarios>
+                                   <TablaUsuarios/>
                               </Tab>
                               <Tab key="Usuarios por permitir acceso" title="Usuarios por permitir acceso">
-                                   <TablaAcceso></TablaAcceso>
+                                   <TablaAcceso/>
                               </Tab>
                          </Tabs>
                     </div>

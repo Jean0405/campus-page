@@ -297,6 +297,7 @@ export default function Tabla() {
 
      return (
           <Table
+               className="overflow-y-auto"
                isCompact
                removeWrapper
                aria-label="Example table with custom cells, pagination and sorting"

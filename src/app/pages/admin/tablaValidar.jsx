@@ -268,6 +268,7 @@ export default function TablaValidar() {
 
      return (
           <Table
+               className=" overflow-x-auto"
                isCompact
                removeWrapper
                aria-label="Example table with custom cells, pagination and sorting"
