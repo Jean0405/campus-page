@@ -84,7 +84,7 @@ export default function Page() {
                     <div className="flex w-full flex-col mt-10">
                          <Tabs variant='underlined' aria-label="Disabled Options">
                               <Tab key="Validar Cv" title="Validar Cv">
-                                   <TablaValidar></TablaValidar>
+                                   <TablaValidar className=" shadow-2xl" ></TablaValidar>
                               </Tab>
                               <Tab key="Lista Usuarios" title="Lista Usuarios">
                                    <TablaUsuarios></TablaUsuarios>
