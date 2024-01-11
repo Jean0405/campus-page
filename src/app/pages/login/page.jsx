@@ -60,17 +60,17 @@ function Page() {
                         </div>
                         <div className="loginButtons flex flex-col items-center justify-center gap-3 p-3 w-full">
                             <div className="flex gap-8 pt-5 w-full">
-                                <button 
-                                    typeof="submit" 
-                                    className="links rounded w-full flex items-center justify-center h-10" 
-                                    style={{ backgroundColor: "#F4B422", color: "black" }} 
+                                <Link  
+                                    href="/"
+                                    className="text-white links rounded w-full flex items-center justify-center h-10" 
+                                    style={{ backgroundColor: "#000087" }} 
                                     color="primary"
                                 >
-                                    GO FOR IT
-                                </button>
-                                <Link href="/pages/register" className="links rounded w-full flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422" }} color="warning">REGISTRATE</Link>
+                                    VOLVER
+                                </Link>
+                                <Link href="/pages/register" className="links rounded w-full flex items-center justify-center h-10 text-white" style={{ backgroundColor: "#000087" }} color="warning">REGISTRATE</Link>
                             </div>
-                            <Link href="/" className="links text-white w-full screen rounded flex items-center justify-center h-10" style={{ backgroundColor: "#000087"}}>VOLVER</Link>
+                            <button typeof="submit" className="links w-full screen rounded flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422"}}>GO FOR IT</button>
                         </div>
                     </form>
                 </div>

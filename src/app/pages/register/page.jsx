@@ -21,8 +21,8 @@ function Page() {
 
   return (
     <div className="flex justify-center h-screen items-center ">
-      <div className="LoginBody grid grid-cols-2 justify-center shadow-2xl">
-        <div className="loginRigth" style={{ backgroundColor: "#000087" }}>
+      <div className="registerBody grid grid-cols-2 justify-center shadow-2xl">
+        <div className="registerRigth" style={{ backgroundColor: "#000087" }}>
           <img
             className=" m-auto"
             width={550}
@@ -31,9 +31,9 @@ function Page() {
 
           />
         </div>
-        <div className="loginLeft flex flex-col justify-center text-center items-center">
+        <div className="registerLeft flex flex-col justify-center text-center items-center">
           <form onSubmit={handleClick} className=" w-5/6">
-            <div className="loginMainText">
+            <div className="registerMainText">
               <h1 className=" text-4xl font-extrabold" style={{ color: "#000087" }}>Registro Campuslands
               </h1>
 
@@ -42,7 +42,7 @@ function Page() {
               <p className=" text-red-700 font-bold text-lg text-left ">¡Importante!</p>
               <p className=" font-light text-sm flex text-left max-w-96">La contraseña debe tener al menos 8 caracteres e incluir símbolos y números.</p>
             </div>
-            <div className="loginInputs">
+            <div className="registerInputs">
               <div>
                 <div className=" grid grid-cols-2 gap-3 items-center ">
                   <Input isRequired color="primary" type="text" variant="underlined" label="Usuario" />
@@ -80,11 +80,11 @@ function Page() {
                 </div>
               </div>
             </div>
-            <div className="loginButtons flex flex-col items-center justify-center gap-3 p-3 w-full">
+            <div className="registerButtons flex flex-col items-center justify-center gap-3 p-3 w-full">
               <div className="flex gap-8 pt-5 w-full">
-                <Link href="/" className="text-white w-full flex items-center justify-center h-10 screen rounded" style={{ backgroundColor: "#000087" }}>INICIO</Link>
-                <button type="submit" className="rounded w-full flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422", color: "black" }} color="primary">GO FOR IT</button>
-                <Link href="/pages/login" className="rounded w-full flex items-center justify-center h-10 text-white" style={{ backgroundColor: "#000087" }} color="warning">LOGIN</Link>
+                <Link href="/" className="buttonRegistro text-white w-full flex items-center justify-center h-10 screen rounded" style={{ backgroundColor: "#000087" }}>INICIO</Link>
+                <button type="submit" className="buttonRegistro rounded w-full flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422", color: "black" }} color="primary">GO FOR IT</button>
+                <Link href="/pages/login" className="buttonRegistro rounded w-full flex items-center justify-center h-10 text-white" style={{ backgroundColor: "#000087" }} color="warning">LOGIN</Link>
               </div>
             </div>
           </form>
