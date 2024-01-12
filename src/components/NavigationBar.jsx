@@ -1,71 +1,94 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   Navbar,
   NavbarBrand,
+  NavbarMenuToggle,
+  NavbarMenuItem,
+  NavbarMenu,
   NavbarContent,
   NavbarItem,
-  NavbarMenuToggle,
-  NavbarMenu,
-  NavbarMenuItem,
   Link,
 } from "@nextui-org/react";
 
 export default function App() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
-  const menuLinks = [
+  const menuItems = [
     {
       name: "Inicio",
-      href: "#headerHome",
+      href: "#",
     },
     {
-      name: "Nosotros",
-      href: "#aboutUs",
+      name: "Conocenos",
+      href: "#",
     },
     {
-      name: "Campers",
-      href: "#campers",
+      name: "Contratar",
+      href: "#",
     },
     {
-      name: "Éxitos",
-      href: "#success_stories",
+      name: "Patrocinar",
+      href: "#",
     },
     {
-      name: "Admin",
-      href: "/pages/login",
+      name: "Contratar",
+      href: "#",
+    },
+    {
+      name: "Visitanos",
+      href: "#",
     },
   ];
 
-
   return (
-    <Navbar
-      className="shadow-md"
-      onMenuOpenChange={setIsMenuOpen}
-    >
-      <NavbarContent>
-        <NavbarMenuToggle
-          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
-          className="sm:hidden"
-        />
+    <Navbar className="bg-white" isBordered isMenuOpen={isMenuOpen} onMenuOpenChange={setIsMenuOpen}>
+      {/* <------ Mobile navbar --------> */}
+      <NavbarContent className="sm:hidden pr-3" justify="startleft">
         <NavbarBrand>
-          <Link href="#">
-            <img
-              className="w-14 h-14 sm:w-16 sm:h-16 sm:p-1"
-              src="https://ugc.production.linktr.ee/ZJXG7pbLSwyitEyTNSc8_O1cTAW6KAObqc4un?io=true&size=avatar-v1_0"
-            />
+          <Link href="/">
+            <div className="relative w-40 h-16">
+              <p className="absolute text-black top-2 left-0  text-2xl font-extrabold">
+                Campus.
+              </p>
+              <p className="absolute text-black top-7 left-14  text-md font-bold">
+                lands
+              </p>
+            </div>
           </Link>
         </NavbarBrand>
       </NavbarContent>
+      {/* <------ Desktop navbar --------> */}
+      <NavbarContent className="hidden sm:flex gap-4" justify="start">
+        <NavbarBrand>
+          <Link href="/">
+            <div className="relative h-16">
+              <p className="absolute text-black top-2 left-0  text-2xl font-extrabold">
+                Campus.
+              </p>
+              <p className="absolute text-black top-7 left-14  text-md font-bold">
+                lands
+              </p>
+            </div>
+          </Link>
+        </NavbarBrand>
+      </NavbarContent>
+      {/* <------ Navbar menu icon ------> */}
+      <NavbarContent className="md:hidden" justify="end">
+        <NavbarMenuToggle
+          aria-label={isMenuOpen ? "Close menu" : "Open menu"}
+        />
+      </NavbarContent>
 
-      <NavbarContent className="hidden sm:flex gap-2 md:gap-4" justify="center">
-        {menuLinks.map((item, index) => (
+      {/* <------- Desktop Navbar menu items -------> */}
+      <NavbarContent className="hidden md:flex gap-7" justify="end">
+        {menuItems.map((item, index) => (
           <NavbarItem key={index}>
             <Link
               className={
-                index === menuLinks.length - 1
-                  ? "bg-blue-300 text-sky-800 font-bold rounded px-2 py-1"
-                  : "text-black"
+                index === menuItems.length - 1
+                  ? "bg-[#00AA80] text-white font-normal rounded px-2 py-1"
+                  : "text-black font-light hover:font-medium transition duration-100 ease-in-out"
               }
               href={item.href}
             >
@@ -74,11 +97,16 @@ export default function App() {
           </NavbarItem>
         ))}
       </NavbarContent>
+      {/* <------- Mobile navbar menu items -------> */}
       <NavbarMenu className="flex justify-center items-center">
-        {menuLinks.map((item, index) => (
+        {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className={`w-full text-center text-xl ${index === menuLinks.length - 1 ? "text-blue-500 font-bold" : "text-black"}`}
+              className={`w-full text-center text-xl ${
+                index === menuItems.length - 1
+                  ? "text-blue-500 text-md font-normal"
+                  : "text-black text-md font-light"
+              }`}
               href={item.href}
               size="lg"
             >
