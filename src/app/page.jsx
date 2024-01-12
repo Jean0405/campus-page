@@ -10,6 +10,7 @@ import right_arrow from "../../public/assets/right_arrow.png";
 import NavigationBar from "@/components/NavigationBar";
 import Link from "next/link";
 import Image from "next/image";
+import Tecnologias from "@/components/Tecnologias";
 
 function page() {
   return (
@@ -75,6 +76,7 @@ function page() {
           <p className="text-black font-bold py-2">Contrata nuestro talento</p>
         </div>
       </section>
+      <Tecnologias/>
     </>
   );
 }
