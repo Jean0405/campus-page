@@ -1,14 +1,14 @@
 
 import "./styles/index.css";
 import { Providers } from "./providers";
-import { Roboto } from "next/font/google";
+import { Poppins } from "next/font/google";
 
 export const metadata = {
   title: "Campuslands",
   description: "Bootcamp",
 };
 
-const roboto = Roboto({
+export const poppins = Poppins({
   weight: ["300", "400", "500", "700"],
   styles: ["italic", "normal"],
   subsets: ["latin"]
@@ -17,7 +17,7 @@ const roboto = Roboto({
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={roboto.className}>
+      <body className={poppins.className}>
         <Providers>{children}</Providers>
       </body>
     </html>

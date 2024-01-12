@@ -51,7 +51,7 @@ export default function App() {
               <p className="absolute text-black top-2 left-0  text-2xl font-extrabold">
                 Campus.
               </p>
-              <p className="absolute text-black top-7 left-14  text-md font-bold">
+              <p className="absolute text-black text-md font-bold" style={{top:"28px", left:"67px"}}>
                 lands
               </p>
             </div>
@@ -63,10 +63,10 @@ export default function App() {
         <NavbarBrand>
           <Link href="/">
             <div className="relative h-16">
-              <p className="absolute text-black top-2 left-0  text-2xl font-extrabold">
+              <p className="absolute text-black top-2 left-0 text-2xl font-extrabold">
                 Campus.
               </p>
-              <p className="absolute text-black top-7 left-14  text-md font-bold">
+              <p className="absolute text-black text-md font-bold" style={{top:"28px", left:"67px"}}>
                 lands
               </p>
             </div>
@@ -81,7 +81,7 @@ export default function App() {
       </NavbarContent>
 
       {/* <------- Desktop Navbar menu items -------> */}
-      <NavbarContent className="hidden md:flex gap-7" justify="end">
+      <NavbarContent className="hidden md:flex gap-6" justify="end">
         {menuItems.map((item, index) => (
           <NavbarItem key={index}>
             <Link
