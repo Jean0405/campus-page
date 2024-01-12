@@ -26,7 +26,7 @@ import react from "../../public/assets/react.svg";
 
 import localFont from "next/font/local"
 
-const stretchPro = localFont({ src: "../../public/assets/StretchPro.otf" })
+const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" })
 
 export default function Tecnologias() {
 
