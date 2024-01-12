@@ -18,6 +18,7 @@ import { Poppins } from "next/font/google";
 import NavigationBar from "@/components/NavigationBar";
 import Link from "next/link";
 import Image from "next/image";
+import Tecnologias from "@/components/Tecnologias";
 
 const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
 
@@ -180,6 +181,7 @@ function page() {
           </p>
         </div>
       </section>
+      <Tecnologias/>
     </>
   );
 }

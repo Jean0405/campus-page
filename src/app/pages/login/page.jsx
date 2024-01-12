@@ -1,13 +1,19 @@
-"use client";
+// /layout.jsx
+'use client'
 import Link from "next/link";
 import React, { useState } from "react";
-/* import Astronauta from "./Astronauta.png"; */
 import { Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 import "../../styles/index.css";
 
 function Page() {
+
+    const handleClick = (e) => {
+        e.preventDefault();
+        window.location = "/pages/admin"
+    };
+
     const [isVisible, setIsVisible] = useState(false);
 
     const toggleVisibility = () => setIsVisible(!isVisible);
@@ -16,16 +22,16 @@ function Page() {
         <div className="flex justify-center h-screen items-center ">
             <div className="LoginBody grid grid-cols-2 justify-center shadow-2xl">
                 <div className="loginLeft flex flex-col justify-center text-center items-center">
-                    <div className=" w-5/6">
+                    <form onSubmit={handleClick} className=" w-5/6">
                         <div className="loginMainText">
                             <h1 className=" text-5xl font-extrabold" style={{ color: "#000087" }}>Bienvenidos</h1>
 
-                            <p className="pt-5 pb-3">Panel administrador de <br /> CampusLands</p>
+                            <p className="pt-5 pb-3">Panel administrador de <br /> Campuslands</p>
                         </div>
                         <div className="loginInputs">
                             <div>
                                 <div className=" flex flex-col gap-3 items-center ">
-                                    <Input isRequired color="primary" type="email" variant="underlined" label="Email" />
+                                    <Input isRequired color="primary" type="text" variant="underlined" label="Usuario" />
                                     <Input
                                         isRequired
                                         color="primary"
@@ -54,12 +60,19 @@ function Page() {
                         </div>
                         <div className="loginButtons flex flex-col items-center justify-center gap-3 p-3 w-full">
                             <div className="flex gap-8 pt-5 w-full">
-                                <Link href="/" className="links rounded w-full flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422", color: "black" }} color="primary">GO FOR IT</Link>
-                                <Link href="/pages/register" className="links rounded w-full flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422" }} color="warning">REGISTRATE</Link>
+                                <Link  
+                                    href="/"
+                                    className="text-white links rounded w-full flex items-center justify-center h-10" 
+                                    style={{ backgroundColor: "#000087" }} 
+                                    color="primary"
+                                >
+                                    VOLVER
+                                </Link>
+                                <Link href="/pages/register" className="links rounded w-full flex items-center justify-center h-10 text-white" style={{ backgroundColor: "#000087" }} color="warning">REGISTRATE</Link>
                             </div>
-                            <Link href="/" className="links text-white w-full screen rounded flex items-center justify-center h-10" style={{ backgroundColor: "#000087"}}>VOLVER</Link>
+                            <button typeof="submit" className="links w-full screen rounded flex items-center justify-center h-10" style={{ backgroundColor: "#F4B422"}}>GO FOR IT</button>
                         </div>
-                    </div>
+                    </form>
                 </div>
                 <div className="loginRigth" style={{backgroundColor: "#000087"}}>
                     <img
