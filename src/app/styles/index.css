@@ -129,3 +129,48 @@
           transform: translateY(0px);
      }
    }
+
+/* <-------- These elements have motion animation to the right --------> */
+.sponsorship_item_left_1{
+     animation: right_horizontal_float 3.0s ease-in-out infinite;
+}
+.sponsorship_item_left_2{
+     animation: right_horizontal_float 3.5s ease-in-out infinite;
+}
+.sponsorship_item_right_4{
+     animation: right_horizontal_float 2.5s ease-in-out infinite;
+}
+
+@keyframes right_horizontal_float {
+     0%{
+          transform:translateX(0px),;
+     }
+     50%{
+          transform: translateX(17px);
+     }
+     100%{
+          transform: translateX(0px);
+     }
+   }
+
+.sponsorship_item_right_1{
+     animation: left_horizontal_float 5s ease-in-out infinite;
+}
+.sponsorship_item_right_2{
+     animation: left_horizontal_float 3s ease-in-out infinite;
+}
+.sponsorship_item_right_3{
+     animation: left_horizontal_float 5s ease-in-out infinite;
+}
+
+@keyframes left_horizontal_float {
+     0%{
+          transform:translateX(0px),;
+     }
+     50%{
+          transform: translateX(-10px);
+     }
+     100%{
+          transform: translateX(0px);
+     }
+   }

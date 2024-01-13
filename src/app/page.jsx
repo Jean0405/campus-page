@@ -1,5 +1,8 @@
 // Icons imports
-import { faArrowDown } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowDown,
+  faArrowRightLong,
+} from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 // Assets imports
@@ -9,6 +12,7 @@ import Ellipse from "../../public/img/Ellipse.png";
 import star_icon from "../../public/img/star_icon.png";
 import camperWoman from "../../public/img/mujerCamper.png";
 import right_arrow from "../../public/assets/right_arrow.png";
+import camperWoman2 from "../../public/img/mujerCamper2.png";
 
 //fonts imports
 import localFont from "next/font/local";
@@ -16,9 +20,10 @@ import { Poppins } from "next/font/google";
 
 // Components imports
 import NavigationBar from "@/components/NavigationBar";
+import Tecnologias from "@/components/Tecnologias";
 import Link from "next/link";
 import Image from "next/image";
-import Tecnologias from "@/components/Tecnologias";
+import { Button } from "@nextui-org/react";
 
 const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
 
@@ -97,7 +102,6 @@ function page() {
 
       {/* <------------ services section ----------> */}
       <section className="flex flex-wrap justify-around items-center gap-y-20 mt-28 md:px-5 lg:px-10">
-
         {/* <-------- First card -----------> */}
         <div className="flex flex-col items-center">
           <div className="relative h-80 w-80 bg-black rounded-xl overflow-hidden">
@@ -157,7 +161,7 @@ function page() {
                 height: "1.7px",
               }}
             ></span>
-             <span
+            <span
               className="absolute bg-black"
               style={{
                 right: "76px",
@@ -174,14 +178,101 @@ function page() {
         <div className="flex flex-col items-center">
           <div className="relative h-80 w-80 md:w-96 rounded-xl">
             <div className="absolute w-full h-40 bg-[#F4B422] bottom-0 rounded-xl"></div>
-            <Image className="absolute" src={camperWoman} style={{height:"440px", bottom:"0px"}}/>
+            <Image
+              className="absolute"
+              src={camperWoman}
+              style={{ height: "440px", bottom: "0px" }}
+            />
           </div>
           <p className="text-black text-lg font-bold py-2">
             Contrata nuestro talento
           </p>
         </div>
       </section>
-      <Tecnologias/>
+
+      {/* <----------- Sponsorship section  -----------> */}
+      <section className="flex justify-center items-center mb-10">
+        {/* <------ Desktop section ------> */}
+        <div className="hidden lg:flex relative">
+          {/* <--- Left text ---> */}
+          <p
+            className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
+            style={{ top: "90px", left: "-240px" }}
+          >
+            CONTRATAR
+          </p>
+          <p
+            className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
+            style={{ top: "140px", left: "-340px" }}
+          >
+            NUESTROOS
+          </p>
+          <p
+            className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
+            style={{ top: "190px", left: "-272px" }}
+          >
+            CAMPERS
+          </p>
+          <Button
+            className="absolute bg-black text-white text-md rounded-3xl w-32"
+            as={Link}
+            href="#"
+            style={{ top: "250px", left: "-250px" }}
+          >
+            Ver <FontAwesomeIcon icon={faArrowRightLong} width={20} />
+          </Button>
+          {/* <---- Image of camper woman ----> */}
+          <Image className="w-80" src={camperWoman2} />
+          {/* <--- Right text ---> */}
+          <p
+            className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
+            style={{ top: "90px", right: "-270px" }}
+          >
+            PATROOCINA
+          </p>
+          <p
+            className={`${stretchPro.className} absolute text-3xl font-bold -z-10`}
+            style={{ top: "140px", right: "-300px" }}
+          >
+            TRANSFORMA
+          </p>
+          <Button
+            className="absolute bg-black text-white text-md rounded-3xl w-36"
+            as={Link}
+            href="#"
+            style={{ top: "260px", right: "-335px" }}
+          >
+            Patrocinar <FontAwesomeIcon icon={faArrowRightLong} width={20} />
+          </Button>
+
+          {/* <--- Sponsorship items left ---> */}
+          <span
+            className="absolute sponsorship_item_left_1 w-14 h-9 bg-[#A5A6F6] rounded-3xl -z-10"
+            style={{ top: "300px", left: "-70px" }}
+          ></span>
+          <span
+            className="absolute sponsorship_item_left_2 w-48 h-9 bg-[#00AA80] rounded-3xl -z-10"
+            style={{ top: "345px", left: "-150px" }}
+          ></span>
+          {/* <--- Sponsorship items right ---> */}
+          <span
+            className="absolute sponsorship_item_right_1 w-64 h-9 bg-[#00AA80] rounded-3xl -z-10"
+            style={{ top: "216px", right: "-200px" }}
+          ></span>
+          <span
+            className="absolute sponsorship_item_right_2 w-44 h-9 bg-[#A5A6F6] rounded-3xl -z-10"
+            style={{ top: "262px", right: "-180px" }}
+          ></span>
+          <span
+            className="absolute sponsorship_item_right_3 w-24 h-9 bg-[#5E3AE2] rounded-3xl -z-10"
+            style={{ top: "308px", right: "-110px" }}
+          ></span>
+          <span
+            className="absolute sponsorship_item_right_4 w-11 h-9 bg-[#00AA80] rounded-3xl -z-10"
+            style={{ top: "308px", right: "-156px" }}
+          ></span>
+        </div>
+      </section>
     </>
   );
 }
