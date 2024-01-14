@@ -16,7 +16,7 @@ import camperWoman2 from "../../public/img/mujerCamper2.png";
 
 //fonts imports
 import localFont from "next/font/local";
-import { Poppins } from "next/font/google";
+const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
 
 // Components imports
 import NavigationBar from "@/components/NavigationBar";
@@ -25,13 +25,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 
-const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
 
 function page() {
   return (
     <>
+    {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
       <NavigationBar />
-      {/* <------- Header -------> */}
+      {/* <------- *********** HEADER ********** -------> */}
       <section className="grid grid-cols-2 md:grid-cols-4 place-items-center lg:mt-10">
         {/* first headers section */}
         <div className="flex flex-col gap-2 md:order-first pl-5 lg:pl-20">
@@ -100,7 +100,7 @@ function page() {
         </div>
       </section>
 
-      {/* <------------ services section ----------> */}
+      {/* <------------ *********** SERVICES SECTION ********** ----------> */}
       <section className="flex flex-wrap justify-around items-center gap-y-20 mt-28 md:px-5 lg:px-10">
         {/* <-------- First card -----------> */}
         <div className="flex flex-col items-center">
@@ -190,6 +190,9 @@ function page() {
         </div>
       </section>
 
+      {/* <------------ ***********   STUDY WITH US  ********** ----------> */}
+      <Tecnologias/>
+      
       {/* <----------- Sponsorship section  -----------> */}
       <section className="flex justify-center items-center my-10">
         {/* <------ Desktop section ------> */}
@@ -273,7 +276,6 @@ function page() {
           ></span>
         </div>
       </section>
-      <Tecnologias/>
     </>
   );
 }
