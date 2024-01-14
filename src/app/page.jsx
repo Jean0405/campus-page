@@ -191,7 +191,7 @@ function page() {
       </section>
 
       {/* <----------- Sponsorship section  -----------> */}
-      <section className="flex justify-center items-center mb-10">
+      <section className="flex justify-center items-center my-10">
         {/* <------ Desktop section ------> */}
         <div className="hidden lg:flex relative">
           {/* <--- Left text ---> */}
@@ -273,6 +273,7 @@ function page() {
           ></span>
         </div>
       </section>
+      <Tecnologias/>
     </>
   );
 }

@@ -34,7 +34,6 @@ export default function Tecnologias() {
           const copyLogos = () => {
                const logosSlide = document.querySelector('.logos-slide');
                if (logosSlide) {
-                    console.log("SI");
                     const copy = logosSlide.cloneNode(true);
                     document.querySelector('.logos').appendChild(copy);
                }
@@ -44,7 +43,7 @@ export default function Tecnologias() {
      }, []);
 
      return (
-          <div className="Main flex justify-center mb-44 ml-8" >
+          <div className="Main flex justify-center mt-28 mb-10" >
                <div className="left ">
                     <h2 className={`${stretchPro.className} relative text-6xl mb-8`} >¿QUIERES ESTUDIAR <br /> CON NOSOTROS? </h2>
                     <p className="tracking-wide text-2xl" style={{ maxWidth: "800px" }}>Nuestro programa de entrenamiento de 8 a 10 meses, ofrece un sistema intensivo integral para Desarrolladores de Software, basado en Software Skills, Habilidades Socioemocionales e Inglés donde se dasarrollan las siguientes tecnologias:</p>
