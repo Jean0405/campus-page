@@ -24,6 +24,7 @@ import Tecnologias from "@/components/Tecnologias";
 import Link from "next/link";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
+import Footer from "@/components/Footer";
 
 
 function page() {
@@ -276,6 +277,7 @@ function page() {
           ></span>
         </div>
       </section>
+      <Footer />
     </>
   );
 }
