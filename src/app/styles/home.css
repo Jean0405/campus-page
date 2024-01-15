@@ -1,3 +1,5 @@
+
+
 @keyframes slide {
      from {
           transform: translateX(-100%);
@@ -109,8 +111,12 @@
      }
 }
 
-.ellipse, .C_campus{
-     animation: float 3.5s ease-in-out infinite;
+.ellipse{
+     animation: float 2.5s ease-in-out infinite;
+}
+
+.C_campus{
+     animation: float 4s ease-in-out infinite;
 }
 
 @keyframes float {
