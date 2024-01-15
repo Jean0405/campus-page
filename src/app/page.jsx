@@ -40,10 +40,10 @@ function page() {
 
   return (
     <>
-      {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
+      <div className="px-5 lg:px-10 m-auto" style={{maxWidth:"1300px"}}>
+        {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
       <NavigationBar />
       {/* <------- *********** HEADER ********** -------> */}
-      <div className="px-5 lg:px-10">
         <section className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-5 lg:mt-10 lg:px-5">
           {/* first headers section */}
           <div className="flex flex-col gap-2 md:order-first" data-aos="zoom-in">
