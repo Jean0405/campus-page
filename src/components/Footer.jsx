@@ -7,7 +7,7 @@ import iconCampus from "../../public/img/logoCampus.png"
 export default function Footer() {
   return (
 <footer className='pt-5'>
-    <div className='border-gray-400 border-t-1 mt-6 lg:mx-20 px-4 pt-6 '>
+    <div className='border-gray-400 border-t-1 mt- px-4 pt-6 '>
     <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4'>
         <div>
             <h1 className='text-md lg:text-xl font-bold mb-3'>Campus</h1>

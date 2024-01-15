@@ -1,8 +1,8 @@
-"use client"
-//Import AOS 
+"use client";
+//Import AOS
 import { useEffect } from "react";
 import AOS from "aos";
-import 'aos/dist/aos.css'
+import "aos/dist/aos.css";
 
 // Icons imports
 import {
@@ -33,7 +33,6 @@ import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import Footer from "@/components/Footer";
 
-
 function page() {
   useEffect(() => {
     AOS.init({ duration: 1000 });
@@ -41,13 +40,16 @@ function page() {
 
   return (
     <>
-      <div className="px-5 lg:px-10 m-auto" style={{maxWidth:"1300px"}}>
+      <div className="px-5 lg:px-10 m-auto" style={{ maxWidth: "1300px" }}>
         {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
-      <NavigationBar />
-      {/* <------- *********** HEADER ********** -------> */}
+        <NavigationBar />
+        {/* <------- *********** HEADER ********** -------> */}
         <section className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-5 lg:mt-10 lg:px-5">
           {/* first headers section */}
-          <div className="flex flex-col gap-2 md:order-first" data-aos="zoom-in">
+          <div
+            className="flex flex-col gap-2 md:order-first"
+            data-aos="zoom-in"
+          >
             <div className="relative h-20">
               <span className="absolute w-14 h-12 bottom-0 lg:top-3 left-0 bg-[#F4B422]"></span>
               <span className="absolute w-14 h-12 bottom-0 lg:top-3 left-6 bg-[#00AA80]"></span>
@@ -69,7 +71,9 @@ function page() {
           </div>
           {/* second headers section */}
           <div
-            className={`${stretchPro.className} relative col-span-2 flex flex-col order-first mt-5`} data-aos="zoom-in">
+            className={`${stretchPro.className} relative col-span-2 flex flex-col order-first mt-5`}
+            data-aos="zoom-in"
+          >
             {/* LLEGUEMOS MÁS */}
             <div className="flex justify-center text-xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
               <p className="relative tracking-tight">
@@ -213,7 +217,7 @@ function page() {
       {/* <Tecnologias/> */}
 
       {/* <----------- Sponsorship section  -----------> */}
-      <section className="flex justify-center items-center my-10">
+      <section className="flex justify-center items-center my-10 m-auto" style={{ maxWidth: "1300px" }}>
         {/* <------ SPONSORSHIP DESKTOP SECTION ------> */}
         <div className="hidden lg:flex relative" data-aos="zoom-in">
           {/* <--- Left text ---> */}
@@ -295,7 +299,10 @@ function page() {
         </div>
         {/* <------- SPONSORSHIP MOBILE SECTION -------> */}
         <div className="relative lg:hidden w-screen flex flex-col justify-center items-center overflow-hidden">
-          <div className="flex flex-col text-2xl sm:text-2xl md:text-4xl z-10" data-aos="zoom-in">
+          <div
+            className="flex flex-col text-2xl sm:text-2xl md:text-4xl z-10"
+            data-aos="zoom-in"
+          >
             <p className={`${stretchPro.className}`}>PATROOCINA</p>
             <p className={`${stretchPro.className}`}>TRANSFORMA</p>
             <Button
@@ -307,7 +314,11 @@ function page() {
             </Button>
           </div>
           <div className="relative w-full h-80 flex justify-center">
-            <Image className="absolute w-64 -top-9" src={camperWoman2} data-aos="zoom-in"/>
+            <Image
+              className="absolute w-64 -top-9"
+              src={camperWoman2}
+              data-aos="zoom-in"
+            />
             <div className="absolute w-64 -top-10">
               {/* <--- Sponsorship items left ---> */}
               <span
@@ -333,7 +344,10 @@ function page() {
               ></span>
             </div>
           </div>
-          <div className="flex flex-col items-end text-2xl sm:text-2xl md:text-4xl mt-6 z-10" data-aos="zoom-in">
+          <div
+            className="flex flex-col items-end text-2xl sm:text-2xl md:text-4xl mt-6 z-10"
+            data-aos="zoom-in"
+          >
             <Button
               className="bg-black text-white rounded-3xl w-32 mb-2"
               as={Link}
@@ -347,7 +361,9 @@ function page() {
           </div>
         </div>
       </section>
+      <div className="m-auto" style={{ maxWidth: "1300px" }}>
       <Footer />
+      </div>
     </>
   );
 }
