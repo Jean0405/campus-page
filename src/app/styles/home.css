@@ -1,3 +1,7 @@
+.mainLeft {
+     max-width: 900px;
+}
+
 
 .slider .slide-track {
      animation: scroll 60s linear infinite;
@@ -60,6 +64,37 @@
      color: #0070F0 !important;
 }
 
+@media (max-width: 1800px) {
+     .hombreSentado {
+          display: none;
+     }
+
+     .Main {
+          flex-direction: column;
+     }
+
+     .mainLeft {
+          max-width: 100%;
+     }
+
+     .fullStack {
+          display: none;
+     }
+
+     .middle {
+          margin: 0;
+     }
+
+     .mainLeft {
+          text-align: center;
+     }
+
+     .mainLeft h2 {
+          white-space: wrap;
+     }
+
+}
+
 @media (max-width: 1060px) {
      .LoginBody {
           display: flex;
@@ -76,6 +111,32 @@
 
      .loginButtons {
           margin-bottom: 2rem;
+     }
+
+}
+
+@media (max-width: 930px) {
+
+     .mainLeft h2 {
+          font-size: 3rem;
+     }
+
+}
+
+@media (max-width: 790px) {
+
+     .mainLeft h2 {
+          margin-top: 2rem;
+          font-size: 2rem;
+     }
+
+     .mainLeft p{
+          font-size: 1.2rem;
+          letter-spacing: 0;
+     }
+
+     .Main{
+          margin: 0 3rem;
      }
 
 }
@@ -136,63 +197,74 @@
      }
 }
 
-.ellipse, .C_campus{
+.ellipse,
+.C_campus {
      animation: float 3.5s ease-in-out infinite;
 }
 
 @keyframes float {
-     0%{
-          transform:translateY(0px);
-     }
-     50%{
-          transform: translateY(-15px);
-     }
-     100%{
+     0% {
           transform: translateY(0px);
      }
-   }
+
+     50% {
+          transform: translateY(-15px);
+     }
+
+     100% {
+          transform: translateY(0px);
+     }
+}
 
 /* <-------- These elements have motion animation to the right --------> */
-.sponsorship_item_left_1{
+.sponsorship_item_left_1 {
      animation: right_horizontal_float 3.0s ease-in-out infinite;
 }
-.sponsorship_item_left_2{
+
+.sponsorship_item_left_2 {
      animation: right_horizontal_float 3.5s ease-in-out infinite;
 }
-.sponsorship_item_right_4{
+
+.sponsorship_item_right_4 {
      animation: right_horizontal_float 2.5s ease-in-out infinite;
 }
 
 @keyframes right_horizontal_float {
-     0%{
-          transform:translateX(0px),;
+     0% {
+          transform: translateX(0px), ;
      }
-     50%{
+
+     50% {
           transform: translateX(17px);
      }
-     100%{
+
+     100% {
           transform: translateX(0px);
      }
-   }
+}
 
-.sponsorship_item_right_1{
+.sponsorship_item_right_1 {
      animation: left_horizontal_float 5s ease-in-out infinite;
 }
-.sponsorship_item_right_2{
+
+.sponsorship_item_right_2 {
      animation: left_horizontal_float 3s ease-in-out infinite;
 }
-.sponsorship_item_right_3{
+
+.sponsorship_item_right_3 {
      animation: left_horizontal_float 5s ease-in-out infinite;
 }
 
 @keyframes left_horizontal_float {
-     0%{
-          transform:translateX(0px),;
+     0% {
+          transform: translateX(0px), ;
      }
-     50%{
+
+     50% {
           transform: translateX(-10px);
      }
-     100%{
+
+     100% {
           transform: translateX(0px);
      }
-   }
+}
