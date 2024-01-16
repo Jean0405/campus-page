@@ -214,7 +214,7 @@ function page() {
       </div>
 
       {/* <------------ ***********   STUDY WITH US  ********** ----------> */}
-      {/* <Tecnologias/> */}
+      <Tecnologias/>
 
       {/* <----------- Sponsorship section  -----------> */}
       <section className="flex justify-center items-center my-10 m-auto" style={{ maxWidth: "1300px" }}>
