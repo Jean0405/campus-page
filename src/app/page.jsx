@@ -33,6 +33,7 @@ import Image from "next/image";
 import NavigationBar from "@/components/NavigationBar";
 import Carousel from "@/components/Carousel";
 import Footer from "@/components/Footer";
+import Autoincrement from "@/components/Autoincrement";
 
 function page() {
   useEffect(() => {
@@ -97,7 +98,7 @@ function page() {
         {/* <------------ *********** SERVICES SECTION ********** ----------> */}
         <section className="flex flex-wrap justify-around items-center gap-x-10 gap-y-20 mt-28">
           {/* <-------- First card -----------> */}
-          <div className="flex flex-col items-center" data-aos="zoom-in">
+          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
             <div className="relative h-80 w-80 bg-black rounded-xl overflow-hidden">
               <Image
                 className="C_campus absolute -top-24 -left-2"
@@ -111,15 +112,14 @@ function page() {
             <p className="text-black text-lg font-bold py-2">Conócenos</p>
           </div>
           {/* <--------- Second card ---------> */}
-          <div className="flex flex-col items-center" data-aos="zoom-in">
+          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
             <div className="relative h-80 w-80 border border-black rounded-xl">
               <Image
                 className="absolute w-48 h-48 top-1 -left-6"
                 src={star_icon}
               />
-              <span className="absolute top-24 left-11 flex justify-center items-center text-9xl font-bold">
-                100
-              </span>
+              <Autoincrement limit={100} time={10} customClass="hidden sm:flex absolute top-24 left-11 justify-center items-center text-9xl font-bold"/>
+              <span className="flex sm:hidden absolute top-24 left-11 justify-center items-center text-9xl font-bold">100</span>
               <span
                 className="absolute text-4xl font-bold"
                 style={{ top: "106px", right: "35px" }}
@@ -168,7 +168,7 @@ function page() {
           </div>
 
           {/* <----------- Last card ----------> */}
-          <div className="flex flex-col items-center" data-aos="zoom-in">
+          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
             <div className="relative h-80 w-80 rounded-xl">
               <div className="absolute w-80 h-40 bg-[#F4B422] bottom-0 rounded-xl"></div>
               <Image
@@ -210,7 +210,7 @@ function page() {
           <Button
             radius="full"
             color="warning"
-            className="text-white mt-6 h-14 font-extrabold text-large"
+            className="btn-hover text-white mt-6 h-14 font-extrabold text-large"
           >
             Unete Ahora{" "}
             <Image alt="..." className="w-5 ml-2" src={right_arrow_white} />{" "}
