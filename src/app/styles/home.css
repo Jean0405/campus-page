@@ -1,38 +1,105 @@
 
-
 @keyframes slide {
      from {
           transform: translateX(-100%);
      }
+}
+.mainLeft {
+     max-width: 900px;
+}
 
-     to {
+
+
+.slider .slide-track {
+     animation: scroll 60s linear infinite;
+     -webkit-animation: scroll 60s linear infinite;
+     width: calc(180px * 14);
+}
+
+.slider .slide-track2 {
+     animation: scroll2 60s linear infinite;
+     -webkit-animation: scroll2 60s linear infinite;
+     width: calc(180px * 14);
+}
+
+.slider:before,
+.slider:after {
+     position: absolute;
+     top: 0;
+     width: 30px;
+     height: 100%;
+     content: "";
+     z-index: 2;
+}
+
+.slider:before {
+     left: 0;
+     background: linear-gradient(to left, rgba(255, 255, 255, 0), white);
+}
+
+.slider:after {
+     right: 0;
+     background: linear-gradient(to right, rgba(255, 255, 255, 0), white);
+}
+
+@keyframes scroll {
+     0% {
+          -webkit-transform: translateX(0);
           transform: translateX(0);
      }
+
+     100% {
+          -webkit-transform: translateX(calc(-200px * 7));
+          transform: translateX(calc(-200px * 7));
+     }
 }
 
-@keyframes slide2{
-     from {
-          transform:  translateX(-90%);
+@keyframes scroll2 {
+     0% {
+          -webkit-transform: translateX(calc(-200px * 7));
+          transform: translateX(calc(-200px * 7));
      }
 
-     to {
+     100% {
+          -webkit-transform: translateX(0);
           transform: translateX(0);
      }
-}
-
-.logos-slides {
-     white-space: nowrap;
-     animation: 35s slide infinite linear;
-}
-
-.logos-slides2{
-     white-space: nowrap;
-     animation: 30s slide2 infinite linear;
 }
 
 
 .group[data-filled-within=true] .group-data-\[filled-within\=true\]\:text-foreground {
      color: #0070F0 !important;
+}
+
+@media (max-width: 1800px) {
+     .hombreSentado {
+          display: none;
+     }
+
+     .Main {
+          flex-direction: column;
+     }
+
+     .mainLeft {
+          max-width: 100%;
+     }
+
+     .fullStack {
+          display: none;
+     }
+
+     .middle {
+          margin: 0;
+     }
+
+     .mainLeft {
+          text-align: center;
+     }
+
+     .mainLeft h2 {
+          white-space: wrap;
+     }
+
 }
 
 @media (max-width: 1060px) {
@@ -51,6 +118,32 @@
 
      .loginButtons {
           margin-bottom: 2rem;
+     }
+
+}
+
+@media (max-width: 930px) {
+
+     .mainLeft h2 {
+          font-size: 3rem;
+     }
+
+}
+
+@media (max-width: 790px) {
+
+     .mainLeft h2 {
+          margin-top: 2rem;
+          font-size: 2rem;
+     }
+
+     .mainLeft p{
+          font-size: 1.2rem;
+          letter-spacing: 0;
+     }
+
+     .Main{
+          margin: 0 3rem;
      }
 
 }
@@ -115,63 +208,73 @@
      animation: float 2.5s ease-in-out infinite;
 }
 
-.C_campus{
-     animation: float 4s ease-in-out infinite;
+.C_campus {
+     animation: float 3.5s ease-in-out infinite;
 }
 
 @keyframes float {
-     0%{
-          transform:translateY(0px);
-     }
-     50%{
-          transform: translateY(-15px);
-     }
-     100%{
+     0% {
           transform: translateY(0px);
      }
-   }
+
+     50% {
+          transform: translateY(-15px);
+     }
+
+     100% {
+          transform: translateY(0px);
+     }
+}
 
 /* <-------- These elements have motion animation to the right --------> */
-.sponsorship_item_left_1{
+.sponsorship_item_left_1 {
      animation: right_horizontal_float 3.0s ease-in-out infinite;
 }
-.sponsorship_item_left_2{
+
+.sponsorship_item_left_2 {
      animation: right_horizontal_float 3.5s ease-in-out infinite;
 }
-.sponsorship_item_right_4{
+
+.sponsorship_item_right_4 {
      animation: right_horizontal_float 2.5s ease-in-out infinite;
 }
 
 @keyframes right_horizontal_float {
-     0%{
-          transform:translateX(0px),;
+     0% {
+          transform: translateX(0px), ;
      }
-     50%{
+
+     50% {
           transform: translateX(17px);
      }
-     100%{
+
+     100% {
           transform: translateX(0px);
      }
-   }
+}
 
-.sponsorship_item_right_1{
+.sponsorship_item_right_1 {
      animation: left_horizontal_float 5s ease-in-out infinite;
 }
-.sponsorship_item_right_2{
+
+.sponsorship_item_right_2 {
      animation: left_horizontal_float 3s ease-in-out infinite;
 }
-.sponsorship_item_right_3{
+
+.sponsorship_item_right_3 {
      animation: left_horizontal_float 5s ease-in-out infinite;
 }
 
 @keyframes left_horizontal_float {
-     0%{
-          transform:translateX(0px),;
+     0% {
+          transform: translateX(0px), ;
      }
-     50%{
+
+     50% {
           transform: translateX(-10px);
      }
-     100%{
+
+     100% {
           transform: translateX(0px);
      }
-   }
+}
