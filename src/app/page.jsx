@@ -19,7 +19,6 @@ import star_icon from "../../public/img/star_icon.png";
 import camperWoman from "../../public/img/mujerCamper.png";
 import right_arrow from "../../public/assets/right_arrow.png";
 import camperWoman2 from "../../public/img/mujerCamper2.png";
-import tilde from "../../public/assets/tilde.svg";
 import hombreSentado from "../../public/img/hombreSentado.png";
 import right_arrow_white from "../../public/assets/right_arrow_white.png";
 
@@ -76,9 +75,15 @@ function page() {
             className={`${stretchPro.className} relative col-span-2 flex flex-col order-first mt-5`}
             data-aos="zoom-in"
           >
-            {/* LLEGUEMOS MÁS */}
             <div className="flex justify-center text-3xl sm:text-3xl lg:text-4xl xl:text-5xl pb-1">
               <p className="text-center tracking-tight">SOBREPASA<br/>LAS BARRERAS<br/>DEL ESPACIO</p>
+              <div className="hidden lg:flex absolute -right-11 bottom-3 xl:-right-9 xl:bottom-4 border border-black rounded-3xl px-4">
+              <Image
+                className="w-6 h-6 xl:w-8 xl:h-7"
+                src={right_arrow}
+                alt="campuslands logo"
+              />
+            </div>
             </div>
           </div>
           {/* <------ Last headers section ------> */}
@@ -167,9 +172,9 @@ function page() {
             <div className="relative h-80 w-80 rounded-xl">
               <div className="absolute w-80 h-40 bg-[#F4B422] bottom-0 rounded-xl"></div>
               <Image
-                className="absolute left-"
+                className="absolute"
                 src={camperWoman}
-                style={{ height: "400px", bottom: "0px" }}
+                style={{ height: "360px", bottom: "0px" }}
               />
             </div>
             <p className="text-black text-lg font-bold py-2">

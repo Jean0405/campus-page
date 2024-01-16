@@ -20,7 +20,7 @@ export default function App() {
       href: "#",
     },
     {
-      name: "Conocenos",
+      name: "Conócenos",
       href: "#",
     },
     {
@@ -36,7 +36,7 @@ export default function App() {
       href: "#",
     },
     {
-      name: "Visitanos",
+      name: "Visítanos",
       href: "#",
     },
   ];
