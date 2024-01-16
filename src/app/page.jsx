@@ -35,6 +35,7 @@ import Carousel from "@/components/Carousel";
 import { Requirements } from "@/components/Requirements";
 import Footer from "@/components/Footer";
 import Autoincrement from "@/components/Autoincrement";
+import Visitas from "@/components/Visitas";
 
 function page() {
   useEffect(() => {
@@ -224,7 +225,7 @@ function page() {
           FULL STACK
         </p>
       </div>
-      {/* <----------- Requirements section  -----------> */}                
+      {/* <----------- REQUIREMENTS SECTION  -----------> */}                
       <div className=" m-auto" style={{ maxWidth: "1500px" }}>
       <Requirements />
 
@@ -378,7 +379,8 @@ function page() {
           </div>
         </div>
       </section>
-        <Footer />
+      <Visitas/>
+      <Footer />
     </>
   );
 }
