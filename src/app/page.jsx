@@ -77,44 +77,8 @@ function page() {
             data-aos="zoom-in"
           >
             {/* LLEGUEMOS MÁS */}
-            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
-              <p className="relative tracking-tight">
-                LLEGUEMOS M
-                <span className="relative">
-                  A
-                  <Image
-                    className="absolute w-2 sm:w-2 -top-1 right-2 sm:-top-2 sm:right-2 md:-top-2 md:right-1 lg:-top-1 lg:right-3 xl:-top-0 xl:right-3"
-                    src={tilde}
-                    alt="tilde"
-                  />
-                </span>
-                S
-              </p>
-            </div>
-            {/* ALLÁ DE LAS */}
-            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
-              <p className="tracking-tight">
-                ALL
-                <span className="relative">
-                  A
-                  <Image
-                    className="absolute w-2 sm:w-2 -top-1 right-2 sm:-top-1 sm:right-2 md:-top-2 md:right-1 lg:-top-1 lg:right-3 xl:-top-0 xl:right-3"
-                    src={tilde}
-                    alt="tilde"
-                  />
-                </span>{" "}
-                DE LAS
-              </p>
-            </div>
-            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl">
-              <p className="tracking-tight">ESTRELLAS</p>
-            </div>
-            <div className="hidden lg:flex absolute -right-2 bottom-1 xl:-right-1 xl:bottom-1 border border-black rounded-3xl px-4">
-              <Image
-                className="w-8 h-7"
-                src={right_arrow}
-                alt="campuslands logo"
-              />
+            <div className="flex justify-center text-3xl sm:text-3xl lg:text-4xl xl:text-5xl pb-1">
+              <p className="text-center tracking-tight">SOBREPASA<br/>LAS BARRERAS<br/>DEL ESPACIO</p>
             </div>
           </div>
           {/* <------ Last headers section ------> */}
@@ -215,8 +179,8 @@ function page() {
         </section>
       </div>
 
-      {/* <------------ ***********   STUDY WITH US  ********** ----------> */}
-      <div className="Main flex justify-center mt-28 mb-10 ml-40 mr-40">
+      {/* <------------ *********** STUDY WITH US ********** ----------> */}
+      <div className="Main flex justify-center mt-28 mb-10 ml-40 mr-40" data-aos="zoom-in">
         <div className="mainLeft">
           <h2
             className={`${stretchPro.className} relative text-6xl mb-8 whitespace-nowrap`}
@@ -255,7 +219,7 @@ function page() {
         </p>
       </div>
 
-      {/* <----------- Sponsorship section  -----------> */}
+      {/* <------- ******* SPONSORSHIP SECTION ******* -----------> */}
       <section
         className="flex justify-center items-center my-10 m-auto"
         style={{ maxWidth: "1600px" }}
@@ -403,9 +367,7 @@ function page() {
           </div>
         </div>
       </section>
-      <div className="m-auto" style={{ maxWidth: "1600px" }}>
-        <Footer />
-      </div>
+      <Footer />
     </>
   );
 }
