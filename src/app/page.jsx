@@ -32,6 +32,7 @@ import Link from "next/link";
 import Image from "next/image";
 import NavigationBar from "@/components/NavigationBar";
 import Carousel from "@/components/Carousel";
+import { Requirements } from "@/components/Requirements";
 import Footer from "@/components/Footer";
 import Autoincrement from "@/components/Autoincrement";
 
@@ -223,6 +224,11 @@ function page() {
           FULL STACK
         </p>
       </div>
+      {/* <----------- Requirements section  -----------> */}                
+      <div className=" m-auto" style={{ maxWidth: "1500px" }}>
+      <Requirements />
+
+      </div>
 
       {/* <------- ******* SPONSORSHIP SECTION ******* -----------> */}
       <section
@@ -372,7 +378,7 @@ function page() {
           </div>
         </div>
       </section>
-      <Footer />
+        <Footer />
     </>
   );
 }
