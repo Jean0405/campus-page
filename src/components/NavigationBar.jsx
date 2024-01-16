@@ -17,27 +17,23 @@ export default function App() {
   const menuItems = [
     {
       name: "Inicio",
-      href: "#",
+      href: "/",
     },
     {
       name: "Conócenos",
-      href: "#",
-    },
-    {
-      name: "Contratar",
-      href: "#",
+      href: "/pages/meetUs",
     },
     {
       name: "Patrocinar",
-      href: "#",
+      href: "/pages/sponsorship",
     },
     {
       name: "Contratar",
-      href: "#",
+      href: "/pages/recruitment",
     },
     {
       name: "Visítanos",
-      href: "#",
+      href: "/pages/visits",
     },
   ];
 
