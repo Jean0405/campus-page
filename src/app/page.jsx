@@ -230,9 +230,7 @@ function page() {
             Software Skills, Habilidades Socioemocionales e Inglés donde se
             dasarrollan las siguientes tecnologias:
           </p>
-          <div className="flex flex-col gap-2 mt-7">
             <Carousel />
-          </div>
         </div>
         <div className="middle relative flex flex-col justify-center items-center mr-24">
           <Image

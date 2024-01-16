@@ -43,13 +43,12 @@ export default function Carousel() {
      ]
 
      return (
-          <>
+          <div className="flex flex-col gap-2 mt-7">
                <div className="slider relative w-full h-auto m-auto overflow-hidden flex flex-col gap-1">
                     <div className="slide-track flex">
                          {logos.map((src, index) => (
-                              <div className="slide w-52">
+                              <div className="slide w-52" key={index}>
                                    <Image
-                                        key={index}
                                         className="inline-block"
                                         style={{width: "70px", height: "70px"}}
                                         src={src}
@@ -58,9 +57,8 @@ export default function Carousel() {
                               </div>
                          ))}
                          {logos.map((src, index) => (
-                              <div className="slide w-52">
+                              <div className="slide w-52" key={index}>
                                    <Image
-                                        key={index}
                                         className="inline-block"
                                         style={{width: "70px", height: "70px"}}
                                         src={src}
@@ -71,9 +69,8 @@ export default function Carousel() {
                     </div>
                     <div className="slide-track2 flex">
                          {logos.map((src, index) => (
-                              <div className="slide w-52">
+                              <div className="slide w-52" key={index}>
                                    <Image
-                                        key={index}
                                         className="inline-block"
                                         style={{width: "70px", height: "70px"}}
                                         src={src}
@@ -82,9 +79,8 @@ export default function Carousel() {
                               </div>
                          ))}
                          {logos.map((src, index) => (
-                              <div className="slide w-52">
+                              <div className="slide w-52" key={index}>
                                    <Image
-                                        key={index}
                                         className="inline-block"
                                         src={src}
                                         style={{width: "70px", height: "70px"}}
@@ -94,6 +90,7 @@ export default function Carousel() {
                          ))}
                     </div>
                </div>
-          </>
+          </div>
+               
      )
 }
