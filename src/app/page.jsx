@@ -20,29 +20,31 @@ import camperWoman from "../../public/img/mujerCamper.png";
 import right_arrow from "../../public/assets/right_arrow.png";
 import camperWoman2 from "../../public/img/mujerCamper2.png";
 import tilde from "../../public/assets/tilde.svg";
+import hombreSentado from "../../public/img/hombreSentado.png";
+import right_arrow_white from "../../public/assets/right_arrow_white.png";
 
 //fonts imports
 import localFont from "next/font/local";
 const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
 
 // Components imports
-import NavigationBar from "@/components/NavigationBar";
-import Tecnologias from "@/components/Tecnologias";
+import { Button } from "@nextui-org/react";
 import Link from "next/link";
 import Image from "next/image";
-import { Button } from "@nextui-org/react";
+import NavigationBar from "@/components/NavigationBar";
+import Carousel from "@/components/Carousel";
 import Footer from "@/components/Footer";
 
 function page() {
   useEffect(() => {
-    AOS.init({ duration: 1000 });
+    AOS.init({ duration: 900 });
   });
 
   return (
     <>
-      <div className="px-5 lg:px-10 m-auto" style={{ maxWidth: "1300px" }}>
-        {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
-        <NavigationBar />
+      {/* <--------- ********* NAVIGATION BAR ********* ---------> */}
+      <NavigationBar />
+      <div className="px-5 lg:px-10 m-auto" style={{ maxWidth: "1600px" }}>
         {/* <------- *********** HEADER ********** -------> */}
         <section className="grid grid-cols-2 md:grid-cols-4 place-items-center gap-y-5 lg:mt-10 lg:px-5">
           {/* first headers section */}
@@ -75,13 +77,13 @@ function page() {
             data-aos="zoom-in"
           >
             {/* LLEGUEMOS MÁS */}
-            <div className="flex justify-center text-xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
+            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
               <p className="relative tracking-tight">
                 LLEGUEMOS M
                 <span className="relative">
                   A
                   <Image
-                    className="absolute w-1 sm:w-2 -top-1 right-2 sm:-top-3 sm:right-2 md:-top-3 md:right-1 lg:-top-2 lg:right-3 xl:-top-2 xl:right-3"
+                    className="absolute w-2 sm:w-2 -top-1 right-2 sm:-top-2 sm:right-2 md:-top-2 md:right-1 lg:-top-1 lg:right-3 xl:-top-0 xl:right-3"
                     src={tilde}
                     alt="tilde"
                   />
@@ -90,13 +92,13 @@ function page() {
               </p>
             </div>
             {/* ALLÁ DE LAS */}
-            <div className="flex justify-center text-xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
+            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl pb-1">
               <p className="tracking-tight">
                 ALL
                 <span className="relative">
                   A
                   <Image
-                    className="absolute w-1 sm:w-2 -top-1 right-2 sm:-top-3 sm:right-2 md:-top-3 md:right-1 lg:-top-2 lg:right-3 xl:-top-2 xl:right-3"
+                    className="absolute w-2 sm:w-2 -top-1 right-2 sm:-top-1 sm:right-2 md:-top-2 md:right-1 lg:-top-1 lg:right-3 xl:-top-0 xl:right-3"
                     src={tilde}
                     alt="tilde"
                   />
@@ -104,10 +106,10 @@ function page() {
                 DE LAS
               </p>
             </div>
-            <div className="flex justify-center text-xl sm:text-2xl lg:text-3xl xl:text-4xl">
+            <div className="flex justify-center text-2xl sm:text-2xl lg:text-3xl xl:text-4xl">
               <p className="tracking-tight">ESTRELLAS</p>
             </div>
-            <div className="hidden lg:flex absolute -right-1 bottom-1 xl:-right-1 xl:bottom-2 border border-black rounded-3xl px-4">
+            <div className="hidden lg:flex absolute -right-2 bottom-1 xl:-right-1 xl:bottom-1 border border-black rounded-3xl px-4">
               <Image
                 className="w-8 h-7"
                 src={right_arrow}
@@ -203,7 +205,7 @@ function page() {
               <Image
                 className="absolute left-"
                 src={camperWoman}
-                style={{ height: "420px", bottom: "0px" }}
+                style={{ height: "400px", bottom: "0px" }}
               />
             </div>
             <p className="text-black text-lg font-bold py-2">
@@ -214,10 +216,52 @@ function page() {
       </div>
 
       {/* <------------ ***********   STUDY WITH US  ********** ----------> */}
-      <Tecnologias/>
+      <div className="Main flex justify-center mt-28 mb-10 ml-40 mr-40">
+        <div className="mainLeft">
+          <h2
+            className={`${stretchPro.className} relative text-6xl mb-8 whitespace-nowrap`}
+          >
+            ¿QUIERES ESTUDIAR
+            <br /> CON NOSOTROS?{" "}
+          </h2>
+          <p className="tracking-wide text-2xl leading-9">
+            Nuestro programa de entrenamiento de 8 a 10 meses, ofrece un sistema
+            intensivo integral para Desarrolladores de Software, basado en
+            Software Skills, Habilidades Socioemocionales e Inglés donde se
+            dasarrollan las siguientes tecnologias:
+          </p>
+          <div className="flex flex-col gap-2 mt-7">
+            <Carousel />
+          </div>
+        </div>
+        <div className="middle relative flex flex-col justify-center items-center mr-24">
+          <Image
+            className="hombreSentado w-unit-8xl h-96"
+            src={hombreSentado}
+            alt="Hombre sentado"
+          />
+          <Button
+            radius="full"
+            color="warning"
+            className="text-white mt-6 h-14 font-extrabold text-large"
+          >
+            Unete Ahora{" "}
+            <Image alt="..." className="w-5 ml-2" src={right_arrow_white} />{" "}
+          </Button>
+        </div>
+        <p
+          className="fullStack flex items-center justify-center rotate-180 font-extrabold "
+          style={{ writingMode: "vertical-rl" }}
+        >
+          FULL STACK
+        </p>
+      </div>
 
       {/* <----------- Sponsorship section  -----------> */}
-      <section className="flex justify-center items-center my-10 m-auto" style={{ maxWidth: "1300px" }}>
+      <section
+        className="flex justify-center items-center my-10 m-auto"
+        style={{ maxWidth: "1600px" }}
+      >
         {/* <------ SPONSORSHIP DESKTOP SECTION ------> */}
         <div className="hidden lg:flex relative" data-aos="zoom-in">
           {/* <--- Left text ---> */}
@@ -361,8 +405,8 @@ function page() {
           </div>
         </div>
       </section>
-      <div className="m-auto" style={{ maxWidth: "1300px" }}>
-      <Footer />
+      <div className="m-auto" style={{ maxWidth: "1600px" }}>
+        <Footer />
       </div>
     </>
   );

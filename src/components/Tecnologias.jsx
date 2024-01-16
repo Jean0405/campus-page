@@ -3,9 +3,6 @@
 import React from "react";
 import { Button } from "@nextui-org/react";
 import Image from "next/image"
-import hombreSentado from "../../public/img/hombreSentado.png";
-import right_arrow_white from "../../public/assets/right_arrow_white.png";
-import Carousel from "./Carousel";
 import "../app/styles/home.css";
 import localFont from "next/font/local"
 
