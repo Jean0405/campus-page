@@ -100,6 +100,60 @@
           white-space: wrap;
      }
 
+     
+
+}
+
+@media (max-width: 1279px){
+     .mainVisits{
+          text-align: center;
+     }
+
+     .divDown{
+          justify-content: center;
+          align-items: center;
+     }
+
+     .divButtonCita{
+          margin-top: 2rem;
+          margin-bottom: 4rem;
+     }
+
+     .lilaCircle{
+          top: 11rem !important;
+          left: 43rem !important;
+     }
+
+     .purpleCircle{
+          top: 16rem !important;
+          left: 18rem !important;
+     }
+
+     .socialNetworks{
+          margin-top: 1rem;
+          display: flex;
+          justify-content: space-around;
+     }
+
+     .redesDiv{
+          display: flex;
+          flex-direction: column;
+          margin-top: 2rem;
+          gap: 2rem;
+     }
+
+}
+
+@media (max-width: 1130px){
+     .lilaCircle{
+          top: 11rem !important;
+          left: 40rem !important;
+     }
+
+     .purpleCircle{
+          top: 16rem !important;
+          left: 15rem !important;
+     }
 }
 
 @media (max-width: 1060px) {
@@ -122,12 +176,103 @@
 
 }
 
-@media (max-width: 930px) {
+@media (max-width: 1030px){
 
+     .mainVisits{
+          text-align: center;
+     }
+
+     .mainH2Visits{
+          line-height: 2.5rem !important;
+     }
+
+     .divUp{
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+     }
+
+     .divDown{
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+     }
+
+     .divButtonCita{
+          justify-content: center;
+     }
+
+     .rightArrow{
+          display: none;
+     }
+
+     .lilaCircle{
+          top: 8rem !important;
+          left: 27rem !important;
+     }
+
+     .purpleCircle{
+          top: 12rem !important;
+          left: 2rem !important;
+     }
+
+     .videoVisitas{
+          margin-top: 4rem !important;
+     }
+
+     .redesDiv{
+          margin-top: 2rem;
+     }
+
+     .redesDiv div{
+          gap: 4rem;
+          display: flex;
+          margin-top: 2rem;
+          justify-content: center;
+     }
+}
+
+@media (max-width: 1024px){
+     .lilaCircle{
+          top: 8rem !important;
+          left: 32rem !important;
+     }
+
+     .purpleCircle{
+          top: 12rem !important;
+          left: 7rem !important;
+     }
+}
+
+@media (max-width: 930px) {
      .mainLeft h2 {
           font-size: 3rem;
      }
+}
 
+@media (max-width: 912px) {
+     .lilaCircle{
+          top: 8rem !important;
+          left: 27rem !important;
+     }
+
+     .purpleCircle{
+          top: 12rem !important;
+          left: 2rem !important;
+     }
+}
+
+@media (max-width: 820px){
+     .lilaCircle{
+          top: 8rem !important;
+          left: 27rem !important;
+     }
+
+     .purpleCircle{
+          top: 12rem !important;
+          left: 2rem !important;
+     }
 }
 
 @media (max-width: 790px) {
@@ -146,6 +291,45 @@
           margin: 0 3rem;
      }
 
+     .mainH2Visits{
+          font-size: 2rem !important;
+     }
+
+     .purpleCircle{
+          top: 12rem !important;
+          left: 0rem !important;
+     }
+
+     .lilaCircle{
+          top: 8rem !important;
+          left: 25rem !important;
+     }
+}
+
+@media (max-width: 555px) {
+
+     .mainH2Visits{
+          font-size: 1.5rem !important;
+     }
+     
+     .purpleCircle{
+          top: 12rem !important;
+          left: -1rem !important;
+     }
+
+     .lilaCircle{
+          top: 8rem !important;
+          left: 18rem !important;
+     }
+
+     .socialNetworks{
+          gap: 2.5rem !important;
+     }
+
+     .divButtonCita{
+          width: 300px !important;
+     }
+
 }
 
 @media (max-width: 440px) {
@@ -162,6 +346,99 @@
           font-size: 13px;
      }
 
+     .socialNetworks{
+          gap: 1rem !important;
+     }
+
+     .mainH2Visits{
+          font-size: 1.4rem !important;
+          line-height: 1.4rem !important;
+     }
+
+     .divButtonCita{
+          width: 230px !important;
+     }
+
+     .calendarVisitas{
+          justify-content: center;
+          align-items: center;
+     }
+
+     .calendarVisitas img{
+          width: 20px !important;
+          height: 20px !important;
+     }
+     
+     .calendarVisitas p{
+          font-size: 1rem !important;
+     }
+
+     .lilaCircle{
+          top: 5rem !important;
+          left: 15rem !important;
+     }
+
+     .purpleCircle{
+          top: 9rem !important;
+          left: 1rem !important;
+     }
+
+     .mainLeft h2{
+          font-size: 2rem;
+     }
+
+}
+
+@media (max-width: 390px) {
+
+     .mainH2Visits{
+          font-size: 1.3rem !important;
+     }
+     
+     .lilaCircle{
+          top: 4rem !important;
+          left: 15rem !important;
+     }
+
+     .purpleCircle{
+          top: 8rem !important;
+          left: 0rem !important;
+     }
+
+     .divDown{
+          margin-bottom: 3rem !important;
+     }
+
+     .divButtonCita{
+          margin-top: 1rem !important;
+     }
+}
+
+@media (max-width: 408px){
+
+     .divButtonCita{
+          margin: 0;
+     }
+
+     .divDown{
+          margin: 0;
+     }
+}
+
+@media (max-width: 390px){
+     .mainLeft h2{
+          font-size: 1.5rem;
+     }
+}
+
+@media (max-width: 389px){
+     .lilaCircle, .purpleCircle{
+          display: none;
+     }
+
+     .divButtonCita{
+          background-color: #DCDCD3;
+     }
 }
 
 @media (max-width: 1340px) {
@@ -202,6 +479,16 @@
      .buttonRegistro {
           font-size: small;
      }
+
+     .redSocial{
+          width: 30px !important;
+          height: 30px !important;
+     }
+
+     .videoVisitas{
+          margin-top: 1rem !important;
+     }
+
 }
 
 .ellipse{
