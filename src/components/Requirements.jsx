@@ -14,7 +14,7 @@ export const Requirements = () => {
     return (
 
         <div className='grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center md:border border-black rounded-3xl border-0 mt-10'>
-            <div className='grid grid-cols-1 grid-row lg:border-e border-b'>
+            <div className='grid grid-cols-1 grid-row '>
                 <div className='flex justify-between items-center ps-10 mt-5'>
                     <Image
                         className=""
@@ -52,33 +52,23 @@ export const Requirements = () => {
                         src={box3}
                         alt="campuslands logo"
                     />
-                             <Image
+                    <Image
                         className="xl:w-fit lg:w-44 md:w-50  w-36 absolute m-0 xl:bottom-8 md:bottom-8 bottom-4 lg:right-36 md:right-48 right-24"
                         src={box4}
                         alt="campuslands logo"
                     />
-                    
-                          <Image
+
+                    <Image
                         className="xl:w-fit lg:w-24 md:w-28 w-20 absolute  m-0  xl:bottom-36 md:bottom-32 bottom-20 lg:right-36 md:right-48 right-24"
                         src={box5}
                         alt="campuslands logo"
                     />
-             
-              
-
-
-
-
-                  
-
-
-
                 </div>
             </div>
 
-            <div className='grid grid-cols-2  divide-x divide-y  h-full '>
-                <div className='flex flex-col justify-center m-auto'>
-                    <h2 className='md:text-xl text-md font-bold'>Edad</h2>
+            <div className='grid grid-cols-2 divide-x divide-y h-full'>
+                <div className='w-full h-full flex flex-col justify-center items-center m-auto md:border-t border-s '>
+                    <h2 className='md:text-xl text-md font-bold items-end'>Edad</h2>
                     <p>17 Años - 27 Años</p>
                 </div>
                 <div className='w-full flex flex-col justify-center items-center md:text-xl text-md md:p-0 p-8'>
@@ -99,8 +89,6 @@ export const Requirements = () => {
                     </a>
                 </div>
             </div>
-
-
         </div>
     )
 }
