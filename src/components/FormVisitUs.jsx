@@ -257,7 +257,7 @@ export const FormVisitUs = () => {
 
                         <div class="flex items-center">
                             <input id="link-checkbox" type="checkbox" value="" class="w-4 h-4  text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-blue-800 focus:ring-2 dark:bg-blue-700 dark:border-blue-600" />
-                            <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">I agree with the <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">terms and conditions</a>.</label>
+                            <label for="link-checkbox" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300">Aceptar <a href="#" class="text-blue-600 dark:text-blue-500 hover:underline">terminos y condiciones</a> </label>
                         </div>
 
                         <div className="mt-4">
