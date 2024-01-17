@@ -13,9 +13,8 @@ import hamburguer from '../../public/img/hamburguer.svg'
 export const Requirements = () => {
     return (
 
-        <div className="m-auto " style={{ maxWidth: "1600px" }}>
-            <div className='grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center md:border border-black rounded-3xl border-1 mt-20 mx-6 sm:mx-16' >
-            <div className='grid grid-cols-1 grid-row '>
+        <div className='lg:max-w-[1600px] max-w-2xl	 m-auto grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center border border-black rounded-3xl mt-10 '>
+            <div className='grid grid-cols-1 grid-row lg:border-r border-0 border-black'>
                 <div className='flex justify-between items-center ps-10 mt-5'>
                     <Image
                         className=""
@@ -31,10 +30,13 @@ export const Requirements = () => {
 
                 <div className='grid lg:grid-cols-[3fr_0.5fr] grid-cols-[4fr_0.5fr] relative'>
                     <Image
-                        className="xl:w-11/12 w-2/3 xl:ms-0  ms-14 z-10"
+                        className="xl:w-full w-2/3 xl:ms-0  ms-14 z-10"
                         src={camperMen}
                         alt="campuslands logo"
                     />
+
+
+
                     <Image
                         className="xl:w-fit lg:w-16 md:w-20 w-14 absolute m-0 xl:bottom-64 lg:bottom-48 md:bottom-56 bottom-36 xl:right-5 lg:right-14 md:right-24 right-5 "
                         src={box1}
@@ -64,20 +66,22 @@ export const Requirements = () => {
                 </div>
             </div>
 
-            <div className='grid grid-cols-2 divide-x divide-y h-full'>
-                <div className='w-full h-full flex flex-col justify-center items-center m-auto md:border-t border-s '>
+            <div className='grid grid-cols-2   divide-black h-full w-full'>
+                <div className='w-full h-full flex flex-col justify-center items-center m-auto   border-t border-b lg:border-t-0 border-black  '>
                     <h2 className='md:text-xl text-md font-bold items-end'>Edad</h2>
                     <p>17 Años - 27 Años</p>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center md:text-xl text-md md:p-0 p-8'>
+                <div className='w-full flex flex-col justify-center items-center md:text-xl text-md lg:p-0 p-5 border-l border-b lg:border-t-0 border-t  '>
                     <p className='font-bold  md:max-w-44 max-w-40 md:text-xl text-sm'>Mantener una Actitud de compromiso, dedicación y aprendizaje</p>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center my-2 md:p-0 p-8'>
-                    <p className='md:max-w-72  md:text-lg text-sm'>Estar 8 horas diarias presenciales en el Campus, de lunes a viernes. (6am - 2pm  o  2pm - 10pm)</p>
+
+                
+                <div className='w-full flex flex-col justify-center  items-center lg:md:p-0 p-5  xl:border-0 lg:border-r border-none  '>
+                    <p className='md:max-w-72  md:text-lg text-sm '>Estar 8 horas diarias presenciales en el Campus, de lunes a viernes. (6am - 2pm  o  2pm - 10pm)</p>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center my-2 md:p-0 p-5'>
+                <div className='w-full flex flex-col justify-center lg:border-l border-l  items-center lg:md:p-0 p-5'>
                     <h2 className='font-bold md:text-xl text-md'>¡Animate!</h2>
-                    <p className="md:text-lg text-sm">unete a este increíble viaje</p>
+                    <p className="md:text-lg text-sm">unete a este increí  ble viaje</p>
                     <a>Inscripción
                         <Image
                             className="w-4 h-4 inline ms-2"
@@ -88,6 +92,6 @@ export const Requirements = () => {
                 </div>
             </div>
         </div>
-        </div>
     )
 }
+
