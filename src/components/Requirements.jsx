@@ -13,7 +13,8 @@ import hamburguer from '../../public/img/hamburguer.svg'
 export const Requirements = () => {
     return (
 
-        <div className='grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center md:border border-black rounded-3xl border-0 mt-10'>
+        <div className="m-auto " style={{ maxWidth: "1600px" }}>
+            <div className='grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center md:border border-black rounded-3xl border-1 mt-20 mx-6 sm:mx-16' >
             <div className='grid grid-cols-1 grid-row '>
                 <div className='flex justify-between items-center ps-10 mt-5'>
                     <Image
@@ -34,9 +35,6 @@ export const Requirements = () => {
                         src={camperMen}
                         alt="campuslands logo"
                     />
-
-
-
                     <Image
                         className="xl:w-fit lg:w-16 md:w-20 w-14 absolute m-0 xl:bottom-64 lg:bottom-48 md:bottom-56 bottom-36 xl:right-5 lg:right-14 md:right-24 right-5 "
                         src={box1}
@@ -74,10 +72,10 @@ export const Requirements = () => {
                 <div className='w-full flex flex-col justify-center items-center md:text-xl text-md md:p-0 p-8'>
                     <p className='font-bold  md:max-w-44 max-w-40 md:text-xl text-sm'>Mantener una Actitud de compromiso, dedicación y aprendizaje</p>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center md:p-0 p-8'>
+                <div className='w-full flex flex-col justify-center items-center my-2 md:p-0 p-8'>
                     <p className='md:max-w-72  md:text-lg text-sm'>Estar 8 horas diarias presenciales en el Campus, de lunes a viernes. (6am - 2pm  o  2pm - 10pm)</p>
                 </div>
-                <div className='w-full flex flex-col justify-center items-center md:p-0 p-5'>
+                <div className='w-full flex flex-col justify-center items-center my-2 md:p-0 p-5'>
                     <h2 className='font-bold md:text-xl text-md'>¡Animate!</h2>
                     <p className="md:text-lg text-sm">unete a este increíble viaje</p>
                     <a>Inscripción
@@ -89,6 +87,7 @@ export const Requirements = () => {
                     </a>
                 </div>
             </div>
+        </div>
         </div>
     )
 }
