@@ -7,16 +7,15 @@ import Image from "next/image";
 import React,{ useState } from "react";
 
 
-
 export const FormVisitUs = () => {
     const [isChecked, setIsChecked] = useState(false); 
     return (
-        <section className=" grid xl:grid-cols-2 grid-cols-1 ">
-            <div className="mx-16 max-w-xl  py-16 ">
-                <h1 className="max-w-xl text-6xl font-bold ">Visítanos</h1>
-                <p className=" ms-3"> llenando el siguiente formulario</p>
+        <section className="grid xl:grid-cols-2 grid-cols-1 ">
+            <div className="mx-16 max-w-xl py-16">
+                <h1 className="max-w-xl text-7xl font-bold ">Visítanos</h1>
+                <p className="ms-3"> llenando el siguiente formulario</p>
 
-                <div className="rounded-lg  pt-14 pl-3 ">
+                <div className="pt-16 pl-3">
                     <form action="" className="space-y-4">
                         <label htmlFor="name">
                             Nombre{" "}
@@ -251,7 +250,7 @@ export const FormVisitUs = () => {
                         <p className='inline-block ms-2'>No se permiten mascotas</p>
                         <br />
                         <div className='bg-[#00AA80] text-transparent rounded-full inline-block '>{'***'}</div>
-                        <p className='inline-block ms-2 '>No se permiten mascotas</p>
+                        <p className='inline-block ms-2 '>Tener una buena presentación</p>
 
                         <hr />
 
