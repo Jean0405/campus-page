@@ -1,6 +1,5 @@
 
 import "./styles/index.css";
-import "./styles/home.css";
 import { Providers } from "./providers";
 import { Poppins } from "next/font/google";
 
