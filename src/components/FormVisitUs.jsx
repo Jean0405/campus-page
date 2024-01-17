@@ -76,8 +76,6 @@ export const FormVisitUs = () => {
                         </div>
 
 
-
-
                         <div className="">
                             <label htmlFor="name">
                                 Nombre{" "}
