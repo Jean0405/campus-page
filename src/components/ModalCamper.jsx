@@ -70,7 +70,7 @@ export default function ModalCamper({ camper, softSkills }) {
                 {/* Camper softskills */}
                 <div className="flex flex-col gap-1">
                   <h2 className="text-[#000087] font-bold">SOFTSKILLS</h2>
-                  <div className="flex      -wrap gap-2">
+                  <div className="flex flex-wrap gap-2">
                     {softSkills.map((cv, index) => (
                       <div className="cv" key={index}>
                         <div className="flex flex-wrap gap-2">
