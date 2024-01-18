@@ -1,3 +1,5 @@
+"use client"
+
 import React from "react";
 import {
   Modal,
@@ -10,7 +12,8 @@ import {
   Divider,
 } from "@nextui-org/react";
 
-export default function ModalCamper({ camper }) {
+
+export default function ModalCamper({ camper, softSkills }) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
 
   return (
@@ -35,14 +38,14 @@ export default function ModalCamper({ camper }) {
                   {/* Camper name and english level */}
                   <div className="flex flex-col text-[#000087] text-xl justify-center items-center">
                     <p className="text-2xl font-bold uppercase">
-                      {camper.firstName}
+                      {camper.nombre}
                     </p>
                     <p className="uppercase">
                       {camper.lastName}
                     </p>
                   </div>
                   <div className="flex justify-center items-center">
-                    <p className="text-[#F4B422] text-3xl font-bold">{camper.englishLevel}</p>
+                    <p className="text-[#F4B422] text-3xl font-bold">{camper.nivelIdioma}</p>
                   </div>
                 </div>
                 <Divider className="bg-[#000087] opacity-30 my-3" />
@@ -50,31 +53,38 @@ export default function ModalCamper({ camper }) {
                 <div className="py-2">
                   <h2 className="text-[#000087] text-xl font-bold">DESCRIPCIÓN</h2>
                   <p className="text-[#000087] text-xl">
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Nullam pulvinar risus non risus hendrerit venenatis.
-                    Pellentesque sit amet hendrerit risus, sed porttitor quam.
+                    {camper.acercaDeMi}
                   </p>
                 </div>
                 {/* Camper hardskills */}
                 <div className="flex flex-col gap-1">
-                <h2 className="text-[#000087] font-bold">HARDSKILLS</h2>
+                  <h2 className="text-[#000087] font-bold">HARDSKILLS</h2>
                   <div className="flex flex-wrap gap-2">
-                  {
-                    camper.hardSkills.map((hardSkill, index)=>(
-                      <span className="flex justify-center items-center bg-[#F4B422] text-[#000087] text-xl font-medium rounded-3xl px-3 py-1" key={index} >{hardSkill.skill}</span>
-                    ))
-                  }
+                    {
+                      camper.skills.map((hardSkill, index) => (
+                        <span className="flex justify-center items-center bg-[#F4B422] text-[#000087] text-xl font-medium rounded-3xl px-3 py-1" key={index} >{hardSkill}</span>
+                      ))
+                    }
                   </div>
                 </div>
                 {/* Camper softskills */}
                 <div className="flex flex-col gap-1">
-                <h2 className="text-[#000087] font-bold">SOFTSKILLS</h2>
-                  <div className="flex flex-wrap gap-2">
-                  {
-                    camper.softSkills.map((softSkills, index)=>(
-                      <span className="flex justify-center items-center bg-[#000087] text-[#F4B422] text-xl font-medium rounded-3xl px-3 py-1" key={index} >{softSkills.skill}</span>
-                    ))
-                  }
+                  <h2 className="text-[#000087] font-bold">SOFTSKILLS</h2>
+                  <div className="flex      -wrap gap-2">
+                    {softSkills.map((cv, index) => (
+                      <div className="cv" key={index}>
+                        <div className="flex flex-wrap gap-2">
+                          {cv.SoftSkills.map((softSkill, index) => (
+                            <span
+                              className="flex justify-center items-center bg-[#000087] text-[#F4B422] text-xl font-medium rounded-3xl px-3 py-1"
+                              key={index}
+                            >
+                              {softSkill.competencia}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 </div>
               </ModalBody>
