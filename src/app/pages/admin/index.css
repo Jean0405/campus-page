@@ -1,0 +1,23 @@
+.show{
+  display: none;
+}
+
+/* TABLET */
+@media (max-width: 1200px) {
+  .hide-md {
+    display: none;
+  }
+  .show{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+/* MOBILE */
+
+@media (max-width: 600px) {
+  .hide-sm {
+    display: none;
+  }
+}
