@@ -20,11 +20,11 @@ export default function TabsAdmin() {
         </Tab>
         <Tab key="hdv" title="HdV">
         <h1 className="text-center text-2xl md:text-3xl font-bold py-5">Lista de <span className="text-[#F4B422]">HdV</span></h1>
-          <TableVisits />
+          {/* <TableVisits /> */}
         </Tab>
         <Tab key="usuarios" title="Usuarios">
         <h1 className="text-center text-2xl md:text-3xl font-bold py-5">Lista de <span className="text-[#F4B422]">usuarios</span></h1>
-          <TableVisits />
+          {/* <TableVisits /> */}
         </Tab>
       </Tabs>
     </div>

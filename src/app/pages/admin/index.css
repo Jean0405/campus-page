@@ -1,16 +1,16 @@
-.show{
-  display: none;
+/* Estilo para el círculo rojo */
+.status-indicator {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block; /* Hace que el círculo no ocupe toda la línea */
+  margin-right: 8px; /* Ajusta el espacio entre el círculo y el texto */
 }
 
 /* TABLET */
 @media (max-width: 1200px) {
   .hide-md {
     display: none;
-  }
-  .show{
-    display: flex;
-    justify-content: center;
-    align-items: center;
   }
 }
 
