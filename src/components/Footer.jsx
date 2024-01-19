@@ -6,7 +6,7 @@ import iconCampus from "../../public/img/logoCampus.png";
 
 export default function Footer() {
   return (
-    <footer className="bg-[#F5F4F4] pb-2">
+    <footer className="bg-[#F5F4F4] pb-2         selection:">
       <div className="border-gray-400 px-4 pt-6 m-auto" style={{maxWidth: "1600px"}}>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-4">
           {/* Campuslands description */}

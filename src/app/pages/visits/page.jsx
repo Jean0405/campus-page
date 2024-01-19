@@ -1,4 +1,5 @@
 "use client";
+
 import "./index.css";
 
 import { useEffect, useState } from "react";
@@ -33,40 +34,65 @@ import Footer from "@/components/Footer";
 function SliderInfinite() {
 
   const [isChecked, setIsChecked] = useState(false);
-
   const [form, setForm] = useState({
     nombre: '',
     edad: '',
     interes: '',
-    telefono: '',
-    cedula: '',
-    fecha: '',
+    tel: '',
+    cc: '',
     empresa: '',
-    tipo: ''
+    fecha_visita: '',
+    vehiculo: '',
   });
 
 
 
-  const handleSubmit = e => {
-    e.preventDefault();
-    const dataForm = { ...form };
-    console.log(dataForm);
-  };
   useEffect(() => {
     AOS.init({ duration: 900 });
   });
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    let options = {
+      method: 'POST',
+      headers: new Headers({
+        'Content-Type': 'application/json',
+
+      }),
+      body: JSON.stringify({
+        nombre: form.nombre,
+        edad: form.edad,
+        interes: form.interes,
+        tel: form.tel,
+        cc: form.cc,
+        empresa: form.empresa,
+        fecha_visita: form.fecha_visita,
+        ...(isChecked && { vehiculo: form.vehiculo })
+      })
+    }
+    try {
+      const response = await (await fetch('http://192.168.110.106:5017/visitanos', options)).json();
+      if (response.status === 200) {
+        console.log(response);
+      } else {
+        console.error(response.message); // Log error message or data
+      }
+    } catch(err) {
+      console.error('Error al enviar el formulario:', err);
+    }
+    
+  };
 
   return (
     <>
       <NavigationBar />
-      <div className="container h-screen">
+      <div className="container h-full ">
         {/* FORM */}
-        <div className="max-w-xl py-5">
-          <h1 className="max-w-xl text-7xl font-bold ">Visítanos</h1>
+        <div className="md:max-w-xl max-w-xs py-5 ">
+          <h1 className="max-w-xl sm:text-7xl text-6xl font-bold ">Visítanos</h1>
           <p> llenando el siguiente formulario</p>
 
           <div>
-            <form action="POST" onSubmit={handleSubmit} className="space-y-3 pt-5">
+            <form onSubmit={handleSubmit} action="POST" method="POST" className="space-y-3 pt-5 ">
               <label htmlFor="name">
                 Nombre{" "}
                 <Image
@@ -77,7 +103,6 @@ function SliderInfinite() {
               </label>
               <input
                 onChange={e => setForm({ ...form, nombre: e.target.value })}
-
                 className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                 type="text"
                 name="nombre"
@@ -118,13 +143,11 @@ function SliderInfinite() {
                     className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
                   >
                     <option value=""></option>
-                    <option value="JM">John Mayer</option>
-                    <option value="SRV">Stevie Ray Vaughn</option>
-                    <option value="JH">Jimi Hendrix</option>
-                    <option value="BBK">B.B King</option>
-                    <option value="AK">Albert King</option>
-                    <option value="BG">Buddy Guy</option>
-                    <option value="EC">Eric Clapton</option>
+                    <option value="Empleabilidad">Empleabilidad</option>
+                    <option value="Networking">Networking</option>
+                    <option value="Conocer">Conocer</option>
+                    <option value="Negocios">Negocios</option>
+
                   </select>
                 </div>
               </div>
@@ -164,12 +187,12 @@ function SliderInfinite() {
                   </div>
 
                   <input
-                    onChange={e => setForm({ ...form, telefono: e.target.value })}
+                    onChange={e => setForm({ ...form, tel: e.target.value })}
 
                     className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
                     type="phone"
-                    id="telefono"
-                    name="telefono"
+                    id="tel"
+                    name="tel"
                   />
                 </div>
               </div>
@@ -209,17 +232,17 @@ function SliderInfinite() {
                   </div>
 
                   <input
-                    onChange={e => setForm({ ...form, cedula: e.target.value })}
+                    onChange={e => setForm({ ...form, cc: e.target.value })}
 
                     className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
                     type="text"
-                    id="cedula"
-                    name="cedula"
+                    id="cc"
+                    name="cc"
                   />
                 </div>
               </div>
 
-              <div className="grid grid-cols-[0.5fr_1fr]">
+              <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1">
                 <div className="">
                   <label htmlFor="name">
                     Fecha de la visita{" "}
@@ -255,25 +278,23 @@ function SliderInfinite() {
                     </div>
 
                     <input
-                      onChange={e => setForm({ ...form, fecha: e.target.value })}
+                      onChange={e => setForm({ ...form, fecha_visita: e.target.value })}
 
                       className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
-                      type="date"
-                      id="fecha"
-                      name="fecha"
+                      type="datetime-local"
+                      id="fecha_visita"
+                      name="fecha_visita"
                     />
                   </div>
                 </div>
 
-                <div className="ms-5">
-                  <label htmlFor="enterprise" className="block ">
-                    Empresa{" "}
-
+                <div className="md:ms-5 m-0">
+                  <label htmlFor="empresa" className="block ">
+                    Empresa
                   </label>
                   <input
                     onChange={e => setForm({ ...form, empresa: e.target.value })}
-
-                    className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm "
+                    className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                     type="text"
                     id="empresa"
                     name="empresa"
@@ -311,20 +332,16 @@ function SliderInfinite() {
                     />
                   </label>
                   <select
-                    onChange={e => setForm({ ...form, tipo: e.target.value })}
-
-                    name="tipo"
-                    id="tipo"
+                    onChange={e => setForm({ ...form, vehiculo: e.target.value })}
+                    value={form.vehiculo}
+                    name="vehiculo"
+                    id="vehiculo"
                     className=" w-full rounded-sm py-[11.5px] bg-[#E7E7E7] sm:text-sm -5"
                   >
-                    <option value=""></option>
-                    <option value="JM">John Mayer</option>
-                    <option value="SRV">Stevie Ray Vaughn</option>
-                    <option value="JH">Jimi Hendrix</option>
-                    <option value="BBK">B.B King</option>
-                    <option value="AK">Albert King</option>
-                    <option value="BG">Buddy Guy</option>
-                    <option value="EC">Eric Clapton</option>
+                                        <option value=""></option>
+
+                    <option value="Automovil">Automovil</option>
+                    <option value="Motocicleta">Motocicleta</option>
                   </select>
                 </div>
               </div>

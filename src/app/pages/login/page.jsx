@@ -1,18 +1,34 @@
 // /layout.jsx
 'use client'
 import Link from "next/link";
+
 import React, { useState } from "react";
 import { Input } from "@nextui-org/react";
 import { EyeFilledIcon } from "./EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
-import "../../styles/index.css";
+import Astronauta from './Astronauta.png';
+import Image from "next/image";
 
-function Page() {
+async function Page() {
 
-    const handleClick = (e) => {
+    const handleClick = async(e) => {
         e.preventDefault();
-        window.location = "/pages/admin"
-    };
+        try {
+            const response = await fetch('http://127.17.0.97:2021/login', {
+              method: 'POST',
+            });
+        
+            if (response.ok) {
+              window.location = "/pages/admin";
+            } else {
+             
+              console.log('Error al verificar el inicio de sesión');
+            }
+          } catch (error) {
+            console.log('Error al realizar la solicitud:', error);
+          }
+        };
+
 
     const [isVisible, setIsVisible] = useState(false);
 
@@ -75,9 +91,9 @@ function Page() {
                     </form>
                 </div>
                 <div className="loginRigth" style={{backgroundColor: "#000087"}}>
-                    <img
+                    <Image
                         width={500}
-                        src="http://localhost:5173/src/assets/Img/Astronauta.png"
+                        src={Astronauta}
                         alt="..."
 
                     />
