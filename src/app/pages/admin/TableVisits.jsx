@@ -44,33 +44,45 @@ export default function TableVisits() {
   useEffect(() => {
     getAllVisits();
   }, [setListVisitors]);
- 
+
   return (
     <>
       <div className="grid md:grid-cols-2 gap-3">
         {/* Status counters */}
         <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          <h2 className="text-xl sm:text-3xl font-bold">STATUS</h2>
           <div className="flex justify-around gap-2 cursor-pointer">
-            <div className="w-24 h-24 bg-green-400 grid place-items-center text-3xl font-bold">
-              {listVisitors.length}
+            {/* accepted status*/}
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm font-bold">Accepted</h2>
+              <div className="w-24 h-24 bg-green-400 grid place-items-center text-3xl font-bold hover:bg-green-600">
+                {listVisitors.length}
+              </div>
             </div>
-            <div className="w-24 h-24 bg-yellow-400 grid place-items-center text-3xl font-bold cursor-pointer">
-              {listVisitors.length}
+            {/* reassigned status*/}
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm font-bold">Reassigned</h2>
+              <div className="w-24 h-24 bg-yellow-400 grid place-items-center text-3xl font-bold hover:bg-yellow-600">
+                {listVisitors.length}
+              </div>
             </div>
-            <div className="w-24 h-24 bg-red-400 grid place-items-center text-3xl font-bold cursor-pointer">
-              {listVisitors.length}
+            {/* declined status*/}
+            <div className="flex flex-col items-center">
+              <h2 className="text-sm font-bold">Declined</h2>
+              <div className="w-24 h-24 bg-red-400 grid place-items-center text-3xl font-bold hover:bg-red-600">
+                {listVisitors.length}
+              </div>
             </div>
           </div>
         </div>
         {/* filter options */}
         <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          <h2 className="text-xl sm:text-3xl font-bold">FILTER OPTIONS</h2>
-          <div className="flex justify-around gap-2 cursor-pointer">
-            <div className="w-24 h-24 bg-neutral-400 grid place-items-center text-3xl font-bold">
-              {listVisitors.length}
+           {/* declined status*/}
+           <div className="flex flex-col items-center">
+              <h2 className="text-sm font-bold">This week</h2>
+              <div className="w-24 h-24 bg-neutral-400 grid place-items-center text-3xl font-bold hover:bg-neutral-600">
+                {listVisitors.length}
+              </div>
             </div>
-          </div>
         </div>
       </div>
       {loading ? (
