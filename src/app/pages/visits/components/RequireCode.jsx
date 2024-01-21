@@ -8,7 +8,7 @@ export const RequireCode = () => {
         <form action="POST" method="POST" className="space-y-3 pt-5 ">
           <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1">
             <div className="">
-              <label htmlFor="name">Fecha de la visita </label>
+              <label htmlFor="name">Tipo Doc.</label>
               <div className="flex items-center  bg-[#E7E7E7]">
                 <input
                   onChange={(e) =>
@@ -24,7 +24,7 @@ export const RequireCode = () => {
 
             <div className="md:ms-5 m-0">
               <label htmlFor="empresa" className="block ">
-                Empresa
+                No. Documento
               </label>
               <input
                 onChange={(e) => setForm({ ...form, empresa: e.target.value })}

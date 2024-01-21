@@ -1,13 +1,13 @@
 "use client"
-import { useEffect, useState } from "react";
+import {  useState } from "react";
 
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 
-import ask from "../../../../public/assets/required_icon.svg";
-import whatsapp from "../../../../public/assets/whatsapp.svg";
-import calendar from "../../../../public/assets/calendar_icon.svg";
-import id from "../../../../public/assets/id.svg";
+import ask from "../../../../../public/assets/required_icon.svg";
+import whatsapp from "../../../../../public/assets/whatsapp.svg";
+import calendar from "../../../../../public/assets/calendar_icon.svg";
+import id from "../../../../../public/assets/id.svg";
 
 export const NewUserForm = () => {
     const [isChecked, setIsChecked] = useState(false);
@@ -53,9 +53,12 @@ export const NewUserForm = () => {
         }
       };
     return (
-        <div className="md:max-w-xl max-w-xs py-5 ">
-          <p> llenando el siguiente formulario</p>
+      <div className="h-full max-w-lg mt-12">
+        <h1 className=" max-w-xl sm:text-7xl text-6xl font-bold">Visítanos</h1>
 
+        <p> llenando el siguiente formulario</p>
+
+        <div className="md:max-w-xl max-w-xs py-5 ">
           <div>
             <form
               onSubmit={handleSubmit}
@@ -98,7 +101,7 @@ export const NewUserForm = () => {
                 </div>
 
                 <div className="ms-5">
-                  <label htmlFor="HeadlineAct" className="block ">
+                  <label htmlFor="interes" className="block ">
                     Interes{" "}
                     <Image
                       className="w-2 h-2 inline mb-3"
@@ -167,47 +170,74 @@ export const NewUserForm = () => {
                 </div>
               </div>
 
-              <div className="">
-                <label htmlFor="name">
-                  Cedula{" "}
-                  <Image
-                    className="w-2 h-2 inline mb-3"
-                    src={ask}
-                    alt="campuslands logo"
-                  />
-                </label>
-                <div className="flex items-center  bg-[#E7E7E7]">
-                  <div className="flex items-center relative ">
+              <div className="grid grid-cols-[0.5fr_1fr]">
+                <div>
+                  <label htmlFor="interes" className="block ">
+                    Tipo doc{" "}
                     <Image
-                      className="w-6 h-6  ms-3 z-20  "
-                      src={id}
+                      className="w-2 h-2 inline mb-3"
+                      src={ask}
                       alt="campuslands logo"
                     />
-                    <svg
-                      className="absolute left-12"
-                      xmlns="http://www.w3.org/2000/svg"
-                      width="1"
-                      height="30"
-                      viewBox="0 0 1 40"
-                      fill="none"
-                    >
-                      <line
-                        x1="0.5"
-                        y1="2.18557e-08"
-                        x2="0.499998"
-                        y2="40"
-                        stroke="#515151"
-                      />
-                    </svg>
-                  </div>
+                  </label>
+                  <select
+                    name="interes"
+                    id="interes"
+                    onChange={(e) =>
+                      setForm({ ...form, interes: e.target.value })
+                    }
+                    className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
+                  >
+                    <option value=""></option>
+                    <option value="Empleabilidad">Empleabilidad</option>
+                    <option value="Networking">Networking</option>
+                    <option value="Conocer">Conocer</option>
+                    <option value="Negocios">Negocios</option>
+                  </select>
+                </div>
 
-                  <input
-                    onChange={(e) => setForm({ ...form, cc: e.target.value })}
-                    className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
-                    type="text"
-                    id="cc"
-                    name="cc"
-                  />
+                <div className="ms-5">
+                  <label htmlFor="name">
+                    Cedula{" "}
+                    <Image
+                      className="w-2 h-2 inline mb-3"
+                      src={ask}
+                      alt="campuslands logo"
+                    />
+                  </label>
+                  <div className="flex items-center  bg-[#E7E7E7]">
+                    <div className="flex items-center relative ">
+                      <Image
+                        className="w-6 h-6  ms-3 z-20  "
+                        src={id}
+                        alt="campuslands logo"
+                      />
+                      <svg
+                        className="absolute left-12"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1"
+                        height="30"
+                        viewBox="0 0 1 40"
+                        fill="none"
+                      >
+                        <line
+                          x1="0.5"
+                          y1="2.18557e-08"
+                          x2="0.499998"
+                          y2="40"
+                          stroke="#515151"
+                        />
+                      </svg>
+                    </div>
+
+                    <input
+                      onChange={(e) => setForm({ ...form, cc: e.target.value })}
+                      className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
+                      type="text"
+                      id="cc"
+                      name="cc"
+                    />
+                  </div>
                 </div>
               </div>
 
@@ -353,16 +383,23 @@ export const NewUserForm = () => {
                 </label>
               </div>
 
-              <div>
+              <div className="flex flex-col gap-3 mt-10">
                 <Button
                   type="submit"
                   className="block w-full rounded-md bg-[#ECAC22] text-lg text-white "
                 >
                   Enviar
                 </Button>
+                <Button
+                  onClick={() => (window.location.href = "/pages/visits")}
+                  className="block w-full rounded-md bg-[#FF5C5C] text-lg text-white "
+                >
+                  Atras
+                </Button>
               </div>
             </form>
           </div>
         </div>
-    )
+      </div>
+    );
 }
