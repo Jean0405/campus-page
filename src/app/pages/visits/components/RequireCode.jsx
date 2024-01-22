@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
-import { CodesList } from "./codesList";
+import { CodesList } from "./CodesList";
 import Image from "next/image";
 import ask from "../../../../../public/assets/required_icon.svg";
 
@@ -10,25 +10,33 @@ export const RequireCode = () => {
       useState(false);
 
   const [form, setForm] = useState({
-    tipoDoc: "",
-    noDocumento: "",
+    tipo_doc:  "",
+    doc: "",
   });
  const handleSubmit = async (e) => {
    e.preventDefault();
-   if(form.noDocumento === "12345") {
-     setShowCodes(true)
-   } else {
-    window.location.href = "/pages/visits/askCode"
-   }
+   localStorage.setItem('tipo', form.tipo_doc);
+   localStorage.setItem('doc', form.doc);
    let options = {
      method: "POST",
      headers: new Headers({
        "Content-Type": "application/json",
      }),
      body: JSON.stringify({
-       tipoDoc: form.tipoDoc,
-       noDocumento: form.noDocumento,
+       tipo_doc: form.tipo_doc,
+       doc: form.doc,
      })
+   }
+   try {
+    const response = await (await fetch("http://192.168.110.106:5017/visitanos/verificar/usuario", options)).json();         
+    if (response.status === 200 ) {
+
+      setShowCodes(true) 
+    } else {
+      window.location.href = "/pages/visits/askCode"
+    }
+   } catch (err) {
+      console.error("Error al enviar el formulario:", err);
    }
   };
   return (
@@ -42,7 +50,7 @@ export const RequireCode = () => {
         >
           <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1 mb-5">
             <div>
-              <label htmlFor="tipoDoc" className="block ">
+              <label htmlFor="tipo_doc" className="block ">
                 Tipo Doc.
                 <Image
                   className="w-2 h-2 inline mb-3"
@@ -51,9 +59,9 @@ export const RequireCode = () => {
                 />
               </label>
               <select
-                name="tipoDoc"
-                id="tipoDoc"
-                onChange={(e) => setForm({ ...form, tipoDoc: e.target.value })}
+                name="tipo_doc"
+                id="tipo_doc"
+                onChange={(e) => setForm({ ...form, tipo_doc: e.target.value })}
                 className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
                 required
               >
@@ -65,7 +73,7 @@ export const RequireCode = () => {
             </div>
 
             <div className="md:ms-5 m-0">
-              <label htmlFor="noDocumento" className="block ">
+              <label htmlFor="doc" className="block ">
                 No. Documento
                 <Image
                   className="w-2 h-2 inline mb-3"
@@ -75,12 +83,12 @@ export const RequireCode = () => {
               </label>
               <input
                 onChange={(e) =>
-                  setForm({ ...form, noDocumento: e.target.value })
+                  setForm({ ...form, doc: e.target.value })
                 }
                 className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                 type="text"
-                id="noDocumento"
-                name="noDocumento"
+                id="doc"
+                name="doc"
                 required
               />
             </div>

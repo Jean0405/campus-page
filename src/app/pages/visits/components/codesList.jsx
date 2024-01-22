@@ -1,19 +1,11 @@
 "use client"
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { useState } from "react";
 import { CodesRows } from "./CodesRows";
 
 export const CodesList = () => {
-  const data = [
-    {
-      code: 'Gbp022',
-      place: 'campus'
-    },
-    {
-      code: 'houugsd',
-      place: 'hooy'
-    }
-  ]
+  
+ 
   return (
       <div className="overflow-x-auto">
 
@@ -28,13 +20,13 @@ export const CodesList = () => {
 
       </thead>
       {
-        data.map((item, index) => (
-          <CodesRows key={index} item={item} />
+        CODES.map((item, index) => (
+          <CodesRows key={index} item={item} setData={setData} />
 
         ))
       }
       </table>
-        </div>
+       </div>
 
       
   );

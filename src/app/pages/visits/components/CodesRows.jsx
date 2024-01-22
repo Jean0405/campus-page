@@ -7,7 +7,8 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
 
-export const CodesRows = ({ item }) => {
+export const CodesRows = ({ item, setData }) => {
+
     const [changeImg, setChangeImg] = useState(copyIcon);
 
     const copyToClipboard = (value) => {

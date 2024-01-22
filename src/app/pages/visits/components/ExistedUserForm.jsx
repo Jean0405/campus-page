@@ -18,6 +18,7 @@ export const ExistedUserForm = () => {
   const [form, setForm] = useState({
     tipo_doc: localStorage.getItem('tipo'),
     doc: localStorage.getItem('doc'),
+    interes: "",
     fecha_visita: "",
     vehiculo: "",
     codigos: localStorage.getItem('codigo'),
@@ -32,6 +33,7 @@ export const ExistedUserForm = () => {
       body: JSON.stringify({     
         tipo_doc: form.tipo_doc,
         doc: form.doc,
+        interes: form.interes,
         fecha_visita: form.fecha_visita,
         ...(isChecked && { vehiculo: form.vehiculo }),
         codigos: form.codigos
@@ -72,7 +74,7 @@ export const ExistedUserForm = () => {
             method="POST"
             className="space-y-3 pt-5 "
           >
-            <div className="w-full">
+            <div className="grid grid-cols-[1.5fr_1fr]">
               <div className="">
                 <label htmlFor="fecha_visita">Fecha de la visita
                   <Image
@@ -118,7 +120,31 @@ export const ExistedUserForm = () => {
                   />
                 </div>
               </div>
-
+              <div className="ms-5">
+                <label htmlFor="interes" className="block ">
+                  Interes{" "}
+                  <Image
+                    className="w-2 h-2 inline mb-3"
+                    src={ask}
+                    alt="campuslands logo"
+                  />
+                </label>
+                <select
+                  name="interes"
+                  id="interes"
+                  onChange={(e) =>
+                    setForm({ ...form, interes: e.target.value })
+                  }
+                  className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
+                  required
+                >
+                  <option value=""></option>
+                  <option value="Empleabilidad">Empleabilidad</option>
+                  <option value="Networking">Networking</option>
+                  <option value="Conocer">Conocer</option>
+                  <option value="Negocios">Negocios</option>
+                </select>
+              </div>
               
             </div>
 
