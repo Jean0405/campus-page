@@ -77,7 +77,7 @@ export default function ModalVisits({ visitor, setListVisitors}) {
                   <div className="flex justify-around">
                     <div className="text-center">
                       <h3 className="font-bold">Cédula</h3>
-                      <p>{visitor.cc}</p>
+                      <p>{visitor.doc}</p>
                     </div>
                     <div className="text-center">
                       <h3 className="font-bold">Contacto</h3>
