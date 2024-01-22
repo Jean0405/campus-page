@@ -1,30 +1,41 @@
+"use client"
+
+import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
+import { CodesRows } from "./CodesRows";
+
 export const CodesList = () => {
-    return (
-      <table class="table-auto">
-        <thead>
-          <tr>
-            <th>Song</th>
-            <th>Artist</th>
-            <th>Year</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-            <td>Malcolm Lockyer</td>
-            <td>1961</td>
-          </tr>
-          <tr>
-            <td>Witchy Woman</td>
-            <td>The Eagles</td>
-            <td>1972</td>
-          </tr>
-          <tr>
-            <td>Shining Star</td>
-            <td>Earth, Wind, and Fire</td>
-            <td>1975</td>
-          </tr>
-        </tbody>
+  const data = [
+    {
+      code: 'Gbp022',
+      place: 'campus'
+    },
+    {
+      code: 'houugsd',
+      place: 'hooy'
+    }
+  ]
+  return (
+      <div className="overflow-x-auto">
+
+      <table className="min-w-full divide-y-2  divide-gray-200 bg-white text-sm">
+
+      <thead className="ltr:text-left rtl:text-right">
+        <tr>
+          <th className="whitespace-nowrap text-black font-bold text-medium">Codigos</th>
+          <th className="whitespace-nowrap text-black font-bold text-medium">Lugar</th>
+          <th className="whitespace-nowrap text-black font-bold text-medium">Copiar</th>
+        </tr>
+
+      </thead>
+      {
+        data.map((item, index) => (
+          <CodesRows key={index} item={item} />
+
+        ))
+      }
       </table>
-    );
+        </div>
+
+      
+  );
 }   

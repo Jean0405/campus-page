@@ -45,11 +45,11 @@ function VisitUs() {
     <>
       <NavigationBar />
       <div className="container h-full ">
-        <div className="h-full max-w-lg mt-12">
-          <h1 className=" max-w-xl sm:text-7xl text-6xl font-bold">
+        <div className="h-full lg:max-w-lg w-full mt-24 flex flex-col  lg:items-start items-center">
+          <h1 className=" lg:max-w-xl max-w-full sm:text-7xl text-6xl font-bold">
             Visítanos
           </h1>
-          <p className="w-9/12 text-center">
+          <p className="w-9/12 ms-1">
             Ingresa el código de acceso para sacar tu cita, si no cuentas con
             uno puedes solicitarlo
           </p>
@@ -79,13 +79,15 @@ function VisitUs() {
               </>
             )}
 
-            <div className="flex flex-col ">
+          
+          </div>
+            <div className="flex flex-col mt-10  lg:items-start items-center">
+            <div className="flex flex-col  ">
               <p className="text-md">
                 No olvides compartir con tus amigos y conocidos este gran
                 proyecto
               </p>
             </div>
-          </div>
           <div className="text-xl flex gap-10 mt-5">
             {socialNetworks.map((src, index) => (
               <Image
@@ -97,6 +99,7 @@ function VisitUs() {
               />
             ))}
           </div>
+            </div>
         </div>
         <Slider />
       </div>

@@ -10,8 +10,8 @@ import Image from "next/image";
 
 import ModalCamper from "./ModalCamper";
 
-const loadSoftSkills = async () => {
-  const response = await fetch(" http://127.17.0.97:2021/skills/cv?id=1");
+const loadSoftSkills = async (id) => {
+  const response = await fetch(`http://192.168.110.106:5017/skills/cv?id=1`);
   const data = await response.json();
   const softSkills = data.message
   return softSkills
@@ -19,14 +19,14 @@ const loadSoftSkills = async () => {
 
 
 const loadCampers = async () => {
-  const response = await fetch("http://127.17.0.97:2021/cv");
+  const response = await fetch("http://192.168.110.106:5017/cv");
   const data = await response.json();
   const campers = data.message
   return campers
 }
 
 const filterTechnologies = async (technology) => {
-  const response = await fetch(`http://127.17.0.97:2021/cv/filter?tecn=${technology}`);
+  const response = await fetch(`http://192.168.110.106:5017/cv/filter?tecn=${technology}`);
   const data = await response.json();
   const filtered = data.message
   return filtered

@@ -4,19 +4,23 @@ import {  useState } from "react";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import calendar from "../../../../../public/assets/calendar_icon.svg";
-
+import facebook from "../../../../../public/assets/facebook.svg";
+import github from "../../../../../public/assets/github.svg";
+import instagram from "../../../../../public/assets/instagram.svg";
+import telegram from "../../../../../public/assets/telegram.svg";
+import twitter from "../../../../../public/assets/twitter.svg";
+import whatsapp from "../../../../../public/assets/whatsapp.svg";
+import ask from "../../../../../public/assets/required_icon.svg";
 
 
 export const ExistedUserForm = () => {
+  const [isChecked, setIsChecked] = useState(false);
   const [form, setForm] = useState({
-    nombre: "",
-    edad: "",
-    interes: "",
-    tel: "",
-    cc: "",
-    empresa: "",
+    tipo_doc: localStorage.getItem('tipo'),
+    doc: localStorage.getItem('doc'),
     fecha_visita: "",
     vehiculo: "",
+    codigos: localStorage.getItem('codigo'),
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -25,23 +29,21 @@ export const ExistedUserForm = () => {
       headers: new Headers({
         "Content-Type": "application/json",
       }),
-      body: JSON.stringify({
-        nombre: form.nombre,
-        edad: form.edad,
-        interes: form.interes,
-        tel: form.tel,
-        cc: form.cc,
-        empresa: form.empresa,
+      body: JSON.stringify({     
+        tipo_doc: form.tipo_doc,
+        doc: form.doc,
         fecha_visita: form.fecha_visita,
         ...(isChecked && { vehiculo: form.vehiculo }),
+        codigos: form.codigos
       }),
     };
     try {
       const response = await (
-        await fetch("http://192.168.110.106:5017/visitanos", options)
+        await fetch("http://192.168.110.106:5017/visitanos/antiguos", options)
       ).json();
       if (response.status === 200) {
         console.log(response);
+        localStorage.clear();
       } else {
         console.error(response.message);
       }
@@ -49,6 +51,14 @@ export const ExistedUserForm = () => {
       console.error("Error al enviar el formulario:", err);
     }
   };
+  const socialNetworks = [
+    instagram,
+    whatsapp,
+    github,
+    telegram,
+    facebook,
+    twitter,
+  ];
   return (
     <div className="h-full max-w-lg mt-12">
       <h1 className=" max-w-xl sm:text-7xl text-6xl font-bold">Visítanos</h1>
@@ -62,9 +72,15 @@ export const ExistedUserForm = () => {
             method="POST"
             className="space-y-3 pt-5 "
           >
-            <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1">
+            <div className="w-full">
               <div className="">
-                <label htmlFor="name">Fecha de la visita</label>
+                <label htmlFor="fecha_visita">Fecha de la visita
+                  <Image
+                    className="w-2 h-2 inline mb-3 ms-1"
+                    src={ask}
+                    alt="campuslands logo"
+                  />
+                </label>
                 <div className="flex items-center  bg-[#E7E7E7]">
                   <div className="flex items-center relative ">
                     <Image
@@ -98,51 +114,56 @@ export const ExistedUserForm = () => {
                     type="datetime-local"
                     id="fecha_visita"
                     name="fecha_visita"
+                    required
                   />
                 </div>
               </div>
 
-              <div className="ms-5">
-                <label htmlFor="vehiculo" className="block ">
-                  Vehiculo
+              
+            </div>
+
+            <div className="grid grid-cols-[0.5fr_1fr]">
+              <div className="">
+                <label htmlFor="name" className="block">
+                  Vehiculo{" "}
+                </label>
+
+                <label className="relative inline-flex items-center mb-5 cursor-pointer">
+                  <input
+                    type="checkbox"
+                    name="vehiculo"
+                    onChange={() => setIsChecked(!isChecked)}
+                    checked={isChecked}
+                    className="sr-only peer"
+                  />
+                  <div className="w-11 h-6 bg-gray-200 peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-blue-300 dark:peer-focus:ring-blue-800 rounded-full peer dark:bg-gray-700 peer-checked:after:translate-x-full rtl:peer-checked:after:-translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:start-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:w-5 after:h-5 after:transition-all dark:border-gray-600 peer-checked:bg-blue-600"></div>
+                </label>
+              </div>
+
+              <div className={`ms-5 ${isChecked ? "" : "hidden"}`}>
+                <label htmlFor="HeadlineAct" className="block ">
+                  Tipo{" "}
+                  <Image
+                    className="w-2 h-2 inline mb-3"
+                    src={ask}
+                    alt="campuslands logo"
+                  />
                 </label>
                 <select
-                  name="vehiculo"
-                  id="vehiculo"
                   onChange={(e) =>
                     setForm({ ...form, vehiculo: e.target.value })
                   }
-                  className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
+                  value={form.vehiculo}
+                  name="vehiculo"
+                  id="vehiculo"
+                  className=" w-full rounded-sm py-[11.5px] bg-[#E7E7E7] sm:text-sm -5"
                 >
                   <option value=""></option>
-                  <option value="Empleabilidad">Empleabilidad</option>
-                  <option value="Networking">Networking</option>
-                  <option value="Conocer">Conocer</option>
-                  <option value="Negocios">Negocios</option>
+                  <option value="Automovil">Automovil</option>
+                  <option value="Motocicleta">Motocicleta</option>
                 </select>
               </div>
             </div>
-
-            <div className="">
-              <label htmlFor="tipoVehivulo" className="block ">
-                Tipo de Vehiculo
-              </label>
-              <select
-                name="tipoVehivulo"
-                id="tipoVehiculo"
-                onChange={(e) =>
-                  setForm({ ...form, tipoVehiculo: e.target.value })
-                }
-                className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
-              >
-                <option value=""></option>
-                <option value="Empleabilidad">Empleabilidad</option>
-                <option value="Networking">Networking</option>
-                <option value="Conocer">Conocer</option>
-                <option value="Negocios">Negocios</option>
-              </select>
-            </div>
-
             <hr />
             <h3 className="font-bold">Condiciones</h3>
             <div className="bg-[#FF6161] text-transparent rounded-full inline-block ">
@@ -154,7 +175,11 @@ export const ExistedUserForm = () => {
               {"***"}
             </div>
             <p className="inline-block ms-2 ">Tener una buena presentación</p>
-
+            <br />
+ <div className="bg-[#00AA80] text-transparent rounded-full inline-block ">
+              {"***"}
+            </div>
+            <p className="inline-block ms-2 ">Traer Documento en Fisico</p>
             <hr />
 
             <div className="flex items-center">
@@ -194,6 +219,25 @@ export const ExistedUserForm = () => {
               </Button>
             </div>
           </form>
+        </div>
+        <div className="flex flex-col mt-10  lg:items-start items-center">
+          <div className="flex flex-col  ">
+            <p className="text-md">
+              No olvides compartir con tus amigos y conocidos este gran
+              proyecto
+            </p>
+          </div>
+          <div className="text-xl flex gap-10 mt-5">
+            {socialNetworks.map((src, index) => (
+              <Image
+                key={index}
+                className="inline-block"
+                style={{ width: "35px" }}
+                src={src}
+                alt={`Logo ${index + 1}`}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>
