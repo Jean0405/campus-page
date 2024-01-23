@@ -29,7 +29,7 @@ export default function ModalVisits({ visitor, setListVisitors}) {
     setListVisitors(res.message);
     setIsSelected(!isSelected);
   }
-  async function acceptVisits() {
+  async function acceptVisits() {;
     const data = await acceptVisit(visitor.id);
     const res = await getVisits();
     setListVisitors(res.message);
@@ -72,30 +72,38 @@ export default function ModalVisits({ visitor, setListVisitors}) {
                     Información personal
                   </h3>
                   <h3 className="text-center text-neutral-700 font-bold pt-3 pb-4">
-                    {visitor.nombre}
+                    {visitor.visitante.nombre}
                   </h3>
                   <div className="flex justify-around">
                     <div className="text-center">
                       <h3 className="font-bold">Cédula</h3>
-                      <p>{visitor.doc}</p>
+                      <p>{visitor.visitante.tipo_doc}. {visitor.visitante.doc}</p>
                     </div>
                     <div className="text-center">
                       <h3 className="font-bold">Contacto</h3>
-                      <p>{visitor.tel}</p>
+                      <p>{visitor.visitante.tel}</p>
                     </div>
                   </div>
                 </div>
                 <div className="flex gap-2">
-                  <h3 className="font-bold">Empresa:</h3>
-                  <p>{visitor.empresa}</p>
+                  <h3 className="font-bold">Cargo:</h3>
+                  <p>{visitor.visitante.cargo}</p>
                 </div>
                 <div className="flex gap-2">
-                  <h3 className="font-bold">Vehículo:</h3>
-                  <p>{!visitor.vehiculo ? "Ninguno" : visitor.vehiculo}</p>
+                  <h3 className="font-bold">Empresa:</h3>
+                  <p>{visitor.visitante.empresa}</p>
+                </div>
+                <div className="flex gap-2">
+                  <h3 className="font-bold">Desea visitar:</h3>
+                  <p>{visitor.codigo.nombre}</p>
                 </div>
                 <div className="flex gap-2">
                   <h3 className="font-bold">Fecha visita:</h3>
                   <p>{formatDateWithTime(visitor.fecha_visita)}</p>
+                </div>
+                <div className="flex gap-2">
+                  <h3 className="font-bold">Vehículo:</h3>
+                  <p>{!visitor.vehiculo ? "Ninguno" : visitor.vehiculo}</p>
                 </div>
                 <div className="flex gap-2">
                     <h3 className="font-bold">Estado:</h3>
