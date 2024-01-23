@@ -1,4 +1,41 @@
-/* Estilo para el círculo rojo */
+/* carousel styles*/
+.carousel-admin{
+  display: flex;
+  padding: 0 10px;
+  width: 480px;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  border-radius: 20px;
+}
+
+.carousel-admin::-webkit-scrollbar {
+  width: 12px; 
+  height: 10px;
+}
+
+.carousel-admin::-webkit-scrollbar-thumb {
+  background-color: rgba(207, 207, 207, 0.559); 
+  border-radius: 6px; 
+}
+.carousel-admin .company-container{
+  flex: 1 0 auto;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: nowrap;
+  margin: 8px;
+  width: 80px;
+  height: 80px;
+  scroll-snap-align: start;
+  background-color: rgba(237, 237, 237, 0.485);
+  border-radius: 20px;
+}
+.carousel-admin .company-container .company-logo{
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+/* status indicator styles */
 .status-indicator {
   width: 10px;
   height: 10px;
@@ -14,10 +51,21 @@
   }
 }
 
-/* MOBILE */
+@media (max-width: 900px) {
+  .carousel-admin {
+    width: 380px;
+  }
+}
 
+/* MOBILE */
 @media (max-width: 600px) {
   .hide-sm {
+    display: none;
+  }
+  .carousel-admin {
+    width: 100%;
+  }
+  .carousel-admin::-webkit-scrollbar{
     display: none;
   }
 }

@@ -2,9 +2,7 @@
 import "./index.css";
 
 // Icons imports
-import {
-  faRotateRight
-} from "@fortawesome/free-solid-svg-icons";
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 //API imports
@@ -23,6 +21,9 @@ import {
   TableCell,
   Spinner,
   Pagination,
+  Badge,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
 
 //Assets import
@@ -35,16 +36,18 @@ import CONEXALAB from "../../../../public/img/Conexalab.svg";
 import Image from "next/image";
 
 const listCompanies = [
-  { nombre: "Campuslands_CO", logo: campus_CO },
-  { nombre: "HOOY", logo: Hooy },
-  { nombre: "Campuslands_AC", logo: campus_CO },
-  { nombre: "GBP", logo: GBP },
-  { nombre: "My Conjunto Digital", logo: MCD },
-  { nombre: "PEER", logo: PEER },
-  { nombre: "Betrmedia", logo: MCD },
-  { nombre: "Conexalab", logo: CONEXALAB },
-  { nombre: "Colombia Taxnetwork", logo: MCD },
+  { name: "Campuslands_CO", logo: campus_CO },
+  { name: "HOOY", logo: Hooy },
+  { name: "Campuslands_AC", logo: campus_CO },
+  { name: "GBP", logo: GBP },
+  { name: "My Conjunto Digital", logo: MCD },
+  { name: "PEER", logo: PEER },
+  { name: "Betrmedia", logo: MCD },
+  { name: "Conexalab", logo: CONEXALAB },
+  { name: "Colombia Taxnetwork", logo: MCD },
 ];
+
+const filterStatus = ["aceptado", "reasignado", "en espera", "finalizado"];
 
 export default function TableVisits() {
   const [listVisitors, setListVisitors] = useState([]);
@@ -89,7 +92,7 @@ export default function TableVisits() {
 
   // set company logo
   const getCompanyLogo = (companyName) => {
-    const company = listCompanies.find((c) => c.nombre === companyName);
+    const company = listCompanies.find((c) => c.name === companyName);
     return company ? company.logo : null;
   };
 
@@ -120,7 +123,7 @@ export default function TableVisits() {
   //get visits by status (FILTER)
   const FilterVisitsByStatus = async (status) => {
     const response = await visitsAPI.getVisitsByStatus(status);
-    setListVisitors(response.message)
+    setListVisitors(response.message);
     setLoading(false);
   };
 
@@ -137,65 +140,45 @@ export default function TableVisits() {
 
   return (
     <>
-      <div className="grid md:grid-cols-2 gap-3">
-        {/* Status counter and filter */}
-        <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          <div className="flex jsutify-center md:justify-around gap-3 cursor-pointer">
-            {/* accepted status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Aceptadas</h2>
-              <div
-                onClick={()=>FilterVisitsByStatus("aceptado")}
-                className="w-20 h-20 md:w-24 md:h-24 bg-green-500 grid place-items-center text-3xl font-bold hover:bg-green-600 rounded-xl"
+      <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <div className="carousel-admin m-auto md:m-0">
+          {listCompanies.map((company) => (
+            <div className="relative company-container" key={company.name}>
+              <Badge
+                className="bg-red-500 text-white font-bold"
+                size="lg"
+                content={listVisitors.length}
               >
-                {listVisitorsByStatusCounter.accepted}
-              </div>
+                <Image className="company-logo" src={company.logo} />
+              </Badge>
             </div>
-            {/* reassigned status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Reasignadas</h2>
-              <div onClick={()=>FilterVisitsByStatus("reasignado")} className="w-20 h-20 md:w-24 md:h-24 bg-yellow-500 grid place-items-center text-3xl font-bold hover:bg-yellow-600 rounded-xl">
-                {listVisitorsByStatusCounter.reassigned}
-              </div>
-            </div>
-            {/* declined status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">En espera</h2>
-              <div onClick={()=>FilterVisitsByStatus("en espera")} className="w-20 h-20 md:w-24 md:h-24 bg-red-500 grid place-items-center text-3xl font-bold hover:bg-red-600 rounded-xl">
-                {listVisitorsByStatusCounter.onStandBy}
-              </div>
-            </div>
-            {/* made status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Realizadas</h2>
-              <div onClick={()=>FilterVisitsByStatus("realizado")} className="w-20 h-20 md:w-24 md:h-24 bg-black grid place-items-center text-white text-3xl font-bold hover:bg-neutral-800 rounded-xl">
-                {listVisitorsByStatusCounter.made}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-        {/* filter options */}
-        <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          {/* declined status*/}
-          <div className="flex flex-col items-center">
-            <h2 className="text-sm">Esta semana</h2>
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-neutral-400 grid place-items-center text-3xl font-bold hover:bg-neutral-600 rounded-xl">
-              {listVisitorsByStatusCounter.thisWeek}
-            </div>
-          </div>
+        <div className="flex items-center justify-center">
+          <Select label="Selecciona un estado" className="max-w-xs">
+            {filterStatus.map((status) => (
+              <SelectItem onClick={()=>FilterVisitsByStatus(status)} key={status} value={status}>
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
       </div>
       {/* Select rows per page */}
-      <div className="flex justify-between py-3">
-        <div className="flex items-center gap-5">
-        <p className="text-md">
-          Total <span className="font-bold">{listVisitors.length}</span>{" "}
-          registros
-        </p>
-        <FontAwesomeIcon onClick={()=>getAllVisits()} className="cursor-pointer hover:text-xl hover:text-red-500" icon={faRotateRight} />
+      <div className="flex justify-between p-3">
+        <div className="flex justify-center items-center gap-5">
+          <p className="text-small sm:text-md">
+            Hay <span className="font-bold">{listVisitors.length}</span>{" "}
+            registros
+          </p>
+          <FontAwesomeIcon
+            onClick={() => getAllVisits()}
+            className="cursor-pointer hover:text-xl hover:text-red-500"
+            icon={faRotateRight}
+          />
         </div>
-        <label className="flex items-center text-black text-md">
-          Filas por página:
+        <label className="flex items-center text-black text-small sm:text-md">
+          Filas:
           <select
             className="bg-transparent outline-none text-black font-bold text-md"
             onChange={onRowsPerPageChange}

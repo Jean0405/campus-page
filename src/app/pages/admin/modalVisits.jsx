@@ -24,13 +24,13 @@ export default function ModalVisits({ visitor, setListVisitors}) {
 
 
   async function reassign() {
-    const data = await reassignVisit(reassignDate, visitor.id);
+    await reassignVisit(reassignDate, visitor.id);
     const res = await getVisits();
     setListVisitors(res.message);
     setIsSelected(!isSelected);
   }
   async function acceptVisits() {;
-    const data = await acceptVisit(visitor.id);
+    await acceptVisit(visitor.id);
     const res = await getVisits();
     setListVisitors(res.message);
     setIsSelected(!isSelected);
