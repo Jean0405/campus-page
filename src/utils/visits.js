@@ -1,9 +1,12 @@
 export const getVisits = async () => {
   let response = await (
     await fetch(
-      `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitanos`,
+      `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitantes`,
       {
         method: "GET",
+        headers: {
+          authorization: localStorage.getItem("token"),
+        },
       }
     )
   ).json();
@@ -14,7 +17,7 @@ export const getVisits = async () => {
 export const acceptVisit = async (visitorId) => {
   let response = await (
     await fetch(
-      `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitanos?id=${visitorId}`,
+      `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas?id=${visitorId}`,
       {
         method: "PUT",
         headers: {

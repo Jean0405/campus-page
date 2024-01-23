@@ -14,7 +14,6 @@ import {
   TableRow,
   TableCell,
   Spinner,
-  Badge,
   Pagination,
 } from "@nextui-org/react";
 
@@ -61,7 +60,7 @@ export default function TableVisits() {
   //Load visitors table
   useEffect(() => {
     getAllVisits();
-  }, [setListVisitors]);
+  }, []);
 
   return (
     <>

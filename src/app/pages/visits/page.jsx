@@ -18,8 +18,8 @@ import whatsapp from "../../../../public/assets/whatsapp.svg";
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "./components/Slider";
 import Footer from "@/components/Footer";
-import { InsertCode } from "./components/insertCode";
-import { RequireCode } from "./components/requireCode";
+import { InsertCode } from "./components/InsertCode";
+import { RequireCode } from "./components/RequireCode";
 
 function VisitUs() {
   const [buttonPressed, setButtonPressed] = useState(null);

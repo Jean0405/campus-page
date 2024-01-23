@@ -20,15 +20,16 @@ export default function Page() {
   const [password, setPassword] = useState("");
   const router = useRouter();
 
-  const userParse = {
+  const toggleVisibility = () => setIsVisible(!isVisible);
+
+  const user = {
     usuario: username,
     password: password,
   };
 
   const handleSignIn = async (e) => {
     e.preventDefault();
-
-    const response = await login(userParse);
+    const response = await login(user);
     if (response.status === 200) {
       localStorage.setItem("token", response.token);
       router.push("/pages/admin");
@@ -45,17 +46,16 @@ export default function Page() {
       });
       setUsername("");
       setPassword("");
-      console.log(response);
     }
   };
-  const toggleVisibility = () => setIsVisible(!isVisible);
+ 
 
   return (
     <>
       <div className="h-screen grid place-items-center">
         <div className="flex flex-col items-center justify-center rounded-3xl p-5 gap-10 bg-white">
           <div>
-            <Image width={200} src={logo} alt="campus logo"/>
+            <Image width={200} src={logo} alt="campus logo" priority/>
           </div>
           <form onSubmit={handleSignIn} className="flex flex-col gap-5">
             <Input
