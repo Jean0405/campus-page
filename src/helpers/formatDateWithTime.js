@@ -1,17 +1,19 @@
-export function formatDateWithTime(date) {
-  date = new Date(date);
-  const day = ("0" + date.getDate()).slice(-2);
-  const monthIndex = date.getMonth();
-  const year = date.getFullYear();
-  const hours = ("0" + date.getHours()).slice(-2);
-  const minutes = ("0" + date.getMinutes()).slice(-2);
+export function formatDateWithTime(dateString) {
+  const date = new Date(dateString);
 
-  const monthNames = [
-    "Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio",
-    "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"
-  ];
+  const options = {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+    hour12: true,
+    timeZone: "UTC",
+  };
 
-  const month = monthNames[monthIndex];
+  const localDateString = new Intl.DateTimeFormat("es-CO", options).format(
+    date
+  );
 
-  return `${day} ${month} ${year} ${hours}:${minutes}`;
+  return localDateString;
 }
