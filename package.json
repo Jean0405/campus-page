@@ -17,6 +17,7 @@
     "aos": "^2.3.4",
     "framer-motion": "^10.17.12",
     "next": "14.0.4",
+    "nodemon": "^3.0.3",
     "react": "^18",
     "react-dom": "^18",
     "react-simple-typewriter": "^5.0.1",

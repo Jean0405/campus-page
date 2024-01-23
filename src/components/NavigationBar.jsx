@@ -8,8 +8,9 @@ import {
   NavbarMenu,
   NavbarContent,
   NavbarItem,
-  Link,
+  Button,
 } from "@nextui-org/react";
+import Link from "next/link";
 
 export default function App() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
@@ -35,6 +36,10 @@ export default function App() {
       name: "Visítanos",
       href: "/pages/visits",
     },
+    {
+      name: "Iniciar Sesion",
+      href: "/pages/login",
+    },
   ];
 
   return (
@@ -47,7 +52,7 @@ export default function App() {
               <p className="absolute text-black top-2 left-0  text-2xl font-extrabold">
                 Campus.
               </p>
-              <p className="absolute text-black text-md font-bold" style={{top:"28px", left:"67px"}}>
+              <p className="absolute text-black text-md font-bold" style={{ top: "28px", left: "67px" }}>
                 lands
               </p>
             </div>
@@ -62,7 +67,7 @@ export default function App() {
               <p className="absolute text-black top-2 left-0 text-2xl font-extrabold">
                 Campus.
               </p>
-              <p className="absolute text-black text-md font-bold" style={{top:"28px", left:"67px"}}>
+              <p className="absolute text-black text-md font-bold" style={{ top: "28px", left: "67px" }}>
                 lands
               </p>
             </div>
@@ -83,8 +88,11 @@ export default function App() {
             <Link
               className={
                 index === menuItems.length - 1
-                  ? "bg-[#00AA80] text-white font-normal rounded px-2 py-1"
-                  : "text-black font-light hover:font-medium transition duration-100 ease-in-out"
+                  ? "bg-[#6682ff] text-white font-normal rounded px-2 py-1"
+                  : "text-black font-light hover:font-medium transition duration-100 ease-in-out" && index === menuItems.length - 2
+                    ? "bg-[#00AA80] text-white font-normal rounded px-2 py-1"
+                    : "text-black font-light hover:font-medium transition duration-100 ease-in-out"
+
               }
               href={item.href}
             >
@@ -98,11 +106,10 @@ export default function App() {
         {menuItems.map((item, index) => (
           <NavbarMenuItem key={`${item}-${index}`}>
             <Link
-              className={`w-full text-center text-xl ${
-                index === menuItems.length - 1
+              className={`w-full text-center text-xl ${index === menuItems.length - 1
                   ? "text-blue-500 text-md font-normal"
                   : "text-black text-md font-light"
-              }`}
+                }`}
               href={item.href}
               size="lg"
             >

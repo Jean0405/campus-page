@@ -33,7 +33,6 @@ import telegram from "../../public/assets/telegram.svg";
 import twitter from "../../public/assets/twitter.svg";
 import whatsapp from "../../public/assets/whatsapp.svg";
 
-
 //fonts imports
 import localFont from "next/font/local";
 const stretchPro = localFont({ src: "../../public/fonts/StretchPro.otf" });
@@ -48,8 +47,7 @@ import { Requirements } from "@/components/Requirements";
 import Footer from "@/components/Footer";
 import Autoincrement from "@/components/Autoincrement";
 
-function page() {
-
+function Page() {
   useEffect(() => {
     AOS.init({ duration: 900 });
   });
@@ -61,7 +59,7 @@ function page() {
     telegram,
     facebook,
     twitter,
-]
+  ];
 
   return (
     <>
@@ -100,14 +98,20 @@ function page() {
             data-aos="zoom-in"
           >
             <div className="flex justify-center text-3xl sm:text-3xl lg:text-4xl xl:text-5xl pb-1">
-              <p className="text-center tracking-tight">SOBREPASA<br/>LAS BARRERAS<br/>DEL ESPACIO</p>
+              <p className="text-center tracking-tight">
+                SOBREPASA
+                <br />
+                LAS BARRERAS
+                <br />
+                DEL ESPACIO
+              </p>
               <div className="hidden lg:flex absolute -right-11 bottom-3 xl:-right-9 xl:bottom-4 border border-black rounded-3xl px-4">
-              <Image
-                className="w-6 h-6 xl:w-8 xl:h-7"
-                src={right_arrow}
-                alt="campuslands logo"
-              />
-            </div>
+                <Image
+                  className="w-6 h-6 xl:w-8 xl:h-7"
+                  src={right_arrow}
+                  alt="campuslands logo"
+                />
+              </div>
             </div>
           </div>
           {/* <------ Last headers section ------> */}
@@ -121,7 +125,10 @@ function page() {
         {/* <------------ *********** SERVICES SECTION ********** ----------> */}
         <section className="flex flex-wrap justify-around items-center gap-x-10 gap-y-20 mt-28">
           {/* <-------- First card -----------> */}
-          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            data-aos="zoom-in"
+          >
             <div className="relative h-80 w-80 bg-black rounded-xl overflow-hidden">
               <Image
                 className="C_campus absolute -top-24 -left-2"
@@ -135,14 +142,23 @@ function page() {
             <p className="text-black text-lg font-bold py-2">Conócenos</p>
           </div>
           {/* <--------- Second card ---------> */}
-          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            data-aos="zoom-in"
+          >
             <div className="relative h-80 w-80 border border-black rounded-xl">
               <Image
                 className="absolute w-48 h-48 top-1 -left-6"
                 src={star_icon}
               />
-              <Autoincrement limit={100} time={10} customClass="hidden sm:flex absolute top-24 left-11 justify-center items-center text-9xl font-bold"/>
-              <span className="flex sm:hidden absolute top-24 left-11 justify-center items-center text-9xl font-bold">100</span>
+              <Autoincrement
+                limit={100}
+                time={10}
+                customClass="hidden sm:flex absolute top-24 left-11 justify-center items-center text-9xl font-bold"
+              />
+              <span className="flex sm:hidden absolute top-24 left-11 justify-center items-center text-9xl font-bold">
+                100
+              </span>
               <span
                 className="absolute text-4xl font-bold"
                 style={{ top: "106px", right: "35px" }}
@@ -191,7 +207,10 @@ function page() {
           </div>
 
           {/* <----------- Last card ----------> */}
-          <div className="flex flex-col items-center cursor-pointer" data-aos="zoom-in">
+          <div
+            className="flex flex-col items-center cursor-pointer"
+            data-aos="zoom-in"
+          >
             <div className="relative h-80 w-80 rounded-xl">
               <div className="absolute w-80 h-40 bg-[#F4B422] bottom-0 rounded-xl"></div>
               <Image
@@ -208,7 +227,10 @@ function page() {
       </div>
 
       {/* <------------ *********** STUDY WITH US ********** ----------> */}
-      <div className="Main flex justify-center mt-28 mb-10 ml-40 mr-40" data-aos="zoom-in">
+      <div
+        className="Main flex justify-center mt-28 mb-10 ml-40 mr-40"
+        data-aos="zoom-in"
+      >
         <div className="mainLeft">
           <h2
             className={`${stretchPro.className} relative text-6xl mb-8 whitespace-nowrap`}
@@ -222,7 +244,7 @@ function page() {
             Software Skills, Habilidades Socioemocionales e Inglés donde se
             dasarrollan las siguientes tecnologias:
           </p>
-            <Carousel />
+          <Carousel />
         </div>
         <div className="middle relative flex flex-col justify-center items-center mr-24">
           <Image
@@ -248,9 +270,9 @@ function page() {
           FULL STACK
         </p>
       </div>
-      {/* <------- ******* REQUIREMENTS SECTION  -----------> */}                
+      {/* <------- ******* REQUIREMENTS SECTION  -----------> */}
       <div data-aos="zoom-in">
-      <Requirements />
+        <Requirements />
       </div>
 
       {/* <------- ******* SPONSORSHIP SECTION ******* -----------> */}
@@ -401,58 +423,88 @@ function page() {
           </div>
         </div>
       </section>
-      <div className='mainVisits grid xl:grid-cols-2 px-10 sm:px-20 m-auto my-20' style={{ maxWidth: "1600px" }}>
-               <div className='divUp'>
-                    <div className='divDown flex flex-col relative'>
-                         <h2 className='mainH2Visits flex text-4xl lg:text-5xl xl:text-4xl font-bold mb-4' style={{lineHeight: "55px"}}>Si Quieres Saber Más Puedes <br /> Visitarnos En Nuestras <br /> Instalaciones</h2>
-                         <div className='divButtonCita flex justify-between p-5 bg-white z-10' style={{ width: "400px" }}>
-                              <div className='calendarVisitas flex gap-5'>
-                                   <Image src={calendar} className='w-7 h-7' alt='...' />
-                                   <p className='text-xl'>Agendar Cita</p>
-                              </div>
-                              <Image src={right_arrow} className='rightArrow w-10 h-10' alt='...' />
-                         </div>
-                         <div>
-                              <Image src={lilacCircle} alt='...' className='lilaCircle w-20 h-w-20 absolute z-0' style={{top: "9rem", left: "22rem"}} />
-                              <Image src={purlpleCircle} alt='...' className='purpleCircle w-20 h-w-20 absolute z-0' style={{top: "14rem" , left: "-2rem" }} />
-                         </div>
-                    </div>
-                    <div className='hidden xl:flex flex-col mt-14'>
-                         <p className='text-xl' style={{maxWidth: "35rem"}}>No olvides compartir con tus amigos y conocidos este gran proyecto </p>
-                         <div className=' text-xl flex gap-14 mt-5'>
-                              {socialNetworks.map((src, index) => (
-                                   <Image
-                                        key={index}
-                                        className="inline-block"
-                                        style={{ width: "40px", height: "40px" }}
-                                        src={src}
-                                        alt={`Logo ${index + 1}`}
-                                   />
-                              ))}
-                         </div>
-                    </div>
-               </div>
-               <div className='videoVisitas bg-blue-900'>
-                    <Image src={video} alt='...' className=' h-full w-full' />
-               </div>
-               <div className='redesDiv xl:hidden'>
-                    <p className='text-xl'>No olvides compartir con tus amigos y conocidos este gran proyecto </p>
-                    <div className='socialNetworks'>
-                         {socialNetworks.map((src, index) => (
-                              <Image
-                                   key={index}
-                                   className="redSocial inline-block"
-                                   style={{ width: "40px", height: "40px" }}
-                                   src={src}
-                                   alt={`Logo ${index + 1}`}
-                              />
-                         ))}
-                    </div>
-               </div>
+      <div
+        className="mainVisits grid xl:grid-cols-2 px-10 sm:px-20 m-auto my-20"
+        style={{ maxWidth: "1600px" }}
+      >
+        <div className="divUp">
+          <div className="divDown flex flex-col relative">
+            <h2
+              className="mainH2Visits flex text-4xl lg:text-5xl xl:text-4xl font-bold mb-4"
+              style={{ lineHeight: "55px" }}
+            >
+              Si Quieres Saber Más Puedes <br /> Visitarnos En Nuestras <br />{" "}
+              Instalaciones
+            </h2>
+            <div
+              className="divButtonCita flex justify-between p-5 bg-white z-10"
+              style={{ width: "400px" }}
+            >
+              <div className="calendarVisitas flex gap-5">
+                <Image src={calendar} className="w-7 h-7" alt="..." />
+                <p className="text-xl">Agendar Cita</p>
+              </div>
+              <Image
+                src={right_arrow}
+                className="rightArrow w-10 h-10"
+                alt="..."
+              />
+            </div>
+            <div>
+              <Image
+                src={lilacCircle}
+                alt="..."
+                className="lilaCircle w-20 h-w-20 absolute z-0"
+                style={{ top: "9rem", left: "22rem" }}
+              />
+              <Image
+                src={purlpleCircle}
+                alt="..."
+                className="purpleCircle w-20 h-w-20 absolute z-0"
+                style={{ top: "14rem", left: "-2rem" }}
+              />
+            </div>
           </div>
+          <div className="hidden xl:flex flex-col mt-14">
+            <p className="text-xl" style={{ maxWidth: "35rem" }}>
+              No olvides compartir con tus amigos y conocidos este gran proyecto{" "}
+            </p>
+            <div className=" text-xl flex gap-14 mt-5">
+              {socialNetworks.map((src, index) => (
+                <Image
+                  key={index}
+                  className="inline-block"
+                  style={{ width: "40px", height: "40px" }}
+                  src={src}
+                  alt={`Logo ${index + 1}`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+        <div className="videoVisitas bg-blue-900">
+          <Image src={video} alt="..." className=" h-full w-full" />
+        </div>
+        <div className="redesDiv xl:hidden">
+          <p className="text-xl">
+            No olvides compartir con tus amigos y conocidos este gran proyecto{" "}
+          </p>
+          <div className="socialNetworks">
+            {socialNetworks.map((src, index) => (
+              <Image
+                key={index}
+                className="redSocial inline-block"
+                style={{ width: "40px", height: "40px" }}
+                src={src}
+                alt={`Logo ${index + 1}`}
+              />
+            ))}
+          </div>
+        </div>
+      </div>
       <Footer />
     </>
   );
 }
 
-export default page;
+export default Page;
