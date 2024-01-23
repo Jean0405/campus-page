@@ -1,6 +1,5 @@
 "use client"
 
-import { Table, TableHeader, TableColumn, TableBody, TableRow, TableCell } from "@nextui-org/react";
 import copyIcon from "../../../../../public/assets/copyClipboard.svg";
 import check from "../../../../../public/assets/check.svg";
 import Image from "next/image";

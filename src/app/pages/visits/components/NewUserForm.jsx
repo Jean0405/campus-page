@@ -22,10 +22,11 @@ export const NewUserForm = () => {
     cargo: "",
     fecha_visita: "",
     vehiculo: "",
-    codigos: localStorage.getItem('codigo'),
+    codigo: localStorage.getItem('codigo'),
   });
   const handleSubmit = async (e) => {
     e.preventDefault();
+    
     let options = {
       method: "POST",
       headers: new Headers({
@@ -42,17 +43,25 @@ export const NewUserForm = () => {
         fecha_visita: form.fecha_visita,
         cargo: form.cargo,
         ...(isChecked && { vehiculo: form.vehiculo }),
-        codigos: form.codigos,
+        codigo: form.codigo,
       }),
+      
     };
     try {
       const response = await (
-        await fetch("http://192.168.110.106:5017/visitanos/nuevos", options)
+        await fetch("http://192.168.110.106:5017/visitas/nuevos", options)
       ).json();
       if (response.status === 200) {
+        setForm({
+          tipo_doc: '',
+          doc: '',
+          codigos: ''
+        });
         console.log(response);
         localStorage.clear();
       } else {
+        localStorage.clear();
+
         console.error(response.message);
       }
     } catch (err) {
@@ -61,8 +70,7 @@ export const NewUserForm = () => {
   };
 
   return (
-    <div className="h-full max-w-lg mt-12">
-      <h1 className=" max-w-xl sm:text-7xl text-6xl font-bold">Visítanos</h1>
+    <div className="h-full max-w-lg  mt-[-40px]">
 
       <p> llenando el siguiente formulario</p>
 

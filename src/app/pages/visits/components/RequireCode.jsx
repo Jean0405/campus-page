@@ -28,7 +28,7 @@ export const RequireCode = () => {
      })
    }
    try {
-    const response = await (await fetch("http://192.168.110.106:5017/visitanos/verificar/usuario", options)).json();         
+     const response = await (await fetch("http://192.168.110.106:5017/visitantes/verificar", options)).json();
     if (response.status === 200 ) {
 
       setShowCodes(true) 

@@ -41,12 +41,14 @@ export const ExistedUserForm = () => {
     };
     try {
       const response = await (
-        await fetch("http://192.168.110.106:5017/visitanos/antiguos", options)
+        await fetch("http://192.168.110.106:5017/visitas/antiguos", options)
       ).json();
       if (response.status === 200) {
         console.log(response);
         localStorage.clear();
       } else {
+        localStorage.clear();
+
         console.error(response.message);
       }
     } catch (err) {
@@ -62,9 +64,8 @@ export const ExistedUserForm = () => {
     twitter,
   ];
   return (
-    <div className="h-full max-w-lg mt-12">
-      <h1 className=" max-w-xl sm:text-7xl text-6xl font-bold">Visítanos</h1>
-      <p> llenando el siguiente formulario</p>
+    <div className="h-full max-w-lg mt-[-40px]">
+      <p className="ms-2"> llenando el siguiente formulario</p>
 
       <div className="md:max-w-xl max-w-xs py-5 ">
         <div>
@@ -246,25 +247,7 @@ export const ExistedUserForm = () => {
             </div>
           </form>
         </div>
-        <div className="flex flex-col mt-10  lg:items-start items-center">
-          <div className="flex flex-col  ">
-            <p className="text-md">
-              No olvides compartir con tus amigos y conocidos este gran
-              proyecto
-            </p>
-          </div>
-          <div className="text-xl flex gap-10 mt-5">
-            {socialNetworks.map((src, index) => (
-              <Image
-                key={index}
-                className="inline-block"
-                style={{ width: "35px" }}
-                src={src}
-                alt={`Logo ${index + 1}`}
-              />
-            ))}
-          </div>
-        </div>
+     
       </div>
     </div>
   );

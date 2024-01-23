@@ -20,8 +20,11 @@ import { Slider } from "./components/Slider";
 import Footer from "@/components/Footer";
 import { InsertCode } from "./components/insertCode";
 import { RequireCode } from "./components/requireCode";
+import { useRouter } from "next/navigation";
 
 function VisitUs() {
+
+
   const [buttonPressed, setButtonPressed] = useState(null);
 
   const changeView = (buttonName) => {
@@ -49,11 +52,20 @@ function VisitUs() {
           <h1 className=" lg:max-w-xl max-w-full sm:text-7xl text-6xl font-bold">
             Visítanos
           </h1>
-          <p className="w-9/12 ms-1">
-            Ingresa el código de acceso para sacar tu cita, si no cuentas con
-            uno puedes solicitarlo
-          </p>
-          <div className="flex flex-col w-5/6  gap-8 mt-10">
+         {
+          buttonPressed ? (
+              <p className="hidden">
+                Ingresa el código de acceso para sacar tu cita, si no cuentas con
+                uno puedes solicitarlo
+              </p>
+          ) : (
+                <p className="w-9/12 ms-1">
+                  Ingresa el código de acceso para sacar tu cita, si no cuentas con
+                  uno puedes solicitarlo
+                </p>
+          )
+         }
+          <div className="flex flex-col w-5/6  gap-8 mt-5">
             {buttonPressed === "insertCode" ? (
               <InsertCode />
             ) : buttonPressed === "requireCode" ? (
@@ -66,10 +78,10 @@ function VisitUs() {
                   onClick={() => changeView("insertCode")}
                 >
                   <Image src={insertCode} />
-                  Ingresar Codigo
+                  ¡Ya tengo codigo!
                 </Button>
                 <Button
-                  className="bg-[#A5A6F6] flex flex-col  text-white text-md rounded-lg py-14"
+                      className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >
