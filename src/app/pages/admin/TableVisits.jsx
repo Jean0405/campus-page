@@ -1,11 +1,19 @@
 "use client";
 import "./index.css";
 
-import { getVisits } from "@/utils/visits";
-import { useCallback, useEffect, useMemo, useState } from "react";
-import ModalVisits from "./modalVisits";
-import { formatDateWithTime } from "@/helpers/formatDateWithTime";
+// Icons imports
+import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//API imports
+import * as visitsAPI from "@/utils/visits";
+
+//Components imports
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
+import { useCallback, useEffect, useMemo, useState } from "react";
+import { formatDateWithTime } from "@/helpers/formatDateWithTime";
+import { checkResponseStatus } from "@/helpers/checkResponses";
 import {
   Table,
   TableHeader,
@@ -14,15 +22,54 @@ import {
   TableRow,
   TableCell,
   Spinner,
-  Badge,
   Pagination,
+  Badge,
+  Select,
+  SelectItem,
 } from "@nextui-org/react";
+import ModalVisits from "./modalVisits";
+
+//Assets import
+import campus_CO from "../../../../public/img/campuslands.svg";
+import Hooy from "../../../../public/img/hooy.svg";
+import GBP from "../../../../public/img/grupo_bien_pensado.svg";
+import MCD from "../../../../public/img/mcd.svg";
+import PEER from "../../../../public/img/peer.svg";
+import CONEXALAB from "../../../../public/img/Conexalab.svg";
+import Image from "next/image";
+import { showErrorToast } from "@/helpers/Toasts";
+
+
+const listCompanies = [
+  { name: "Campuslands_CO", logo: campus_CO },
+  { name: "HOOY", logo: Hooy },
+  { name: "Campuslands_AC", logo: campus_CO },
+  { name: "GBP", logo: GBP },
+  { name: "My Conjunto Digital", logo: MCD },
+  { name: "PEER", logo: PEER },
+  { name: "Betrmedia", logo: MCD },
+  { name: "Conexalab", logo: CONEXALAB },
+  { name: "Colombia Taxnetwork", logo: MCD },
+];
+
+const filterStatus = ["aceptado", "reasignado", "en espera", "finalizado"];
 
 export default function TableVisits() {
   const [listVisitors, setListVisitors] = useState([]);
+  const [listVisitorsByStatusCounter, setVisitorsByStatusCounter] = useState({
+    accepted: 0,
+    onStandBy: 0,
+    made: 0,
+    reassigned: 0,
+    thisWeek: 0,
+  });
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [statusCompany, setStatusCompany] = useState({
+    status: "en espera",
+    company: "",
+  });
 
   //pagination
   const pages = Math.ceil(listVisitors.length / rowsPerPage);
@@ -31,7 +78,7 @@ export default function TableVisits() {
     const end = start + rowsPerPage;
 
     return listVisitors.slice(start, end);
-  }, [page, listVisitors,rowsPerPage]);
+  }, [page, listVisitors, rowsPerPage]);
 
   //set rows per page
   const onRowsPerPageChange = useCallback((e) => {
@@ -43,87 +90,167 @@ export default function TableVisits() {
   function setStatusClassname(status) {
     if (status === "en espera") {
       return "bg-red-500";
-    }
-    if (status === "aceptada") {
+    } else if (status === "aceptado") {
       return "bg-green-500";
-    } else {
+    } else if (status === "reasignado") {
       return "bg-yellow-500";
+    } else {
+      return "bg-black";
     }
   }
 
-  //Get all de visitors
+  // set company logo
+  const getCompanyLogo = (companyName) => {
+    const company = listCompanies.find((c) => c.name === companyName);
+    return company ? company.logo : null;
+  };
+
+  //get all visits
   const getAllVisits = async () => {
-    const data = await getVisits();
-    setListVisitors(data.message);
+    let response = await visitsAPI.getVisits();
+
+    response = checkResponseStatus(response, 200);
+
+    if (!response) {
+      showErrorToast();
+      return;
+    }
+
+    setListVisitors(response.message);
+    setLoading(false);
+    return;
+  };
+
+  //get visits counter by status
+  // const visitsByStatusCounter = async () => {
+  //   let thisWeek = await visitsAPI.getThisWeekVisits();
+  //   let accepted = await visitsAPI.getVisitsByStatus("aceptado");
+  //   let onStandBy = await visitsAPI.getVisitsByStatus("en espera" );
+  //   let made = await visitsAPI.getVisitsByStatus("realizado" );
+  //   let reassigned = await visitsAPI.getVisitsByStatus("reasignado" );
+
+  //   thisWeek = checkResponseStatus(thisWeek, 200);
+  //   accepted = checkResponseStatus(accepted, 200);
+  //   onStandBy = checkResponseStatus(onStandBy, 200);
+  //   made = checkResponseStatus(made, 200);
+  //   reassigned = checkResponseStatus(reassigned, 200);
+
+  //   if (thisWeek === null || accepted === null || onStandBy === null || made === null || reassigned === null) {
+  //     showErrorToast();
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   setVisitorsByStatusCounter({
+  //     accepted: accepted.message.length,
+  //     onStandBy: onStandBy.message.length,
+  //     made: made.message.length,
+  //     reassigned: reassigned.message.length,
+  //     thisWeek: thisWeek.message.length,
+  //   });
+  //   setLoading(false);
+  // };
+
+  //get visits by status (FILTER)
+  const filterVisitsByStatusAndCompany = async (status, company) => {
+    let response = await visitsAPI.getVisitsByStatus(status, company);
+    response = checkResponseStatus(response, 200)
+    if (!response) {
+      showErrorToast();
+      return;
+    }
+    setListVisitors(response.message);
     setLoading(false);
   };
 
+  // handle company change
+  const handleCompanyFilterChange = (companyName) => {
+    let formattedCompanyName = companyName.replace(/\s/g, "");
+    setStatusCompany({
+      ...statusCompany,
+      company: formattedCompanyName,
+    });
+    filterVisitsByStatusAndCompany(statusCompany.status, formattedCompanyName);
+  };
+  // handle status change
+  const handleStatusFilterChange = (newStatus) => {
+    setStatusCompany({
+      ...statusCompany,
+      status: newStatus,
+    });
+    filterVisitsByStatusAndCompany(newStatus, statusCompany.company);
+  };
+
+  //load visitors counter
+  // useEffect(() => {
+  //   visitsByStatusCounter();
+  // }, [listVisitors]);
+
   //Load visitors table
   useEffect(() => {
+    // visitsByStatusCounter();
     getAllVisits();
-  }, [setListVisitors]);
+  }, []);
 
   return (
     <>
-      <div className="grid md:grid-cols-2 gap-3">
-        {/* Status counter and filter */}
-        <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          <div className="flex jsutify-center md:justify-around gap-3 cursor-pointer">
-            {/* accepted status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Aceptadas</h2>
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-green-500 grid place-items-center text-3xl font-bold hover:bg-green-600 rounded-xl">
-                {listVisitors.length}
-              </div>
+      <div className="grid md:grid-cols-2 gap-5 mb-5">
+        <div className="carousel-admin m-auto md:m-0">
+          {listCompanies.map((company) => (
+            <div className="relative company-container" key={company.name}>
+              <Badge
+                className="bg-red-500 text-white font-bold"
+                size="lg"
+                content={listVisitors.length}
+              >
+                <Image
+                  onClick={() => handleCompanyFilterChange(company.name)}
+                  className="company-logo"
+                  src={company.logo}
+                  alt="company logo"
+                />
+              </Badge>
             </div>
-            {/* reassigned status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Reasignadas</h2>
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-yellow-500 grid place-items-center text-3xl font-bold hover:bg-yellow-600 rounded-xl">
-                {listVisitors.length}
-              </div>
-            </div>
-            {/* declined status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">En espera</h2>
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-red-500 grid place-items-center text-3xl font-bold hover:bg-red-600 rounded-xl">
-                {listVisitors.length}
-              </div>
-            </div>
-            {/* made status*/}
-            <div className="flex flex-col items-center">
-              <h2 className="text-sm">Realizadas</h2>
-              <div className="w-20 h-20 md:w-24 md:h-24 bg-black grid place-items-center text-white text-3xl font-bold hover:bg-neutral-800 rounded-xl">
-                {listVisitors.length}
-              </div>
-            </div>
-          </div>
+          ))}
         </div>
-        {/* filter options */}
-        <div className="flex flex-col items-center justify-center gap-2 pb-10">
-          {/* declined status*/}
-          <div className="flex flex-col items-center">
-            <h2 className="text-sm">Esta semana</h2>
-            <div className="w-20 h-20 md:w-24 md:h-24 bg-neutral-400 grid place-items-center text-3xl font-bold hover:bg-neutral-600 rounded-xl">
-              {listVisitors.length}
-            </div>
-          </div>
+        <div className="flex items-center justify-center">
+          <Select label="Selecciona un estado" className="max-w-xs">
+            {filterStatus.map((status) => (
+              <SelectItem
+                onClick={() => handleStatusFilterChange(status)}
+                key={status}
+                value={statusCompany.status}
+              >
+                {status.charAt(0).toUpperCase() + status.slice(1)}
+              </SelectItem>
+            ))}
+          </Select>
         </div>
       </div>
       {/* Select rows per page */}
-      <div className="flex justify-between py-3">
-      <p className="text-md">Total <span className="font-bold">{listVisitors.length}</span> registros</p>
-      <label className="flex items-center text-black text-md">
-            Filas por página:
-            <select
-              className="bg-transparent outline-none text-black font-bold text-md"
-              onChange={onRowsPerPageChange}
-            >
-              <option value="5">5</option>
-              <option value="10">10</option>
-              <option value="15">15</option>
-            </select>
-          </label>
+      <div className="flex justify-between p-3">
+        <div className="flex justify-center items-center gap-5">
+          <p className="text-small sm:text-md">
+            Hay <span className="font-bold">{listVisitors.length}</span>{" "}
+            registros
+          </p>
+          <FontAwesomeIcon
+            onClick={() => getAllVisits()}
+            className="cursor-pointer hover:text-xl hover:text-red-500"
+            icon={faRotateRight}
+          />
+        </div>
+        <label className="flex items-center text-black text-small sm:text-md">
+          Filas:
+          <select
+            className="bg-transparent outline-none text-black font-bold text-md"
+            onChange={onRowsPerPageChange}
+          >
+            <option value="5">5</option>
+            <option value="10">10</option>
+            <option value="15">15</option>
+          </select>
+        </label>
       </div>
       {loading ? (
         <div className="text-center py-5">
@@ -131,6 +258,7 @@ export default function TableVisits() {
         </div>
       ) : (
         <Table
+          aria-label="visits table"
           color="default"
           selectionMode="single"
           bottomContent={
@@ -152,19 +280,19 @@ export default function TableVisits() {
               nombre
             </TableColumn>
             <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
-              edad
+              empresa
+            </TableColumn>
+            <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
+              cargo
+            </TableColumn>
+            <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
+              visita
             </TableColumn>
             <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
               interés
             </TableColumn>
             <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
               contacto
-            </TableColumn>
-            <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
-              cédula
-            </TableColumn>
-            <TableColumn className="hide-sm uppercase bg-neutral-600 text-white">
-              empresa
             </TableColumn>
             <TableColumn className="hide-sm uppercase bg-neutral-600 text-white">
               fecha y hora
@@ -173,21 +301,34 @@ export default function TableVisits() {
               vehiculo
             </TableColumn>
             <TableColumn className="uppercase bg-neutral-600 text-white">
-              acciones
+              estado
             </TableColumn>
             <TableColumn className="uppercase bg-neutral-600 text-white">
-              estado
+              acciones
             </TableColumn>
           </TableHeader>
           <TableBody>
             {items.map((visitor) => (
               <TableRow className="capitalize cursor-pointer" key={visitor.id}>
-                <TableCell>{visitor.nombre}</TableCell>
-                <TableCell className="hide-md">{visitor.edad}</TableCell>
+                <TableCell>{visitor.visitante.nombre}</TableCell>
+                <TableCell className="hide-md">
+                  {visitor.visitante.empresa}
+                </TableCell>
+                <TableCell className="hide-md">
+                  {visitor.visitante.cargo}
+                </TableCell>
+                <TableCell className="hide-md">
+                  <Image
+                    loading="lazy"
+                    src={getCompanyLogo(visitor.codigo.nombre)}
+                    width={60}
+                    alt="company logo"
+                  />
+                </TableCell>
                 <TableCell className="hide-md">{visitor.interes}</TableCell>
-                <TableCell className="hide-md">{visitor.tel}</TableCell>
-                <TableCell className="hide-md">{visitor.doc}</TableCell>
-                <TableCell className="hide-sm">{visitor.empresa}</TableCell>
+                <TableCell className="hide-md">
+                  {visitor.visitante.tel}
+                </TableCell>
                 <TableCell className="hide-sm">
                   {formatDateWithTime(visitor.fecha_visita)}
                 </TableCell>
@@ -213,6 +354,7 @@ export default function TableVisits() {
           </TableBody>
         </Table>
       )}
+      <ToastContainer/>
     </>
   );
 }

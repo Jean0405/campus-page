@@ -1,7 +1,7 @@
 "use client";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
-import { CodesList } from "./CodesList";
+import { CodesList } from "./codesList";
 import Image from "next/image";
 
 import ask from "../../../../../public/assets/required_icon.svg";

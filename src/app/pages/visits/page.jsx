@@ -20,7 +20,8 @@ import { Slider } from "./components/Slider";
 import { InsertCode } from "./components/InsertCode";
 import { RequireCode } from "./components/RequireCode";
 import Footer from "@/components/Footer";
-
+import { InsertCode } from "./components/insertCode";
+import { RequireCode } from "./components/requireCode";
 
 function VisitUs() {
 
