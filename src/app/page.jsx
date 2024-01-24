@@ -17,7 +17,7 @@ import logo from "../../public/img/logoCampus.svg";
 import C_campus from "../../public/img/C_campus.png";
 import Ellipse from "../../public/img/Ellipse.png";
 import star_icon from "../../public/img/star_icon.png";
-import camperWoman from "../../public/img/p1.png";
+import camperWoman from "../../public/img/mujer.png";
 import right_arrow from "../../public/assets/right_arrow.png";
 import camperWoman2 from "../../public/img/mujerCamper2.png";
 import hombreSentado from "../../public/img/hombreSentado.png";
@@ -211,15 +211,15 @@ function Page() {
             className="flex flex-col items-center cursor-pointer"
             data-aos="zoom-in"
           >
-            <div className="relative h-80 w-80 rounded-xl">
-              <div className="absolute w-80 h-44 bg-[#F4B422]  bottom-0 rounded-xl"></div>
-              <a href="/pages/recruitment">
+            <div className="relative h-80 w-80 rounded-xl ">
+              <div className="absolute w-80 h-44 bg-[#F4B422]  bottom-0 rounded-xl "></div>
+              <Link href="/pages/recruitment">
                 <Image
-                  className="absolute w-full h-full object-cover"
+                  className="absolute bottom-[1.1rem] w-full h-full object-cover overflow-visible"
                   src={camperWoman}
 
                 />
-              </a>
+              </Link>
               
             </div>
             <p className="text-black text-lg font-bold py-2">
@@ -443,16 +443,19 @@ function Page() {
               className="divButtonCita flex justify-between p-5 bg-white z-10"
               style={{ width: "400px" }}
             >
+              <Link href="/pages/visits">
+
               <div className="calendarVisitas flex gap-5">
                 <Image src={calendar} className="w-7 h-7" alt="..." />
                 <p className="text-xl">Agendar Cita</p>
+                  <Image
+                    src={right_arrow}
+                    className="rightArrow ms-20 w-10 h-10"
+                    alt="..."
+                  />
               </div>
-              <a href="pages/visits"> <Image
-                src={right_arrow}
-                className="rightArrow w-10 h-10"
-                alt="..."
-              /></a>
              
+                </Link>
             </div>
             <div>
               <Image

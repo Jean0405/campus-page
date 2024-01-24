@@ -1,23 +1,16 @@
 "use client";
 import { Button } from "@nextui-org/react";
 import { useState } from "react";
-import { CodesList } from "./codesList";
+import { CodesList } from "./CodesList";
 import Image from "next/image";
 
 import ask from "../../../../../public/assets/required_icon.svg";
 import { QRCode } from "./QRCode";
-import { InsertCode } from "./InsertCode";
-import insertCode from "../../../../../public/assets/insertCode.svg";
-import requireCode from "../../../../../public/assets/requireCode.svg";
 import { showErrorToast } from "@/helpers/Toasts";
+import { MainButtons } from "./MainButtons";
 
 export const RequireCode = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
-  
-  const [buttonPressed, setButtonPressed] = useState(null);
-  const changeView = (buttonName) => {
-    setButtonPressed(buttonName);
-  };
 
   const [CODES, setCODES] = useState([]);
   const [showCodes, setShowCodes] =
@@ -47,7 +40,7 @@ export const RequireCode = () => {
         setCODES([])
       }
     } catch (err) {
-      showErrorToast(); 
+      showErrorToast();
       console.error(err)
     }
   }
@@ -86,7 +79,12 @@ export const RequireCode = () => {
     <div className="max-w-2xl w-full ">
       {
         showForm ? (
+          <>
             <div>
+              <p className="w-full ms-1 mt-[-20px]">
+                Ingresa el código de acceso para sacar tu cita, si no cuentas con
+                uno puedes solicitarlo
+              </p>
               <form
                 action="POST"
                 method="POST"
@@ -130,12 +128,18 @@ export const RequireCode = () => {
                       onChange={(e) =>
                         setForm({ ...form, doc: e.target.value })
                       }
-                      className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
+                      className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm ... peer"
                       type="text"
                       id="doc"
                       name="doc"
+                      minLength={8}
+                      maxLength={10}
+                      placeholder=" "
+                      pattern="^\d{8,10}$"
                       required
                     />
+                    <span className="hidden rounded-md text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 a 10 digitos</span>
+
                   </div>
                 </div>
                 {showCodes && <CodesList CODES={CODES} />}
@@ -143,7 +147,7 @@ export const RequireCode = () => {
                 <div className="flex flex-col gap-3">
                   {
                     showCodes ? (
-                    <Button onClick={() => handleGoBack()}
+                      <Button onClick={() => handleGoBack()}
                         className="block w-full rounded-md bg-[#00AA80] text-lg text-white "
                       >
                         Solicitar Nuevo Codigo
@@ -166,34 +170,10 @@ export const RequireCode = () => {
                 </div>
               </form>
             </div>
-          ) : formSubmitted ? (
-            buttonPressed === "insertCode" ? (
-              <InsertCode />
-            ) : buttonPressed === "requireCode" ? (
-              <RequireCode />
-            ) : (
-              <>
-                <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
-                <Button
-                  className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-5 mt-5"
-                  as="a"
-                  onClick={() => changeView("insertCode")}
-                >
-                  <Image src={insertCode} />
-                  ¡Ya tengo codigo!
-                </Button>
-                <Button
-                  className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
-                  as="a"
-                  onClick={() => changeView("requireCode")}
-                >
-                  <Image src={requireCode} />
-                  Solicitar codigo de visita
-                </Button>
-              </>
-          ) 
+          </>
+        ) : formSubmitted ? (
+          <MainButtons />
         ) : (
-          
           <QRCode />
         )
       }

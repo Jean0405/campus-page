@@ -9,16 +9,9 @@ import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer, toast } from "react-toastify";
 import { ExistedUserForm } from "../components/ExistedUserForm";
 import { NewUserForm } from "../components/NewUserForm";
-import { RequireCode } from "./RequireCode";
-import insertCode from "../../../../../public/assets/insertCode.svg";
-import requireCode from "../../../../../public/assets/requireCode.svg";
-import { showErrorToast } from "@/helpers/Toasts";
+import { invalidCodeToast, showErrorToast } from "@/helpers/Toasts";
+import { MainButtons } from "./MainButtons";
 export const InsertCode = () => {
-  const[buttonPressed, setButtonPressed] = useState(null);
-
-  const changeView = (buttonName) => {
-    setButtonPressed(buttonName);
-  };
   const [showForm, setShowForm] = useState(true);
   const [formSubmitted, setFormSubmitted] = useState(false);
   const [show, setShow] = useState(false);
@@ -37,18 +30,8 @@ export const InsertCode = () => {
  const handleSubmit = async (e) => {
    e.preventDefault();
   
-
    if(!CODELIST.includes(form.codigo)) { 
-     toast.info('Ingresaste un codigo invalido', {
-       position: "bottom-right",
-       autoClose: 5000,
-       hideProgressBar: false,
-       closeOnClick: true,
-       pauseOnHover: true,
-       draggable: true,
-       progress: undefined,
-       theme: "colored",
-     });
+     invalidCodeToast();
      setShowForm(true);
    } else {
      try {
@@ -87,8 +70,7 @@ export const InsertCode = () => {
   
  };
   return (
-    <div className=" w-full ">
-      
+    <div className=" w-full ">  
       <ToastContainer  />
       {showForm ? (
         <div>
@@ -144,7 +126,7 @@ export const InsertCode = () => {
                   pattern="^\d{8,10}$"
                   required
                 />
-                <span className="hidden rounded-md text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 o 10 digitos</span>
+                <span className="hidden rounded-md text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 a 10 digitos</span>
 
               </div>
             </div>
@@ -185,33 +167,7 @@ export const InsertCode = () => {
       ) : formSubmitted ? (
           show ? <ExistedUserForm /> : <NewUserForm/> 
       ) : (
-        
-         buttonPressed === "insertCode" ? (
-          <InsertCode />
-        ) : buttonPressed === "requireCode" ? (
-          <RequireCode />
-        ) : (
-          <>
-            <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
-            <Button
-              className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-5 mt-5"
-              as="a"
-              onClick={() => changeView("insertCode")}
-            >
-              <Image src={insertCode} />
-              ¡Ya tengo codigo!
-            </Button>
-            <Button
-              className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
-              as="a"
-              onClick={() => changeView("requireCode")}
-            >
-              <Image src={requireCode} />
-              Solicitar codigo de visita
-            </Button>
-          </>
-        )
-
+       <MainButtons />
       )
 }
     </div>

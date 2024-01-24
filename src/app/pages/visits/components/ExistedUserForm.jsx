@@ -1,6 +1,7 @@
 "use client";
-import {  useState } from "react";
+import { useState } from "react";
 
+import ask from "../../../../../public/assets/required_icon.svg";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 import calendar from "../../../../../public/assets/calendar_icon.svg";
@@ -8,18 +9,11 @@ import { InsertCode } from "./InsertCode";
 import insertCode from "../../../../../public/assets/insertCode.svg";
 import requireCode from "../../../../../public/assets/requireCode.svg";
 import { RequireCode } from "./RequireCode";
-import ask from "../../../../../public/assets/required_icon.svg";
-import { showErrorFormToast, showSuccessToast, showErrorToast } from "@/helpers/Toasts";
+import { sendExistedUserVisit } from "@/utils/visits";
 
 
 export const ExistedUserForm = () => {
-  const [buttonPressed, setButtonPressed] = useState(null);
   const [showForm, setShowForm] = useState(true);
-
-  const changeView = (buttonName) => {
-    setButtonPressed(buttonName);
-  };
-
   const [isChecked, setIsChecked] = useState(false);
   const [form, setForm] = useState({
     tipo_doc: localStorage.getItem('tipo'),
@@ -29,6 +23,11 @@ export const ExistedUserForm = () => {
     vehiculo: "",
     codigo: localStorage.getItem('codigo'),
   });
+
+  const [buttonPressed, setButtonPressed] = useState(null);
+  const changeView = (buttonName) => {
+    setButtonPressed(buttonName);
+  };
   const handleSubmit = async (e) => {
     e.preventDefault();
     let options = {
@@ -36,7 +35,7 @@ export const ExistedUserForm = () => {
       headers: new Headers({
         "Content-Type": "application/json",
       }),
-      body: JSON.stringify({     
+      body: JSON.stringify({
         tipo_doc: form.tipo_doc,
         doc: form.doc,
         interes: form.interes,
@@ -45,30 +44,13 @@ export const ExistedUserForm = () => {
         codigo: form.codigo
       }),
     };
-    try {
-      const response = await (
-        await fetch("http://192.168.110.106:5017/visitas/antiguos", options)
-      ).json();
-      if (response.status === 200) {
-        showSuccessToast();
-        setTimeout(() => {
-          window.location.reload();
-          localStorage.clear();
-        }, 1500);
-      } else {
-        showErrorFormToast(response.message);
-      }
-    } catch (err) {
-      showErrorToast()
-      console.error("Error al enviar el formulario:", err);
-    }
+    sendExistedUserVisit(options)
   };
 
   return (
     showForm ? (
       <div className="h-full max-w-lg mt-[-20px]">
         <p className="w-full ms-2"> llenando el siguiente formulario</p>
-
         <div className="md:max-w-xl max-w-xs py-5 ">
           <div>
             <form
@@ -254,33 +236,31 @@ export const ExistedUserForm = () => {
         </div>
       </div>
     ) : (
-        buttonPressed === "insertCode" ? (
-          <InsertCode />
-        ) : buttonPressed === "requireCode" ? (
-          <RequireCode />
-        ) : (
-          <>
-            <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
-            <Button
-              className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-8 mt-5"
-              as="a"
-              onClick={() => changeView("insertCode")}
-            >
-              <Image src={insertCode} />
-              ¡Ya tengo codigo!
-            </Button>
-            <Button
-              className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
-              as="a"
-              onClick={() => changeView("requireCode")}
-            >
-              <Image src={requireCode} />
-              Solicitar codigo de visita
-            </Button>
-          </>
-        )
+      buttonPressed === "insertCode" ? (
+        <InsertCode />
+      ) : buttonPressed === "requireCode" ? (
+        <RequireCode />
+      ) : (
+        <>
+          <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
+          <Button
+            className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-8 mt-5"
+            as="a"
+            onClick={() => changeView("insertCode")}
+          >
+            <Image src={insertCode} />
+            ¡Ya tengo codigo!
+          </Button>
+          <Button
+            className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
+            as="a"
+            onClick={() => changeView("requireCode")}
+          >
+            <Image src={requireCode} />
+            Solicitar codigo de visita
+          </Button>
+        </>
+      )
     )
-
- 
   );
 };

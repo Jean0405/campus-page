@@ -5,7 +5,6 @@ import requireCode from "../../../../../public/assets/requireCode.svg";
 import Image from "next/image";
 import { Button } from "@nextui-org/react";
 
-
 import ask from "../../../../../public/assets/required_icon.svg";
 import calendar from "../../../../../public/assets/calendar_icon.svg";
 import id from "../../../../../public/assets/id.svg";
@@ -13,15 +12,9 @@ import id from "../../../../../public/assets/id.svg";
 import whatsapp from "../../../../../public/assets/whatsapp.svg";
 import { InsertCode } from "./InsertCode";
 import { RequireCode } from "./RequireCode";
-import { showSuccessToast, showErrorFormToast, showErrorToast } from "@/helpers/Toasts";
+import { sendNewUserVisit } from "@/utils/visits";
 
 export const NewUserForm = () => {
-  const [buttonPressed, setButtonPressed] = useState(null);
-
-  const changeView = (buttonName) => {
-    setButtonPressed(buttonName);
-  };
-
   const [showForm, setShowForm] = useState(true);
   const [isChecked, setIsChecked] = useState(false);
   const [form, setForm] = useState({
@@ -37,6 +30,12 @@ export const NewUserForm = () => {
     vehiculo: "",
     codigo: localStorage.getItem('codigo'),
   });
+
+  const [buttonPressed, setButtonPressed] = useState(null);
+
+  const changeView = (buttonName) => {
+    setButtonPressed(buttonName);
+  };
  
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -59,25 +58,8 @@ export const NewUserForm = () => {
         ...(isChecked && { vehiculo: form.vehiculo }),
         codigo: form.codigo,
       }),
-      
     };
-    try {
-      const response = await (
-        await fetch("http://192.168.110.106:5017/visitas/nuevos", options)
-      ).json();
-      if (response.status === 200) {
-        showSuccessToast();
-        setTimeout(() => {
-          window.location.reload();
-          localStorage.clear();
-        }, 1500);
-      } else {
-        showErrorFormToast(response.message);
-      }
-    } catch (err) {
-      showErrorToast();
-      console.error("Error al enviar el formulario:", err);
-    }
+    sendNewUserVisit(options)
   };
 
   return (
@@ -203,7 +185,7 @@ export const NewUserForm = () => {
                   />
 
                 </div>
-                  <span className="block rounded-md text-sm text-gray-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 o 10 digitos</span>
+                  <span className="block rounded-md text-sm text-gray-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El telefono permite maximo 10 digitos</span>
               </div>
 
               <div className="grid grid-cols-[0.5fr_1fr]">

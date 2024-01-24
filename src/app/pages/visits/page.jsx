@@ -23,8 +23,6 @@ import Footer from "@/components/Footer";
 
 
 function VisitUs() {
-
-
   const [buttonPressed, setButtonPressed] = useState(null);
 
   const changeView = (buttonName) => {
@@ -59,7 +57,7 @@ function VisitUs() {
                 uno puedes solicitarlo
               </p>
           ) : (
-                <p className="lg:w-10/12 w-10/12 text-center ms-1">
+                <p className="lg:w-10/12 w-10/12 text-center lg:text-start ms-1">
                   Ingresa el código de acceso para sacar tu cita, si no cuentas con
                   uno puedes solicitarlo
                 </p>
