@@ -24,7 +24,7 @@ export const QRCode = () => {
         showQR ? (
       <div className="h-full  w-full mt-[-50px] " >
         <div className="md:max-w-xl w-full py-5 m-auto">
-          <p className="w-full  ms-2 mb-6 mt-2">
+          <p className="w-full  ms-2 mb-6 mt-2 lg:text-start text-center">
             Escribe a nuestro WhatsApp y un administrador
             te atenderá y te dará un código de acceso
           </p>

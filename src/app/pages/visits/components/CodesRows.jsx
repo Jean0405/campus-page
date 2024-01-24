@@ -65,7 +65,7 @@ export const CodesRows = ({ item }) => {
                 <td className="whitespace-nowrap">
                     {item.codigo}
                 </td>
-                <td className="whitespace-nowrap">
+                <td className="whitespace-nowrap max-w-12 md:max-w-fit overflow-x-scroll md:overflow-hidden">
                     {item.nombre}
                 </td>
                 <td className="whitespace-nowrap">
