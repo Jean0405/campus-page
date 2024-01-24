@@ -39,7 +39,6 @@ import CONEXALAB from "../../../../public/img/Conexalab.svg";
 import Image from "next/image";
 import { showErrorToast } from "@/helpers/Toasts";
 
-
 const listCompanies = [
   { name: "Campuslands_CO", logo: campus_CO },
   { name: "HOOY", logo: Hooy },
@@ -56,13 +55,7 @@ const filterStatus = ["aceptado", "reasignado", "en espera", "finalizado"];
 
 export default function TableVisits() {
   const [listVisitors, setListVisitors] = useState([]);
-  const [listVisitorsByStatusCounter, setVisitorsByStatusCounter] = useState({
-    accepted: 0,
-    onStandBy: 0,
-    made: 0,
-    reassigned: 0,
-    thisWeek: 0,
-  });
+  const [selectedCompany, setSelectedCompany] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -118,43 +111,14 @@ export default function TableVisits() {
 
     setListVisitors(response.message);
     setLoading(false);
+    setSelectedCompany("")
     return;
   };
-
-  //get visits counter by status
-  // const visitsByStatusCounter = async () => {
-  //   let thisWeek = await visitsAPI.getThisWeekVisits();
-  //   let accepted = await visitsAPI.getVisitsByStatus("aceptado");
-  //   let onStandBy = await visitsAPI.getVisitsByStatus("en espera" );
-  //   let made = await visitsAPI.getVisitsByStatus("realizado" );
-  //   let reassigned = await visitsAPI.getVisitsByStatus("reasignado" );
-
-  //   thisWeek = checkResponseStatus(thisWeek, 200);
-  //   accepted = checkResponseStatus(accepted, 200);
-  //   onStandBy = checkResponseStatus(onStandBy, 200);
-  //   made = checkResponseStatus(made, 200);
-  //   reassigned = checkResponseStatus(reassigned, 200);
-
-  //   if (thisWeek === null || accepted === null || onStandBy === null || made === null || reassigned === null) {
-  //     showErrorToast();
-  //     setLoading(false);
-  //     return;
-  //   }
-
-  //   setVisitorsByStatusCounter({
-  //     accepted: accepted.message.length,
-  //     onStandBy: onStandBy.message.length,
-  //     made: made.message.length,
-  //     reassigned: reassigned.message.length,
-  //     thisWeek: thisWeek.message.length,
-  //   });
-  //   setLoading(false);
-  // };
 
   //get visits by status (FILTER)
   const filterVisitsByStatusAndCompany = async (status, company) => {
     let response = await visitsAPI.getVisitsByStatus(status, company);
-    response = checkResponseStatus(response, 200)
+    response = checkResponseStatus(response, 200);
     if (!response) {
       showErrorToast();
       return;
@@ -181,14 +145,8 @@ export default function TableVisits() {
     filterVisitsByStatusAndCompany(newStatus, statusCompany.company);
   };
 
-  //load visitors counter
-  // useEffect(() => {
-  //   visitsByStatusCounter();
-  // }, [listVisitors]);
-
   //Load visitors table
   useEffect(() => {
-    // visitsByStatusCounter();
     getAllVisits();
   }, []);
 
@@ -197,19 +155,13 @@ export default function TableVisits() {
       <div className="grid md:grid-cols-2 gap-5 mb-5">
         <div className="carousel-admin m-auto md:m-0">
           {listCompanies.map((company) => (
-            <div className="relative company-container" key={company.name}>
-              <Badge
-                className="bg-red-500 text-white font-bold"
-                size="lg"
-                content={listVisitors.length}
-              >
+            <div className={`relative company-container ${selectedCompany === company.name? "bg-neutral-300":""}`} key={company.name}>
                 <Image
-                  onClick={() => handleCompanyFilterChange(company.name)}
+                  onClick={() => {handleCompanyFilterChange(company.name); setSelectedCompany(company.name)}}
                   className="company-logo"
                   src={company.logo}
                   alt="company logo"
                 />
-              </Badge>
             </div>
           ))}
         </div>
@@ -297,9 +249,6 @@ export default function TableVisits() {
             <TableColumn className="hide-sm uppercase bg-neutral-600 text-white">
               fecha y hora
             </TableColumn>
-            <TableColumn className="hide-md uppercase bg-neutral-600 text-white">
-              vehiculo
-            </TableColumn>
             <TableColumn className="uppercase bg-neutral-600 text-white">
               estado
             </TableColumn>
@@ -332,9 +281,6 @@ export default function TableVisits() {
                 <TableCell className="hide-sm">
                   {formatDateWithTime(visitor.fecha_visita)}
                 </TableCell>
-                <TableCell className="hide-md">
-                  {!visitor.vehiculo ? "No aplica" : visitor.vehiculo}
-                </TableCell>
                 <TableCell>
                   <div
                     className={`${setStatusClassname(
@@ -354,7 +300,7 @@ export default function TableVisits() {
           </TableBody>
         </Table>
       )}
-      <ToastContainer/>
+      <ToastContainer />
     </>
   );
 }

@@ -27,7 +27,6 @@
   width: 80px;
   height: 80px;
   scroll-snap-align: start;
-  background-color: rgba(237, 237, 237, 0.485);
   border-radius: 20px;
 }
 .carousel-admin .company-container .company-logo{
@@ -50,7 +49,7 @@
     display: none;
   }
   .carousel-admin {
-    width: 360px;
+    width: 285px;
   }
 }
 

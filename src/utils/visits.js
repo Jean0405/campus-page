@@ -94,3 +94,24 @@ export const getThisWeekVisits = async () => {
   ).json();
   return response;
 };
+
+export const getCounterStatus = async (status, company) => {
+  try {
+    status = !status ? "en espera" : status;
+    company = !company ? "" : `&empresa=${company}`;
+    let response = await (
+      await fetch(
+        `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/count?estado=${status}${company}`,
+        {
+          method: "GET",
+          headers: {
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+    ).json();
+    return response;
+  } catch (error) {
+    return null;
+  }
+};

@@ -44,7 +44,7 @@ function page() {
         </div>
       ) : (
         <>
-          <div className="flex">
+          <div className="flex flex-col">
           <NavigationBarAdmin />
           <div className="w-full grid place-items-center">
           <TabsAdmin />

@@ -13,6 +13,7 @@ import { EyeSlashFilledIcon } from "./EyeSlashFilledIcon";
 import { useRouter } from "next/navigation";
 import { login } from "@/utils/auth";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Page() {
   const [isVisible, setIsVisible] = useState(false);
@@ -106,6 +107,7 @@ export default function Page() {
               onChange={e => setPassword(e.target.value)}
             />
             <button typeof="submit" className="w-full rounded flex items-center justify-center font-bold h-10" style={{ backgroundColor: "#F4B422"}}>GO FOR IT</button>
+            <Link href="/" className="w-full rounded flex items-center justify-center font-bold h-10" style={{ backgroundColor: "#2CA2FF"}}>INICIO</Link>
           </form>
         </div>
       </div>
