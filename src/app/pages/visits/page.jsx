@@ -17,9 +17,10 @@ import whatsapp from "../../../../public/assets/whatsapp.svg";
 
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "./components/Slider";
-import Footer from "@/components/Footer";
 import { InsertCode } from "./components/InsertCode";
 import { RequireCode } from "./components/RequireCode";
+import Footer from "@/components/Footer";
+
 
 function VisitUs() {
   const [buttonPressed, setButtonPressed] = useState(null);
@@ -44,16 +45,25 @@ function VisitUs() {
   return (
     <>
       <NavigationBar />
-      <div className="container h-full ">
+      <div className="container h-full w-full m-auto">
         <div className="h-full lg:max-w-lg w-full mt-24 flex flex-col  lg:items-start items-center">
           <h1 className=" lg:max-w-xl max-w-full sm:text-7xl text-6xl font-bold">
             Visítanos
           </h1>
-          <p className="w-9/12 ms-1">
-            Ingresa el código de acceso para sacar tu cita, si no cuentas con
-            uno puedes solicitarlo
-          </p>
-          <div className="flex flex-col w-5/6  gap-8 mt-10">
+         {
+          buttonPressed ? (
+              <p className="hidden">
+                Ingresa el código de acceso para sacar tu cita, si no cuentas con
+                uno puedes solicitarlo
+              </p>
+          ) : (
+                <p className="lg:w-10/12 w-10/12 text-center lg:text-start ms-1">
+                  Ingresa el código de acceso para sacar tu cita, si no cuentas con
+                  uno puedes solicitarlo
+                </p>
+          )
+         }
+          <div className="flex flex-col w-5/6  gap-8 mt-5">
             {buttonPressed === "insertCode" ? (
               <InsertCode />
             ) : buttonPressed === "requireCode" ? (
@@ -66,10 +76,10 @@ function VisitUs() {
                   onClick={() => changeView("insertCode")}
                 >
                   <Image src={insertCode} />
-                  Ingresar Codigo
+                  ¡Ya tengo codigo!
                 </Button>
                 <Button
-                  className="bg-[#A5A6F6] flex flex-col  text-white text-md rounded-lg py-14"
+                      className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >
@@ -83,7 +93,7 @@ function VisitUs() {
           </div>
             <div className="flex flex-col mt-10  lg:items-start items-center">
             <div className="flex flex-col  ">
-              <p className="text-md">
+              <p className="text-md text-center lg:text-start">
                 No olvides compartir con tus amigos y conocidos este gran
                 proyecto
               </p>
