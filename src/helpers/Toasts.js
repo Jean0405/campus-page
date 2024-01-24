@@ -13,3 +13,30 @@ export const showErrorToast = () => {
     theme: "colored",
   });
 };
+
+export const showSuccessToast = () => {
+  toast.success("Visita registrada!", {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "light",
+  });
+ 
+};
+ export const showErrorFormToast = (message) => {
+  toast.error(message, {
+    position: "bottom-right",
+    autoClose: 3000,
+    hideProgressBar: false,
+    closeOnClick: true,
+    pauseOnHover: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+}
+

@@ -9,6 +9,7 @@ import { QRCode } from "./QRCode";
 import { InsertCode } from "./InsertCode";
 import insertCode from "../../../../../public/assets/insertCode.svg";
 import requireCode from "../../../../../public/assets/requireCode.svg";
+import { showErrorToast } from "@/helpers/Toasts";
 
 export const RequireCode = () => {
   const [formSubmitted, setFormSubmitted] = useState(false);
@@ -46,6 +47,7 @@ export const RequireCode = () => {
         setCODES([])
       }
     } catch (err) {
+      showErrorToast(); 
       console.error(err)
     }
   }

@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { Button } from "@nextui-org/react";
 import campusland from "../../../../../public/img/logoCampus.svg";
-import gbp from "../../../../../public/img/gbp.svg";
+import gbp from "../../../../../public/img/grupo_bien_pensado.svg";
 import mcd from "../../../../../public/img/mcd.svg";
 import hooy from "../../../../../public/img/hooy.svg";
 import conexalab from "../../../../../public/img/Conexalab.svg";
@@ -24,7 +24,7 @@ export const CodesRows = ({ item }) => {
             img: gbp
         },
         {
-            name: 'MCD',
+            name: 'My Conjunto Digital',
             img: mcd
         },
         {
@@ -36,8 +36,12 @@ export const CodesRows = ({ item }) => {
             img: conexalab
         },
         {
-            name: 'Peer',
+            name: 'PEER',
             img: peer
+        },
+        {
+            name: 'Betrmedia',
+            img: campusland
         }
     ];
     const [changeImg, setChangeImg] = useState(copyIcon);

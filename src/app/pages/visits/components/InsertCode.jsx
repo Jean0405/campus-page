@@ -12,6 +12,7 @@ import { NewUserForm } from "../components/NewUserForm";
 import { RequireCode } from "./RequireCode";
 import insertCode from "../../../../../public/assets/insertCode.svg";
 import requireCode from "../../../../../public/assets/requireCode.svg";
+import { showErrorToast } from "@/helpers/Toasts";
 export const InsertCode = () => {
   const[buttonPressed, setButtonPressed] = useState(null);
 
@@ -78,6 +79,7 @@ export const InsertCode = () => {
          setShowForm(false);
        }
      } catch (err) {
+      showErrorToast()
        console.error("Error al enviar el formulario:", err);
      }
    }

@@ -13,6 +13,8 @@ import id from "../../../../../public/assets/id.svg";
 import whatsapp from "../../../../../public/assets/whatsapp.svg";
 import { InsertCode } from "./InsertCode";
 import { RequireCode } from "./RequireCode";
+import { showSuccessToast, showErrorFormToast, showErrorToast } from "@/helpers/Toasts";
+
 export const NewUserForm = () => {
   const [buttonPressed, setButtonPressed] = useState(null);
 
@@ -27,8 +29,8 @@ export const NewUserForm = () => {
     edad: "",
     interes: "",
     tel: "",
-    doc: "",
-    tipo_doc: "",
+    doc: localStorage.getItem('doc'),
+    tipo_doc: localStorage.getItem('tipo'),
     empresa: "",
     cargo: "",
     fecha_visita: "",
@@ -64,13 +66,16 @@ export const NewUserForm = () => {
         await fetch("http://192.168.110.106:5017/visitas/nuevos", options)
       ).json();
       if (response.status === 200) {
-        window.location.reload();
-        localStorage.clear();
+        showSuccessToast();
+        setTimeout(() => {
+          window.location.reload();
+          localStorage.clear();
+        }, 1500);
       } else {
-
-        console.error(response.message);
+        showErrorFormToast(response.message);
       }
     } catch (err) {
+      showErrorToast();
       console.error("Error al enviar el formulario:", err);
     }
   };
@@ -79,7 +84,7 @@ export const NewUserForm = () => {
     showForm ? (
       <div className="h-full w-full  mt-[-20px] ">
 
-        <p className="w-full lg:text-start text-center"> llenando el siguiente formulario</p>
+        <p className="w-full lg:text-start text-center ms-2">Llenando el siguiente formulario</p>
 
         <div className=" w-full py-5 ">
           <div className="m-auto">
@@ -196,27 +201,25 @@ export const NewUserForm = () => {
                     name="tel"
                     required
                   />
+
                 </div>
+                  <span className="block rounded-md text-sm text-gray-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 o 10 digitos</span>
               </div>
 
               <div className="grid grid-cols-[0.5fr_1fr]">
-                <div>
+                <div className="me-5">
                   <label htmlFor="tipo_doc" className="block ">
                     Tipo doc{" "}
-                    <Image
-                      className="w-2 h-2 inline mb-3"
-                      src={ask}
-                      alt="campuslands logo"
-                    />
+                    
                   </label>
                   <select
                     name="tipo_doc"
                     id="tipo_doc"
-                    onChange={(e) =>
-                      setForm({ ...form, tipo_doc: e.target.value })
-                    }
+                   
                     className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
                     required
+                    disabled
+                    value={form.tipo_doc}
                   >
                     <option value=""></option>
                     <option value="CC">C.C</option>
@@ -224,38 +227,49 @@ export const NewUserForm = () => {
                     <option value="PP">P.P</option>
                   </select>
                 </div>
-
-                <div className="ms-5 relative">
-                  <label htmlFor="name" className=" ">
+                <div className="">
+                  <label htmlFor="doc">
                     No. Documento{" "}
-                    <Image
-                      className="w-2 h-2 inline mb-1"
-                      src={ask}
-                      alt="campuslands logo"
-                    />
+                   
                   </label>
-                  <div className="flex items-center bg-[#E7E7E7] rounded-sm p-2 mt-1">
-                    <Image
-                      className="w-6 h-6 ms-3 z-20"
-                      src={id}
-                      alt="campuslands logo"
-                    />
+                  <div className="flex items-center  bg-[#E7E7E7]">
+                    <div className="flex items-center relative ">
+                      <Image
+                        className="w-6 h-6  ms-3 z-20  "
+                        src={id}
+                        alt="campuslands logo"
+                      />
+                      <svg
+                        className="absolute left-12"
+                        xmlns="http://www.w3.org/2000/svg"
+                        width="1"
+                        height="30"
+                        viewBox="0 0 1 40"
+                        fill="none"
+                      >
+                        <line
+                          x1="0.5"
+                          y1="2.18557e-08"
+                          x2="0.499998"
+                          y2="40"
+                          stroke="#515151"
+                        />
+                      </svg>
+                    </div>
+
                     <input
-                      onChange={(e) => setForm({ ...form, doc: e.target.value })}
-                      className="w-full rounded-sm bg-transparent pt-2 text-sm outline-none  ... peer"
+                      className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm  ps-8 outline-none"
                       type="text"
                       id="doc"
                       name="doc"
-                      minLength={8}
-                      maxLength={10}
-                      placeholder=""
-                      pattern="^\d{8,10}$"
-                      required
+                      value={form.doc}
+                      disabled
+                      aria-disabled
+                      
                     />
-                    <span className="hidden rounded-md text-sm text-red-500 peer-[&:not(:placeholder-shown):not(:focus):invalid]:block">El documento debe ser de 8 o 10 digitos</span>
                   </div>
-
                 </div>
+                
               </div>
 
               <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1">
@@ -301,6 +315,8 @@ export const NewUserForm = () => {
                       type="datetime-local"
                       id="fecha_visita"
                       name="fecha_visita"
+                    
+                      min={new Date().toISOString().slice(0, 16)}
                       required
                     />
                   </div>

@@ -213,11 +213,14 @@ function Page() {
           >
             <div className="relative h-80 w-80 rounded-xl">
               <div className="absolute w-80 h-44 bg-[#F4B422]  bottom-0 rounded-xl"></div>
-              <Image
-                className="absolute w-full h-full object-cover"
-                src={camperWoman}
-                
-              />
+              <a href="/pages/recruitment">
+                <Image
+                  className="absolute w-full h-full object-cover"
+                  src={camperWoman}
+
+                />
+              </a>
+              
             </div>
             <p className="text-black text-lg font-bold py-2">
               Contrata nuestro talento
@@ -444,11 +447,12 @@ function Page() {
                 <Image src={calendar} className="w-7 h-7" alt="..." />
                 <p className="text-xl">Agendar Cita</p>
               </div>
-              <Image
+              <a href="pages/visits"> <Image
                 src={right_arrow}
                 className="rightArrow w-10 h-10"
                 alt="..."
-              />
+              /></a>
+             
             </div>
             <div>
               <Image

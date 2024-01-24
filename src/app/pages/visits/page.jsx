@@ -20,8 +20,7 @@ import { Slider } from "./components/Slider";
 import { InsertCode } from "./components/InsertCode";
 import { RequireCode } from "./components/RequireCode";
 import Footer from "@/components/Footer";
-import { InsertCode } from "./components/insertCode";
-import { RequireCode } from "./components/requireCode";
+
 
 function VisitUs() {
 
@@ -96,7 +95,7 @@ function VisitUs() {
           </div>
             <div className="flex flex-col mt-10  lg:items-start items-center">
             <div className="flex flex-col  ">
-              <p className="text-md text-center">
+              <p className="text-md text-center lg:text-start">
                 No olvides compartir con tus amigos y conocidos este gran
                 proyecto
               </p>

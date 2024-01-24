@@ -9,6 +9,7 @@ import insertCode from "../../../../../public/assets/insertCode.svg";
 import requireCode from "../../../../../public/assets/requireCode.svg";
 import { RequireCode } from "./RequireCode";
 import ask from "../../../../../public/assets/required_icon.svg";
+import { showErrorFormToast, showSuccessToast, showErrorToast } from "@/helpers/Toasts";
 
 
 export const ExistedUserForm = () => {
@@ -49,13 +50,16 @@ export const ExistedUserForm = () => {
         await fetch("http://192.168.110.106:5017/visitas/antiguos", options)
       ).json();
       if (response.status === 200) {
-        console.log(response);
-        window.location.reload();
-        localStorage.clear();
+        showSuccessToast();
+        setTimeout(() => {
+          window.location.reload();
+          localStorage.clear();
+        }, 1500);
       } else {
-        console.error(response.message);
+        showErrorFormToast(response.message);
       }
     } catch (err) {
+      showErrorToast()
       console.error("Error al enviar el formulario:", err);
     }
   };
@@ -115,6 +119,7 @@ export const ExistedUserForm = () => {
                       type="datetime-local"
                       id="fecha_visita"
                       name="fecha_visita"
+                      min={new Date().toISOString().slice(0, 16)}
                       required
                     />
                   </div>
