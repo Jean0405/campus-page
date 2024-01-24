@@ -3,7 +3,7 @@ import "../index.css";
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "../components/Slider";
 import Footer from "@/components/Footer";
-import { QRCode } from "../components/qrCode";
+import { QRCode } from "../components/QRCode";
 
 export default function AskCode() {
   return (

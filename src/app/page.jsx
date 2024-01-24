@@ -17,7 +17,7 @@ import logo from "../../public/img/logoCampus.svg";
 import C_campus from "../../public/img/C_campus.png";
 import Ellipse from "../../public/img/Ellipse.png";
 import star_icon from "../../public/img/star_icon.png";
-import camperWoman from "../../public/img/mujerCamper.png";
+import camperWoman from "../../public/img/p1.png";
 import right_arrow from "../../public/assets/right_arrow.png";
 import camperWoman2 from "../../public/img/mujerCamper2.png";
 import hombreSentado from "../../public/img/hombreSentado.png";
@@ -212,11 +212,11 @@ function Page() {
             data-aos="zoom-in"
           >
             <div className="relative h-80 w-80 rounded-xl">
-              <div className="absolute w-80 h-40 bg-[#F4B422] bottom-0 rounded-xl"></div>
+              <div className="absolute w-80 h-44 bg-[#F4B422]  bottom-0 rounded-xl"></div>
               <Image
-                className="absolute"
+                className="absolute w-full h-full"
                 src={camperWoman}
-                style={{ height: "360px", bottom: "0px" }}
+                
               />
             </div>
             <p className="text-black text-lg font-bold py-2">

@@ -17,10 +17,10 @@ import whatsapp from "../../../../public/assets/whatsapp.svg";
 
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "./components/Slider";
+import { InsertCode } from "./components/InsertCode";
+import { RequireCode } from "./components/RequireCode";
 import Footer from "@/components/Footer";
-import { InsertCode } from "./components/insertCode";
-import { RequireCode } from "./components/requireCode";
-import { useRouter } from "next/navigation";
+
 
 function VisitUs() {
 
@@ -59,7 +59,7 @@ function VisitUs() {
                 uno puedes solicitarlo
               </p>
           ) : (
-                <p className="w-9/12 ms-1">
+                <p className="w-11/12 ms-1">
                   Ingresa el código de acceso para sacar tu cita, si no cuentas con
                   uno puedes solicitarlo
                 </p>
