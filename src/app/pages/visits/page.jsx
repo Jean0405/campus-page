@@ -47,7 +47,7 @@ function VisitUs() {
   return (
     <>
       <NavigationBar />
-      <div className="container h-full ">
+      <div className="container h-full w-full m-auto">
         <div className="h-full lg:max-w-lg w-full mt-24 flex flex-col  lg:items-start items-center">
           <h1 className=" lg:max-w-xl max-w-full sm:text-7xl text-6xl font-bold">
             Visítanos
@@ -59,7 +59,7 @@ function VisitUs() {
                 uno puedes solicitarlo
               </p>
           ) : (
-                <p className="w-11/12 ms-1">
+                <p className="lg:w-10/12 w-10/12 text-center ms-1">
                   Ingresa el código de acceso para sacar tu cita, si no cuentas con
                   uno puedes solicitarlo
                 </p>
@@ -95,7 +95,7 @@ function VisitUs() {
           </div>
             <div className="flex flex-col mt-10  lg:items-start items-center">
             <div className="flex flex-col  ">
-              <p className="text-md">
+              <p className="text-md text-center">
                 No olvides compartir con tus amigos y conocidos este gran
                 proyecto
               </p>

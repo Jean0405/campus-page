@@ -77,17 +77,17 @@ export const NewUserForm = () => {
 
   return (
     showForm ? (
-      <div className="h-full max-w-lg   mt-[-20px]">
+      <div className="h-full w-full  mt-[-20px] ">
 
-        <p className="w-full ms-2"> llenando el siguiente formulario</p>
+        <p className="w-full lg:text-start text-center"> llenando el siguiente formulario</p>
 
-        <div className="md:max-w-xl max-w-xs py-5 ">
-          <div>
+        <div className=" w-full py-5 ">
+          <div className="m-auto">
             <form
               onSubmit={handleSubmit}
               action="POST"
               method="POST"
-              className="space-y-3 pt-5 "
+              className="space-y-3 pt-5 m-auto"
             >
               <div>
                 <label htmlFor="name" className="block">

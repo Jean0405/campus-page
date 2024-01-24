@@ -85,7 +85,7 @@ export const InsertCode = () => {
   
  };
   return (
-    <div className="lg:max-w-xl w-full ">
+    <div className=" w-full ">
       
       <ToastContainer  />
       {showForm ? (

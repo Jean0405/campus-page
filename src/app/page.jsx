@@ -214,7 +214,7 @@ function Page() {
             <div className="relative h-80 w-80 rounded-xl">
               <div className="absolute w-80 h-44 bg-[#F4B422]  bottom-0 rounded-xl"></div>
               <Image
-                className="absolute w-full h-full"
+                className="absolute w-full h-full object-cover"
                 src={camperWoman}
                 
               />
@@ -377,7 +377,7 @@ function Page() {
           </div>
           <div className="relative w-full h-80 flex justify-center">
             <Image
-              className="absolute w-64 -top-9"
+              className="absolute w-64 top-9"
               src={camperWoman2}
               data-aos="zoom-in"
             />
