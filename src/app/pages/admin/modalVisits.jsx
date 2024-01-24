@@ -117,6 +117,7 @@ export default function ModalVisits({ visitor, setListVisitors}) {
                     <input
                     type="datetime-local"
                     value={reassignDate}
+                    min={new Date().toISOString().slice(0, 16)}
                     onChange={(e) => setReassignDate(e.target.value)}
                     className="bg-neutral-300 focus:bg-neutral-500 outline-none rounded-xl p-2"
                   />
