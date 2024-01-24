@@ -30,11 +30,9 @@ export default function Page() {
   const handleSignIn = async (e) => {
     e.preventDefault();
     const response = await login(user);
-    if (response.status === 200) {
-      localStorage.setItem("token", response.token);
-      router.push("/pages/admin");
-    } else {
-      toast.error(response.message, {
+
+    if (!response) {
+      toast.error( "Ups, algo salió mal", {
         position: "bottom-right",
         autoClose: 3000, 
         hideProgressBar: false,
@@ -46,6 +44,22 @@ export default function Page() {
       });
       setUsername("");
       setPassword("");
+    } else {
+      if(response.status !== 200){
+        toast.error( response.message, {
+          position: "bottom-right",
+          autoClose: 3000, 
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
+        });
+      }else{
+        localStorage.setItem("token", response.token);
+        router.push("/pages/admin");
+      }
     }
   };
  

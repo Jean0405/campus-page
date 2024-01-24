@@ -9,9 +9,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as visitsAPI from "@/utils/visits";
 
 //Components imports
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import { useCallback, useEffect, useMemo, useState } from "react";
-import ModalVisits from "./modalVisits";
 import { formatDateWithTime } from "@/helpers/formatDateWithTime";
+import { checkResponseStatus } from "@/helpers/checkResponses";
 import {
   Table,
   TableHeader,
@@ -25,6 +27,7 @@ import {
   Select,
   SelectItem,
 } from "@nextui-org/react";
+import ModalVisits from "./modalVisits";
 
 //Assets import
 import campus_CO from "../../../../public/img/campuslands.svg";
@@ -34,6 +37,8 @@ import MCD from "../../../../public/img/mcd.svg";
 import PEER from "../../../../public/img/peer.svg";
 import CONEXALAB from "../../../../public/img/Conexalab.svg";
 import Image from "next/image";
+import { showErrorToast } from "@/helpers/Toasts";
+
 
 const listCompanies = [
   { name: "Campuslands_CO", logo: campus_CO },
@@ -61,6 +66,10 @@ export default function TableVisits() {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [statusCompany, setStatusCompany] = useState({
+    status: "en espera",
+    company: "",
+  });
 
   //pagination
   const pages = Math.ceil(listVisitors.length / rowsPerPage);
@@ -98,43 +107,88 @@ export default function TableVisits() {
 
   //get all visits
   const getAllVisits = async () => {
-    const data = await visitsAPI.getVisits();
-    setListVisitors(data.message);
+    let response = await visitsAPI.getVisits();
+
+    response = checkResponseStatus(response, 200);
+
+    if (!response) {
+      showErrorToast();
+      return;
+    }
+
+    setListVisitors(response.message);
     setLoading(false);
+    return;
   };
 
   //get visits counter by status
-  const visitsByStatusCounter = async () => {
-    const thisWeek = await visitsAPI.getThisWeekVisits();
-    const accepted = await visitsAPI.getVisitsByStatus("aceptado");
-    const onStandBy = await visitsAPI.getVisitsByStatus("en espera");
-    const made = await visitsAPI.getVisitsByStatus("realizada");
-    const reassigned = await visitsAPI.getVisitsByStatus("reasignado");
-    setVisitorsByStatusCounter({
-      accepted: accepted.message.length,
-      onStandBy: onStandBy.message.length,
-      made: made.message.length,
-      reassigned: reassigned.message.length,
-      thisWeek: thisWeek.message.length,
-    });
-    setLoading(false);
-  };
+  // const visitsByStatusCounter = async () => {
+  //   let thisWeek = await visitsAPI.getThisWeekVisits();
+  //   let accepted = await visitsAPI.getVisitsByStatus("aceptado");
+  //   let onStandBy = await visitsAPI.getVisitsByStatus("en espera" );
+  //   let made = await visitsAPI.getVisitsByStatus("realizado" );
+  //   let reassigned = await visitsAPI.getVisitsByStatus("reasignado" );
+
+  //   thisWeek = checkResponseStatus(thisWeek, 200);
+  //   accepted = checkResponseStatus(accepted, 200);
+  //   onStandBy = checkResponseStatus(onStandBy, 200);
+  //   made = checkResponseStatus(made, 200);
+  //   reassigned = checkResponseStatus(reassigned, 200);
+
+  //   if (thisWeek === null || accepted === null || onStandBy === null || made === null || reassigned === null) {
+  //     showErrorToast();
+  //     setLoading(false);
+  //     return;
+  //   }
+
+  //   setVisitorsByStatusCounter({
+  //     accepted: accepted.message.length,
+  //     onStandBy: onStandBy.message.length,
+  //     made: made.message.length,
+  //     reassigned: reassigned.message.length,
+  //     thisWeek: thisWeek.message.length,
+  //   });
+  //   setLoading(false);
+  // };
 
   //get visits by status (FILTER)
-  const FilterVisitsByStatus = async (status) => {
-    const response = await visitsAPI.getVisitsByStatus(status);
+  const filterVisitsByStatusAndCompany = async (status, company) => {
+    let response = await visitsAPI.getVisitsByStatus(status, company);
+    response = checkResponseStatus(response, 200)
+    if (!response) {
+      showErrorToast();
+      return;
+    }
     setListVisitors(response.message);
     setLoading(false);
   };
 
+  // handle company change
+  const handleCompanyFilterChange = (companyName) => {
+    let formattedCompanyName = companyName.replace(/\s/g, "");
+    setStatusCompany({
+      ...statusCompany,
+      company: formattedCompanyName,
+    });
+    filterVisitsByStatusAndCompany(statusCompany.status, formattedCompanyName);
+  };
+  // handle status change
+  const handleStatusFilterChange = (newStatus) => {
+    setStatusCompany({
+      ...statusCompany,
+      status: newStatus,
+    });
+    filterVisitsByStatusAndCompany(newStatus, statusCompany.company);
+  };
+
   //load visitors counter
-  useEffect(() => {
-    visitsByStatusCounter();
-  }, [listVisitors]);
+  // useEffect(() => {
+  //   visitsByStatusCounter();
+  // }, [listVisitors]);
 
   //Load visitors table
   useEffect(() => {
-    visitsByStatusCounter();
+    // visitsByStatusCounter();
     getAllVisits();
   }, []);
 
@@ -149,7 +203,12 @@ export default function TableVisits() {
                 size="lg"
                 content={listVisitors.length}
               >
-                <Image className="company-logo" src={company.logo} />
+                <Image
+                  onClick={() => handleCompanyFilterChange(company.name)}
+                  className="company-logo"
+                  src={company.logo}
+                  alt="company logo"
+                />
               </Badge>
             </div>
           ))}
@@ -157,7 +216,11 @@ export default function TableVisits() {
         <div className="flex items-center justify-center">
           <Select label="Selecciona un estado" className="max-w-xs">
             {filterStatus.map((status) => (
-              <SelectItem onClick={()=>FilterVisitsByStatus(status)} key={status} value={status}>
+              <SelectItem
+                onClick={() => handleStatusFilterChange(status)}
+                key={status}
+                value={statusCompany.status}
+              >
                 {status.charAt(0).toUpperCase() + status.slice(1)}
               </SelectItem>
             ))}
@@ -291,6 +354,7 @@ export default function TableVisits() {
           </TableBody>
         </Table>
       )}
+      <ToastContainer/>
     </>
   );
 }

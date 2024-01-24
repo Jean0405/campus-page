@@ -3,7 +3,7 @@ import { useRouter } from "next/navigation";
 import TabsAdmin from "./TabsAdmin";
 import "./index.css";
 
-import NavigationBar from "@/components/NavigationBar";
+import NavigationBarAdmin from "@/components/NavigationBarAdmin";
 import { useEffect, useState } from "react";
 import { Spinner } from "@nextui-org/react";
 import { getUserByToken } from "@/utils/auth";
@@ -23,6 +23,7 @@ function page() {
       const userData = response.message.payload;
       
       if (!userData || userData.rol !== "admin") {
+        localStorage.removeItem("token");
         router.push('/pages/login');
       }else{
         setIsAuth(userData);
@@ -43,8 +44,12 @@ function page() {
         </div>
       ) : (
         <>
-          <NavigationBar />
+          <div className="flex">
+          <NavigationBarAdmin />
+          <div className="w-full grid place-items-center">
           <TabsAdmin />
+          </div>
+          </div>
         </>
       )}
     </>
