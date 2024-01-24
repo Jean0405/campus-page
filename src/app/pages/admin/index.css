@@ -49,11 +49,8 @@
   .hide-md {
     display: none;
   }
-}
-
-@media (max-width: 900px) {
   .carousel-admin {
-    width: 380px;
+    width: 360px;
   }
 }
 
