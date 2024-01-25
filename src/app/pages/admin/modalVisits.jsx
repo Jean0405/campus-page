@@ -92,11 +92,11 @@ export default function ModalVisits({ visitor, setListVisitors}) {
                 </div>
                 <div className="flex gap-2">
                   <h3 className="font-bold">Cargo:</h3>
-                  <p>{visitor.visitante.cargo}</p>
+                  <p>{visitor.visitante.cargo ? visitor.visitante.cargo:"No aplica"}</p>
                 </div>
                 <div className="flex gap-2">
                   <h3 className="font-bold">Empresa:</h3>
-                  <p>{visitor.visitante.empresa}</p>
+                  <p>{visitor.visitante.empresa ? visitor.visitante.empresa:"No aplica"}</p>
                 </div>
                 <div className="flex gap-2">
                   <h3 className="font-bold">Desea visitar:</h3>

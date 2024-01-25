@@ -286,10 +286,10 @@ export default function TableVisits() {
               <TableRow className="capitalize cursor-pointer" key={visitor.id}>
                 <TableCell>{visitor.visitante.nombre}</TableCell>
                 <TableCell className="hide-md">
-                  {visitor.visitante.empresa}
+                  {visitor.visitante.empresa ? visitor.visitante.empresa: "No aplica"}
                 </TableCell>
                 <TableCell className="hide-md">
-                  {visitor.visitante.cargo}
+                  {visitor.visitante.cargo ? visitor.visitante.cargo : "No aplica"}
                 </TableCell>
                 <TableCell className="hide-md">
                   <Image
