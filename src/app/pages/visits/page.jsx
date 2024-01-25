@@ -93,7 +93,7 @@ function VisitUs() {
             ) : (
               <>
                 <Button
-                  className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14"
+                      className="bg-[#00AA80] flex flex-col transition hover:scale-105 shadow hover:shadow-2xl   text-white text-md rounded-lg py-14"
                   as="a"
                   onClick={() => changeView("insertCode")}
                 >
@@ -101,7 +101,7 @@ function VisitUs() {
                   ¡Ya tengo codigo!
                 </Button>
                 <Button
-                      className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
+                      className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >

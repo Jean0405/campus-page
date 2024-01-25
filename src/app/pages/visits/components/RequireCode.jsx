@@ -32,7 +32,7 @@ export const RequireCode = () => {
   };
   const getCodes = async () => {
     try {
-      const response = await fetch(`http://192.168.110.106:5017/visitantes/codigos?tipo_doc=${form.tipo_doc}&doc=${form.doc}`)
+      const response = await fetch(`http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitantes/codigos?tipo_doc=${form.tipo_doc}&doc=${form.doc}`)
       if (response.status === 200) {
         const data = await response.json();
         setCODES(data.message[0].codigos)
