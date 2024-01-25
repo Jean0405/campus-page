@@ -6,7 +6,7 @@ import Image from "next/image";
 
 import ask from "../../../../../public/assets/required_icon.svg";
 import "react-toastify/dist/ReactToastify.css";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { ExistedUserForm } from "../components/ExistedUserForm";
 import { NewUserForm } from "../components/NewUserForm";
 import { invalidCodeToast, showErrorToast } from "@/helpers/Toasts";
