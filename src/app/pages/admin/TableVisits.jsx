@@ -5,15 +5,26 @@ import "./index.css";
 import { faRotateRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
+//Assets import
+import campus_CO from "../../../../public/img/campuslands.svg";
+import Hooy from "../../../../public/img/hooy.svg";
+import GBP from "../../../../public/img/grupo_bien_pensado.svg";
+import MCD from "../../../../public/img/mcd.svg";
+import PEER from "../../../../public/img/peer.svg";
+import CONEXALAB from "../../../../public/img/Conexalab.svg";
+import BETMEDIA from "../../../../public/img/betmedia.svg";
+import TAXNETWORK from "../../../../public/img/taxnetwork.svg";
+
 //API imports
 import * as visitsAPI from "@/utils/visits";
 
 //Components imports
+import { useCallback, useEffect, useMemo, useState } from "react";
 import "react-toastify/dist/ReactToastify.css";
 import { ToastContainer } from "react-toastify";
-import { useCallback, useEffect, useMemo, useState } from "react";
 import { formatDateWithTime } from "@/helpers/formatDateWithTime";
 import { checkResponseStatus } from "@/helpers/checkResponses";
+import { showErrorToast } from "@/helpers/Toasts";
 import {
   Table,
   TableHeader,
@@ -28,16 +39,8 @@ import {
   SelectItem,
 } from "@nextui-org/react";
 import ModalVisits from "./modalVisits";
-
-//Assets import
-import campus_CO from "../../../../public/img/campuslands.svg";
-import Hooy from "../../../../public/img/hooy.svg";
-import GBP from "../../../../public/img/grupo_bien_pensado.svg";
-import MCD from "../../../../public/img/mcd.svg";
-import PEER from "../../../../public/img/peer.svg";
-import CONEXALAB from "../../../../public/img/Conexalab.svg";
 import Image from "next/image";
-import { showErrorToast } from "@/helpers/Toasts";
+
 
 const listCompanies = [
   { name: "Campuslands_CO", logo: campus_CO },
@@ -46,15 +49,15 @@ const listCompanies = [
   { name: "GBP", logo: GBP },
   { name: "My Conjunto Digital", logo: MCD },
   { name: "PEER", logo: PEER },
-  { name: "Betrmedia", logo: MCD },
+  { name: "Betrmedia", logo: BETMEDIA },
   { name: "Conexalab", logo: CONEXALAB },
-  { name: "Colombia Taxnetwork", logo: MCD },
+  { name: "Colombia Taxnetwork", logo: TAXNETWORK },
 ];
-
-const filterStatus = ["aceptado", "reasignado", "en espera", "finalizado"];
+const filterStatus = ["aceptado", "reasignado", "en espera", "realizado"];
 
 export default function TableVisits() {
   const [listVisitors, setListVisitors] = useState([]);
+  const [companCounterOnStandBy, setCompanCounterOnStandBy] = useState({});
   const [selectedCompany, setSelectedCompany] = useState([]);
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
@@ -64,7 +67,7 @@ export default function TableVisits() {
     company: "",
   });
 
-  //pagination
+  //table pagination
   const pages = Math.ceil(listVisitors.length / rowsPerPage);
   const items = useMemo(() => {
     const start = (page - 1) * rowsPerPage;
@@ -78,7 +81,6 @@ export default function TableVisits() {
     setRowsPerPage(Number(e.target.value));
     setPage(1);
   }, []);
-
   //set color to status indicator
   function setStatusClassname(status) {
     if (status === "en espera") {
@@ -91,12 +93,12 @@ export default function TableVisits() {
       return "bg-black";
     }
   }
-
   // set company logo
   const getCompanyLogo = (companyName) => {
     const company = listCompanies.find((c) => c.name === companyName);
     return company ? company.logo : null;
   };
+
 
   //get all visits
   const getAllVisits = async () => {
@@ -114,7 +116,6 @@ export default function TableVisits() {
     setSelectedCompany("")
     return;
   };
-
   //get visits by status (FILTER)
   const filterVisitsByStatusAndCompany = async (status, company) => {
     let response = await visitsAPI.getVisitsByStatus(status, company);
@@ -126,7 +127,6 @@ export default function TableVisits() {
     setListVisitors(response.message);
     setLoading(false);
   };
-
   // handle company change
   const handleCompanyFilterChange = (companyName) => {
     let formattedCompanyName = companyName.replace(/\s/g, "");
@@ -145,7 +145,30 @@ export default function TableVisits() {
     filterVisitsByStatusAndCompany(newStatus, statusCompany.company);
   };
 
-  //Load visitors table
+  const getCounters = () =>{
+    listCompanies.map(async company =>{
+      let formattedCompanyName = company.name.replace(/\s/g, "");
+      let response = await visitsAPI.getCounterStatus("en espera", formattedCompanyName);
+      response = checkResponseStatus(response, 200);
+
+      if (!response) {
+        showErrorToast();
+        return;
+      }
+
+      setCompanCounterOnStandBy((prevData) => ({
+        ...prevData,
+        [company.name]: response.message[0].cantidad,
+      }));
+    })
+    return;
+  }
+
+  //Load table
+  useEffect(()=>{
+    getCounters()
+  }, [listVisitors]);
+
   useEffect(() => {
     getAllVisits();
   }, []);
@@ -156,12 +179,14 @@ export default function TableVisits() {
         <div className="carousel-admin m-auto md:m-0">
           {listCompanies.map((company) => (
             <div className={`relative company-container ${selectedCompany === company.name? "bg-neutral-300":""}`} key={company.name}>
+                <Badge size="lg" className="bg-red-500 text-white font-bold" content={companCounterOnStandBy[company.name]}>
                 <Image
                   onClick={() => {handleCompanyFilterChange(company.name); setSelectedCompany(company.name)}}
                   className="company-logo"
                   src={company.logo}
                   alt="company logo"
                 />
+                </Badge>
             </div>
           ))}
         </div>
