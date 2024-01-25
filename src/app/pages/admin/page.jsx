@@ -3,10 +3,11 @@ import { useRouter } from "next/navigation";
 import TabsAdmin from "./TabsAdmin";
 import "./index.css";
 
-import NavigationBarAdmin from "@/components/NavigationBarAdmin";
+
 import { useEffect, useState } from "react";
-import { Spinner } from "@nextui-org/react";
-import { getUserByToken } from "@/utils/auth";
+import { Button, Spinner } from "@nextui-org/react";
+import { getUserByToken, logOut } from "@/utils/auth";
+import { checkResponseStatus } from "@/helpers/checkResponses";
 
 function page() {
   const router = useRouter();
@@ -32,6 +33,20 @@ function page() {
     
   }
 
+
+  const handleLogOut = async()=>{
+    const token = localStorage.getItem("token")
+    let response = await logOut(token);
+
+    response = checkResponseStatus(response,200);
+
+    if (!response) {
+      showErrorToast();
+    }
+    localStorage.removeItem("token");
+    router.push('/pages/login');
+  }
+
   useEffect(() => {
     validateAuth();
   }, []);
@@ -45,7 +60,7 @@ function page() {
       ) : (
         <>
           <div className="flex flex-col">
-          <NavigationBarAdmin />
+            <Button className="bg-yellow-500 m-auto font-bold p-3 mt-3" onClick={()=>handleLogOut()}>Cerrar sesión</Button>
           <div className="w-full grid place-items-center">
           <TabsAdmin />
           </div>
