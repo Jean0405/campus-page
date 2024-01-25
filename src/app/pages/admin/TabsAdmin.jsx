@@ -7,7 +7,7 @@ export default function TabsAdmin() {
   const [selected, setSelected] = useState("visits");
 
   return (
-    <div className="flex flex-col p-5">
+    <div className="w-full flex flex-col items-center p-5">
       <Tabs
         color="default"
         selectedKey={selected}
