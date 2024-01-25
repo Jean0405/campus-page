@@ -1,4 +1,8 @@
-import { showErrorFormToast, showSuccessToast, showErrorToast } from "@/helpers/Toasts";
+import {
+  showErrorFormToast,
+  showSuccessToast,
+  showErrorToast,
+} from "@/helpers/Toasts";
 
 export const getVisits = async () => {
   try {
@@ -119,40 +123,45 @@ export const getCounterStatus = async (status, company) => {
 };
 
 export const sendExistedUserVisit = async (options) => {
-   try {
-      const response = await (
-        await fetch(`http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/antiguos`, options)
-      ).json();
-      if (response.status === 200) {
-        showSuccessToast();
-        setTimeout(() => {
-          window.location.reload();
-          localStorage.clear();
-        }, 1500);
-      } else {
-        showErrorFormToast(response.message);
-      }
-      return response
-    } catch (err) {
-      showErrorToast()
+  try {
+    const response = await (
+      await fetch(
+        `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/antiguos`,
+        options
+      )
+    ).json();
+    if (response.status === 200) {
+      showSuccessToast();
+      setTimeout(() => {
+        window.location.reload();
+        localStorage.clear();
+      }, 1500);
+    } else {
+      showErrorFormToast(response.message);
     }
-}
+    return response;
+  } catch (err) {
+    showErrorToast();
+  }
+};
 export const sendNewUserVisit = async (options) => {
-   try {
-      const response = await (
-        await fetch(`http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/nuevos`, options)
-      ).json();
-      if (response.status === 200) {
-        showSuccessToast();
-        setTimeout(() => {
-          window.location.reload();
-          localStorage.clear();
-        }, 1500);
-      } else {
-        showErrorFormToast(response.message);
-      }
-    } catch (err) {
-      showErrorToast();
+  try {
+    const response = await (
+      await fetch(
+        `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/nuevos`,
+        options
+      )
+    ).json();
+    if (response.status === 200) {
+      showSuccessToast();
+      setTimeout(() => {
+        window.location.reload();
+        localStorage.clear();
+      }, 1500);
+    } else {
+      showErrorFormToast(response.message);
     }
-}
-
+  } catch (err) {
+    showErrorToast();
+  }
+};
