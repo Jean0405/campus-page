@@ -63,7 +63,6 @@ export const InsertCode = () => {
        }
      } catch (err) {
       showErrorToast()
-       console.error("Error al enviar el formulario:", err);
      }
    }
   

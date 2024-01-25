@@ -71,7 +71,8 @@ export const RequireCode = () => {
         setShowCodes(true)
       }
     } catch (err) {
-      console.error("Error al enviar el formulario:", err);
+      showErrorToast()
+
     }
   };
 
