@@ -76,7 +76,7 @@ export const NewUserForm = () => {
               method="POST"
               className="  pt-5 m-auto  "
             >
-              <div className="h-[320px] overflow-y-scroll overflow-x-hidden space-y-3">
+              <div className="xl:h-[320px] xl:overflow-y-scroll xl:overflow-x-hidden w-full overflow-visible space-y-3">
                 <div>
                   <label htmlFor="name" className="block">
                     Nombre Completo{" "}
@@ -323,7 +323,7 @@ export const NewUserForm = () => {
                       className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                       type="text"
                       id="empresa"
-                      pattern=""
+                      maxLength={20}
                       name="empresa"
                     />
                   </div>
@@ -337,6 +337,7 @@ export const NewUserForm = () => {
                     onChange={(e) => setForm({ ...form, cargo: e.target.value })}
                     className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                     type="text"
+                    maxLength={20}
                     name="cargo"
                     id="cargo"
 

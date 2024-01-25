@@ -55,15 +55,18 @@ export const CodesRows = ({ item }) => {
             img: taxtnework
         }
     ];
-    const copyToClipboard = async (value) => {
-        await navigator.clipboard.writeText(value)
-            .then(() => {
-                setChangeImg(check);
-            })
-            .catch((error) => {
-                console.error('Error al copiar al portapapeles: ', error);
-            });
-    }
+ const copyToClipboard = (text) => {
+  const el = document.createElement('textarea');
+  el.value = text;
+  el.setAttribute('readonly', '');
+  el.style.position = 'absolute';
+  el.style.left = '-9999px';
+  document.body.appendChild(el);
+  el.select();
+  document.execCommand('copy');
+  setChangeImg(check);
+  document.body.removeChild(el);
+};
     return (
         <tbody className="text-center divide-y  divide-gray-200">
             <tr className="odd:bg-gray-50 h-20">
