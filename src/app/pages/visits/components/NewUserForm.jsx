@@ -36,10 +36,10 @@ export const NewUserForm = () => {
   const changeView = (buttonName) => {
     setButtonPressed(buttonName);
   };
- 
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     let options = {
       method: "POST",
       headers: new Headers({
@@ -76,7 +76,7 @@ export const NewUserForm = () => {
               method="POST"
               className="  pt-5 m-auto  "
             >
-              <div className="h-[320px] overflow-y-scroll overflow-x-hidden space-y-3">
+              <div className="xl:h-[320px] xl:overflow-y-scroll xl:overflow-x-hidden w-full overflow-visible space-y-3">
                 <div>
                   <label htmlFor="name" className="block">
                     Nombre Completo{" "}
@@ -323,7 +323,7 @@ export const NewUserForm = () => {
                       className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                       type="text"
                       id="empresa"
-                      pattern=""
+                      maxLength={20}
                       name="empresa"
                     />
                   </div>
@@ -337,6 +337,7 @@ export const NewUserForm = () => {
                     onChange={(e) => setForm({ ...form, cargo: e.target.value })}
                     className="w-full rounded-sm bg-[#E7E7E7] p-3 text-sm"
                     type="text"
+                    maxLength={20}
                     name="cargo"
                     id="cargo"
 
@@ -404,7 +405,7 @@ export const NewUserForm = () => {
                   {"***"}
                 </div>
                 <p className="inline-block ms-2 ">Traer Documento en Fisico</p>
-                      </div>
+              </div>
               <hr />
 
               <div className="flex items-center my-2">
@@ -447,31 +448,31 @@ export const NewUserForm = () => {
         </div>
       </div>
     ) : (
-        buttonPressed === "insertCode" ? (
-          <InsertCode />
-        ) : buttonPressed === "requireCode" ? (
-          <RequireCode />
-        ) : (
-          <>
-            <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
-            <Button
-              className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-8 mt-5"
-              as="a"
-              onClick={() => changeView("insertCode")}
-            >
-              <Image src={insertCode} />
-              ¡Ya tengo codigo!
-            </Button>
-            <Button
-              className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
-              as="a"
-              onClick={() => changeView("requireCode")}
-            >
-              <Image src={requireCode} />
-              Solicitar codigo de visita
-            </Button>
-          </>
+      buttonPressed === "insertCode" ? (
+        <InsertCode />
+      ) : buttonPressed === "requireCode" ? (
+        <RequireCode />
+      ) : (
+        <>
+          <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
+          <Button
+            className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-8 mt-5"
+            as="a"
+            onClick={() => changeView("insertCode")}
+          >
+            <Image src={insertCode} />
+            ¡Ya tengo codigo!
+          </Button>
+          <Button
+            className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
+            as="a"
+            onClick={() => changeView("requireCode")}
+          >
+            <Image src={requireCode} />
+            Solicitar codigo de visita
+          </Button>
+        </>
+      )
     )
-  )
   )
 }
