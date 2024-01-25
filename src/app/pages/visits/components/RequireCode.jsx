@@ -59,7 +59,7 @@ export const RequireCode = () => {
       })
     }
     try {
-      const response = await (await fetch("http://192.168.110.106:5017/visitantes/verificar", options)).json();
+      const response = await (await fetch(`http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitantes/verificar`, options)).json();
       if (response.status === 200) {
         setFormSubmitted(true);
         getCodes()

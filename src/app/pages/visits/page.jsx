@@ -32,14 +32,36 @@ function VisitUs() {
   useEffect(() => {
     AOS.init({ duration: 900 });
   });
-
   const socialNetworks = [
-    instagram,
-    whatsapp,
-    github,
-    telegram,
-    facebook,
-    twitter,
+    {
+      src: instagram,
+      href: "https://www.instagram.com/campuslands/",
+
+    },
+    {
+      src: whatsapp,
+      href: "#",
+
+    },
+    {
+      src: facebook,
+      href: "https://www.facebook.com/Campuslands/",
+
+    },
+    {
+      src: twitter,
+      href: "#",
+    },
+    {
+      src: telegram,
+      href: "#",
+
+    },
+    {
+      src: github,
+      href: "#",
+
+    }
   ];
 
   return (
@@ -99,15 +121,16 @@ function VisitUs() {
               </p>
             </div>
           <div className="text-xl flex gap-10 mt-5">
-            {socialNetworks.map((src, index) => (
-              <Image
-                key={index}
-                className="inline-block"
-                style={{ width: "35px" }}
-                src={src}
-                alt={`Logo ${index + 1}`}
-              />
-            ))}
+              {socialNetworks.map((item, index) => (
+                <a href={item.href} key={index} target="_blank"
+                >
+                  <Image
+                    className="redSocial inline-block w-10 h-10"
+                    src={item.src}
+                    alt={`Logo ${index + 1}`}
+                  />
+                </a>
+              ))}
           </div>
             </div>
         </div>
