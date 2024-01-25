@@ -23,7 +23,7 @@ export const MainButtons = () => {
             <>
                 <p className="w-full ms-1 mt-[-20px]">Ingresa el código de acceso para sacar tu cita, si no cuentas con uno puedes solicitarlo</p>
                 <Button
-                    className="bg-[#00AA80] flex flex-col  text-white text-md rounded-lg py-14 mb-8 mt-5"
+                            className="bg-[#00AA80] flex flex-col transition hover:scale-105 shadow hover:shadow-2xl  text-white text-md rounded-lg py-14 mb-8 mt-5"
                     as="a"
                     onClick={() => changeView("insertCode")}
                 >
@@ -31,7 +31,7 @@ export const MainButtons = () => {
                     ¡Ya tengo codigo!
                 </Button>
                 <Button
-                    className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14"
+                            className="bg-[#A5A6F6] flex flex-col transition hover:scale-105 shadow hover:shadow-2xl  text-000000 text-md rounded-lg py-14"
                     as="a"
                     onClick={() => changeView("requireCode")}
                 >
