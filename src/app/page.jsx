@@ -282,11 +282,9 @@ function Page() {
         <Requirements />
       </div>
 
-      {/* <------- ******* SPONSORSHIP SECTION ******* -----------> */}
-      <section
-        className="flex justify-center items-center my-10 m-auto"
-        style={{ maxWidth: "1600px" }}
-      >
+     
+      {/* <----------- Sponsorship section  -----------> */}
+      <section className="flex justify-center items-center my-10">
         {/* <------ SPONSORSHIP DESKTOP SECTION ------> */}
         <div className="hidden lg:flex relative" data-aos="zoom-in">
           {/* <--- Left text ---> */}
@@ -311,12 +309,12 @@ function Page() {
           <Button
             className="absolute bg-black text-white text-md rounded-3xl w-32"
             as={Link}
-            href="/pages/recruitment"
+            href="#"
             style={{ top: "250px", left: "-250px" }}
           >
             Ver <FontAwesomeIcon icon={faArrowRightLong} width={20} />
           </Button>
-          <Image className="w-80" src={camperWoman2} alt="woman with laptop" />
+          <Image className="w-80" src={camperWoman2} />
           {/* <--- Right text ---> */}
           <p
             className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
@@ -333,7 +331,7 @@ function Page() {
           <Button
             className="absolute bg-black text-white text-md rounded-3xl w-36"
             as={Link}
-            href="/pages/sponsorship"
+            href="#"
             style={{ top: "260px", right: "-335px" }}
           >
             Patrocinar <FontAwesomeIcon icon={faArrowRightLong} width={20} />
@@ -368,27 +366,19 @@ function Page() {
         </div>
         {/* <------- SPONSORSHIP MOBILE SECTION -------> */}
         <div className="relative lg:hidden w-screen flex flex-col justify-center items-center overflow-hidden">
-          <div
-            className="flex flex-col text-2xl sm:text-2xl md:text-4xl z-10"
-            data-aos="zoom-in"
-          >
+          <div className="flex flex-col text-2xl sm:text-2xl md:text-4xl z-10" data-aos="zoom-in">
             <p className={`${stretchPro.className}`}>PATROOCINA</p>
             <p className={`${stretchPro.className}`}>TRANSFORMA</p>
             <Button
               className="bg-black text-white rounded-3xl w-36 mt-2"
               as={Link}
-              href="/pages/sponsorship"
+              href="#"
             >
               Patrocinar <FontAwesomeIcon icon={faArrowRightLong} width={20} />
             </Button>
           </div>
           <div className="relative w-full h-80 flex justify-center">
-            <Image
-              className="absolute w-64 top-9"
-              src={camperWoman2}
-              alt="woman with laptop"
-              data-aos="zoom-in"
-            />
+            <Image className="absolute w-64 -top-9" src={camperWoman2} data-aos="zoom-in"/>
             <div className="absolute w-64 -top-10">
               {/* <--- Sponsorship items left ---> */}
               <span
@@ -414,14 +404,11 @@ function Page() {
               ></span>
             </div>
           </div>
-          <div
-            className="flex flex-col items-end text-2xl sm:text-2xl md:text-4xl mt-6 z-10"
-            data-aos="zoom-in"
-          >
+          <div className="flex flex-col items-end text-2xl sm:text-2xl md:text-4xl mt-6 z-10" data-aos="zoom-in">
             <Button
               className="bg-black text-white rounded-3xl w-32 mb-2"
               as={Link}
-              href="/pages/recruitment"
+              href="#"
             >
               Ver <FontAwesomeIcon icon={faArrowRightLong} width={20} />
             </Button>
