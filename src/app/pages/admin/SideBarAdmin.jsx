@@ -9,7 +9,7 @@ import { Divider } from "@nextui-org/react";
 export default function SideBarAdmin() {
   return (
     <>
-      <div className="relative flex-col p-2">
+      <div className="relative flex-col p-2 bg-neutral-200 fixed">
          <div>
             <Image className="w-16" src={campusLogo} alt="Logo Campus"/>
          </div>
