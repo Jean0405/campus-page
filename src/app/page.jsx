@@ -378,7 +378,7 @@ function Page() {
             </Button>
           </div>
           <div className="relative w-full h-80 flex justify-center">
-            <Image className="absolute w-64 -top-9" src={camperWoman2} data-aos="zoom-in"/>
+            <Image className="absolute w-64 -top-9" src={camperWoman2} alt="imagen camper" data-aos="zoom-in"/>
             <div className="absolute w-64 -top-10">
               {/* <--- Sponsorship items left ---> */}
               <span
