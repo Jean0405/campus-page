@@ -11,6 +11,8 @@ import mcd from "../../../../../public/img/mcd.svg";
 import hooy from "../../../../../public/img/hooy.svg";
 import conexalab from "../../../../../public/img/Conexalab.svg";
 import peer from "../../../../../public/img/peer.svg";
+import taxtnework from "../../../../../public/img/taxnetwork.svg";
+import betmedia from "../../../../../public/img/betmedia.svg";
 import notfound from "../../../../../public/img/notFound.png";
 export const CodesRows = ({ item }) => {
     const [changeImg, setChangeImg] = useState(copyIcon);
@@ -46,11 +48,11 @@ export const CodesRows = ({ item }) => {
         },
         {
             name: 'Betrmedia',
-            img: notfound
+            img: betmedia
         },
         {
             name: 'Colombia Taxnetwork',
-            img: notfound
+            img: taxtnework
         }
     ];
     const copyToClipboard = async (value) => {
