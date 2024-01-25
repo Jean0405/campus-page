@@ -26,15 +26,20 @@ export default function ModalVisits({ visitor, setListVisitors}) {
   async function reassign() {
     await reassignVisit(reassignDate, visitor.id);
     const res = await getVisits();
+    const message = `Hola ${visitor.visitante.nombre}, hemos revisado tu solicitud para visitar ${visitor.codigo.nombre} 🚀👨‍🚀, aunque nos gustaría reasignar la fecha al día 🗓️${formatDateWithTime(reassignDate)}. ¿Estás de acuerdo? 🤨`
     setListVisitors(res.message);
     setIsSelected(!isSelected);
+    redirectToWhatsApp(visitor.visitante.tel, message)
   }
   async function acceptVisits() {;
     await acceptVisit(visitor.id);
     const res = await getVisits();
+    const message = `Hola ${visitor.visitante.nombre}, hemos recibido tu solicitud para visitar ${visitor.codigo.nombre} y sus instalaciones 🚀👨🏻‍🚀, estaremos encantados de recibirte. Te esperamos el 🗓️${formatDateWithTime(visitor.fecha_visita)}.
+    No olvides traer tu documento original 🪪`
+
     setListVisitors(res.message);
     setIsSelected(!isSelected);
-    redirectToWhatsApp(visitor);
+    redirectToWhatsApp(visitor.visitante.tel, message);
   }
 
   //show or hidde reassign section
