@@ -144,6 +144,7 @@ export const InsertCode = () => {
                 type="text"
                 name="codigo"
                 id="codigo"
+                maxLength={7}
                 required
               />
             </div>

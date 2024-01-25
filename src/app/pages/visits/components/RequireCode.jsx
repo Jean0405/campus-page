@@ -37,7 +37,7 @@ export const RequireCode = () => {
         const data = await response.json();
         setCODES(data.message[0].codigos)
       } else {
-        setCODES([])
+        showErrorToast()
       }
     } catch (err) {
       showErrorToast();

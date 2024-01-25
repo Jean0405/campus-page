@@ -16,7 +16,7 @@ import v_slider_img10 from "../../../../../public/img/v_slider_img10.png";
 
 export const Slider = () => {
     return (
-        <div className="slider-container h-screen">
+        <div className="slider-container h-screen rounded-2xl">
             <div className="vertical_slider flex justify-center gap-3">
                 <div className="slider_track gap-3">
                     <div className="slide">

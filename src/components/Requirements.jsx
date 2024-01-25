@@ -13,7 +13,7 @@ import hamburguer from '../../public/img/hamburguer.svg'
 export const Requirements = () => {
     return (
 
-        <div className='lg:max-w-[1600px] max-w-2xl	 m-auto grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center border border-black rounded-3xl mt-10 '>
+        <div className=' m-auto grid lg:grid-cols-[1.5fr_2fr] grid-cols-1 items-center border border-black rounded-3xl  my-10'>
             <div className='grid grid-cols-1 grid-row lg:border-r border-0 border-black'>
                 <div className='flex justify-between items-center ps-10 mt-5'>
                     <Image

@@ -27,7 +27,7 @@ export const MainButtons = () => {
                     as="a"
                     onClick={() => changeView("insertCode")}
                 >
-                    <Image src={insertCode} />
+                    <Image src={insertCode} alt="insertCode" />
                     ¡Ya tengo codigo!
                 </Button>
                 <Button
@@ -35,7 +35,7 @@ export const MainButtons = () => {
                     as="a"
                     onClick={() => changeView("requireCode")}
                 >
-                    <Image src={requireCode} />
+                    <Image src={requireCode} alt="requireCode" />
                     Solicitar codigo de visita
                 </Button>
             </>

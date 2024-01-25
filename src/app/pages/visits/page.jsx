@@ -45,7 +45,7 @@ function VisitUs() {
   return (
     <>
       <NavigationBar />
-      <div className="container h-full w-full m-auto">
+      <div className="container h-full w-full ">
         <div className="h-full lg:max-w-lg w-full mt-24 flex flex-col  lg:items-start items-center">
           <h1 className=" lg:max-w-xl max-w-full sm:text-7xl text-6xl font-bold">
             Visítanos
@@ -75,7 +75,7 @@ function VisitUs() {
                   as="a"
                   onClick={() => changeView("insertCode")}
                 >
-                  <Image src={insertCode} />
+                  <Image src={insertCode} alt="insertCode" />
                   ¡Ya tengo codigo!
                 </Button>
                 <Button
@@ -83,7 +83,7 @@ function VisitUs() {
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >
-                  <Image src={requireCode} />
+                  <Image src={requireCode} alt="requireCode" />
                   Solicitar codigo de visita
                 </Button>
               </>
@@ -111,7 +111,10 @@ function VisitUs() {
           </div>
             </div>
         </div>
+        <div className="w-full h-full">
+
         <Slider />
+        </div>
       </div>
       <Footer />
     </>

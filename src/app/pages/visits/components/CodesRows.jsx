@@ -11,13 +11,17 @@ import mcd from "../../../../../public/img/mcd.svg";
 import hooy from "../../../../../public/img/hooy.svg";
 import conexalab from "../../../../../public/img/Conexalab.svg";
 import peer from "../../../../../public/img/peer.svg";
-
+import notfound from "../../../../../public/img/notFound.png";
 export const CodesRows = ({ item }) => {
     const [changeImg, setChangeImg] = useState(copyIcon);
 
     const logos = [
         {
             name: 'Campuslands_CO',
+            img: campusland
+        },
+        {
+            name: 'Campuslands_AC',
             img: campusland
         },
         {
@@ -29,7 +33,7 @@ export const CodesRows = ({ item }) => {
             img: mcd
         },
         {
-            name: 'Hooy',
+            name: 'HOOY',
             img: hooy
         },
         {
@@ -42,11 +46,15 @@ export const CodesRows = ({ item }) => {
         },
         {
             name: 'Betrmedia',
-            img: campusland
+            img: notfound
+        },
+        {
+            name: 'Colombia Taxnetwork',
+            img: notfound
         }
     ];
-    const copyToClipboard = (value) => {
-        navigator.clipboard.writeText(value)
+    const copyToClipboard = async (value) => {
+        await navigator.clipboard.writeText(value)
             .then(() => {
                 setChangeImg(check);
             })
@@ -59,13 +67,13 @@ export const CodesRows = ({ item }) => {
             <tr className="odd:bg-gray-50 h-20">
                 <td className="whitespace-nowrap">
                     {
-                        <Image className="ms-3 w-10" src={logos.find(image => image.name === item.nombre).img} />
+                        <Image className="ms-3 w-10" src={(logos.find((image) => image.name === item.nombre) || { img: notfound }).img} alt="logo" />
                     }
                 </td>
                 <td className="whitespace-nowrap">
                     {item.codigo}
                 </td>
-                <td className="whitespace-nowrap max-w-12 md:max-w-fit overflow-x-scroll md:overflow-hidden">
+                <td className="whitespace-nowrap max-w-12 md:max-w-fit overflow-x- scroll md:overflow-hidden">
                     {item.nombre}
                 </td>
                 <td className="whitespace-nowrap">

@@ -17,7 +17,7 @@ import logo from "../../public/img/logoCampus.svg";
 import C_campus from "../../public/img/C_campus.png";
 import Ellipse from "../../public/img/Ellipse.png";
 import star_icon from "../../public/img/star_icon.png";
-import camperWoman from "../../public/img/mujer.png";
+import camperWoman from "../../public/img/mujer.svg";
 import right_arrow from "../../public/assets/right_arrow.png";
 import camperWoman2 from "../../public/img/mujerCamper2.png";
 import hombreSentado from "../../public/img/hombreSentado.png";
@@ -133,10 +133,12 @@ function Page() {
               <Image
                 className="C_campus absolute -top-24 -left-2"
                 src={C_campus}
+                alt = "campuslands logo"
               />
               <Image
                 className="ellipse absolute w-28 h-28 top-3 right-8 z-10"
                 src={Ellipse}
+                alt = "ellipse"
               />
             </div>
             <p className="text-black text-lg font-bold py-2">Conócenos</p>
@@ -150,6 +152,7 @@ function Page() {
               <Image
                 className="absolute w-48 h-48 top-1 -left-6"
                 src={star_icon}
+                alt="star icon"
               />
               <Autoincrement
                 limit={100}
@@ -217,6 +220,7 @@ function Page() {
                 <Image
                   className="absolute bottom-[1.1rem] w-full h-full object-cover overflow-visible"
                   src={camperWoman}
+                  alt="woman with laptop"
 
                 />
               </Link>
@@ -231,7 +235,7 @@ function Page() {
 
       {/* <------------ *********** STUDY WITH US ********** ----------> */}
       <div
-        className="Main flex justify-center mt-28 mb-10 ml-40 mr-40"
+        className="Main flex justify-center mt-28 mb-28 ml-40 mr-40"
         data-aos="zoom-in"
       >
         <div className="mainLeft">
@@ -263,7 +267,7 @@ function Page() {
             className="btn-hover text-white mt-6 h-14 font-extrabold text-large"
           >
             Unete Ahora{" "}
-            <Image alt="..." className="w-5 ml-2" src={right_arrow_white} />{" "}
+            <Image alt="right arrow" className="w-5 ml-2" src={right_arrow_white} />{" "}
           </Button>
         </div>
         <p
@@ -274,7 +278,7 @@ function Page() {
         </p>
       </div>
       {/* <------- ******* REQUIREMENTS SECTION  -----------> */}
-      <div data-aos="zoom-in">
+      <div data-aos="zoom-in" className="my-10 m-auto 2xl:max-w-[1550px] xl:max-w-7xl lg:max-w-5xl md:max-3xl sm:max-w-xl max-w-lg px-2" >
         <Requirements />
       </div>
 
@@ -312,7 +316,7 @@ function Page() {
           >
             Ver <FontAwesomeIcon icon={faArrowRightLong} width={20} />
           </Button>
-          <Image className="w-80" src={camperWoman2} />
+          <Image className="w-80" src={camperWoman2} alt="woman with laptop" />
           {/* <--- Right text ---> */}
           <p
             className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}
@@ -382,6 +386,7 @@ function Page() {
             <Image
               className="absolute w-64 top-9"
               src={camperWoman2}
+              alt="woman with laptop"
               data-aos="zoom-in"
             />
             <div className="absolute w-64 -top-10">
@@ -446,12 +451,12 @@ function Page() {
               <Link href="/pages/visits">
 
               <div className="calendarVisitas flex gap-5">
-                <Image src={calendar} className="w-7 h-7" alt="..." />
+                <Image src={calendar} className="w-7 h-7" alt="calendar" />
                 <p className="text-xl">Agendar Cita</p>
                   <Image
                     src={right_arrow}
                     className="rightArrow ms-20 w-10 h-10"
-                    alt="..."
+                    alt="right arrow"
                   />
               </div>
              
@@ -460,13 +465,13 @@ function Page() {
             <div>
               <Image
                 src={lilacCircle}
-                alt="..."
+                alt="circle"
                 className="lilaCircle w-20 h-w-20 absolute z-0"
                 style={{ top: "9rem", left: "22rem" }}
               />
               <Image
                 src={purlpleCircle}
-                alt="..."
+                alt="circle"
                 className="purpleCircle w-20 h-w-20 absolute z-0"
                 style={{ top: "14rem", left: "-2rem" }}
               />
@@ -490,7 +495,7 @@ function Page() {
           </div>
         </div>
         <div className="videoVisitas bg-blue-900">
-          <Image src={video} alt="..." className=" h-full w-full" />
+          <Image src={video} alt="video" className=" h-full w-full" />
         </div>
         <div className="redesDiv xl:hidden">
           <p className="text-xl">
