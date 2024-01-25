@@ -58,7 +58,6 @@ function page() {
       ) : (
         <>
             <div className="flex">
-              <SideBarAdmin />
               <TabsAdmin />
             </div>
         </>
