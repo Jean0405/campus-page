@@ -5,12 +5,12 @@ import {
   faRectangleList,
   faCalendar,
   faUserTie,
+  faChartSimple,
   faRightFromBracket,
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
-import campusLogo from "../../../../public/img/logoCampus.svg";
-import Image from "next/image";
+
 import { Button, Divider, Tooltip } from "@nextui-org/react";
 import { useRouter } from "next/navigation";
 import { logOut } from "@/utils/auth";
@@ -26,6 +26,10 @@ const menuItems = [
   {
     name: "Eventos",
     icon: faCalendar,
+  },
+  {
+    name: "Estadísticas",
+    icon: faChartSimple,
   },
 ];
 
