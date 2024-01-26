@@ -113,7 +113,7 @@ function VisitUs() {
 
           
           </div>
-            <div className="flex flex-col mt-10  lg:items-start items-center">
+            <div className="flex flex-col mt-8  lg:items-start items-center">
             <div className="flex flex-col  ">
               <p className="text-md text-center lg:text-start">
                 No olvides compartir con tus amigos y conocidos este gran
@@ -134,10 +134,7 @@ function VisitUs() {
           </div>
             </div>
         </div>
-        <div className="w-full h-full">
-
         <Slider />
-        </div>
       </div>
       <Footer />
     </>
