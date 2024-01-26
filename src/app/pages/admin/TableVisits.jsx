@@ -204,7 +204,8 @@ export default function TableVisits() {
     <>
       {/* Visits this week */}
       <div onClick={()=>handleThisWeek()} className="flex flex-col justify-center items-center cursor-pointer">
-        <div className="flex flex-col items-center border-3 text-neutral-600 hover:border-[#F4B422] hover:text-black p-3 mb-5 rounded-xl hover:shadow-xl duration-500">
+        <div className="flex flex-col items-center border-3 text-neutral-600
+         hover:border-[#F4B422] hover:text-black p-3 mb-5 rounded-xl hover:shadow-xl duration-500">
         <p className="text-xl font-bold">Esta semana</p>
         <p className="text-3xl font-extrabold">{counterThisWeek.length}</p>
         </div>
