@@ -86,19 +86,23 @@ export const reassignVisit = async (reassignDate, visitorId) => {
 };
 
 export const getThisWeekVisits = async () => {
-  let response = await (
-    await fetch(
-      `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/filtro/semana`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          authorization: localStorage.getItem("token"),
-        },
-      }
-    )
-  ).json();
-  return response;
+  try {
+    let response = await (
+      await fetch(
+        `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/visitas/filtro/semana`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            authorization: localStorage.getItem("token"),
+          },
+        }
+      )
+    ).json();
+    return response;
+  } catch (error) {
+    return null;
+  }
 };
 
 export const getCounterStatus = async (status, company) => {

@@ -41,7 +41,6 @@ import {
 import ModalVisits from "./modalVisits";
 import Image from "next/image";
 
-
 const listCompanies = [
   { name: "Campuslands_CO", logo: campus_CO },
   { name: "HOOY", logo: Hooy },
@@ -57,8 +56,9 @@ const filterStatus = ["aceptado", "reasignado", "en espera", "realizado"];
 
 export default function TableVisits() {
   const [listVisitors, setListVisitors] = useState([]);
+  const [counterThisWeek, setCounterThisWeek] = useState([]);
   const [companCounterOnStandBy, setCompanCounterOnStandBy] = useState({});
-  const [selectedCompany, setSelectedCompany] = useState([]);
+  const [selectedCompany, setSelectedCompany] = useState("");
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -113,7 +113,12 @@ export default function TableVisits() {
 
     setListVisitors(response.message);
     setLoading(false);
+    getVisitsThisWeek();
     setSelectedCompany("")
+    setStatusCompany({
+      ...statusCompany,
+      company: null,
+    });
     return;
   };
   //get visits by status (FILTER)
@@ -124,8 +129,52 @@ export default function TableVisits() {
       showErrorToast();
       return;
     }
+    getCounters();
+    getVisitsThisWeek();
     setListVisitors(response.message);
     setLoading(false);
+    return;
+  };
+
+  const getCounters = () => {
+    listCompanies.map(async (company) => {
+      let formattedCompanyName = company.name.replace(/\s/g, "");
+      let response = await visitsAPI.getCounterStatus(
+        "en espera",
+        formattedCompanyName
+      );
+      response = checkResponseStatus(response, 200);
+      if (!response) {
+        setCompanCounterOnStandBy((prevData) => ({
+          ...prevData,
+          [company.name]: 0,
+        }));
+        // showErrorToast();
+        return;
+      }
+      setCompanCounterOnStandBy((prevData) => ({
+        ...prevData,
+        [company.name]: response.message[0].cantidad,
+      }));
+    });
+    return;
+  };
+
+  const getVisitsThisWeek = async() =>{
+    let response = await visitsAPI.getThisWeekVisits();
+
+    if (!response) {
+      showErrorToast();
+      return;
+    }
+    setCounterThisWeek(response.message)
+    return;
+  }
+
+  //handle visits this week
+  const handleThisWeek = () => {
+    setListVisitors(counterThisWeek);
+    return;
   };
   // handle company change
   const handleCompanyFilterChange = (companyName) => {
@@ -145,48 +194,44 @@ export default function TableVisits() {
     filterVisitsByStatusAndCompany(newStatus, statusCompany.company);
   };
 
-  const getCounters = () =>{
-    listCompanies.map(async company =>{
-      let formattedCompanyName = company.name.replace(/\s/g, "");
-      let response = await visitsAPI.getCounterStatus("en espera", formattedCompanyName);
-      response = checkResponseStatus(response, 200);
-
-      if (!response) {
-        showErrorToast();
-        return;
-      }
-
-      setCompanCounterOnStandBy((prevData) => ({
-        ...prevData,
-        [company.name]: response.message[0].cantidad,
-      }));
-    })
-    return;
-  }
-
-  //Load table
-  useEffect(()=>{
-    getCounters()
-  }, [listVisitors]);
 
   useEffect(() => {
+    getCounters()
     getAllVisits();
   }, []);
 
   return (
     <>
+      {/* Visits this week */}
+      <div onClick={()=>handleThisWeek()} className="flex flex-col justify-center items-center cursor-pointer">
+        <p className="text-xl font-bold">Esta semana</p>
+        <p className="text-3xl font-extrabold">{counterThisWeek.length}</p>
+      </div>
+
       <div className="grid md:grid-cols-2 gap-5 mb-5">
         <div className="carousel-admin m-auto md:m-0">
           {listCompanies.map((company) => (
-            <div className={`relative company-container ${selectedCompany === company.name? "bg-neutral-300":""}`} key={company.name}>
-                <Badge size="lg" className="bg-red-500 text-white font-bold" content={companCounterOnStandBy[company.name]}>
+            <div
+              className={`relative company-container ${
+                selectedCompany === company.name ? "bg-neutral-300" : ""
+              }`}
+              key={company.name}
+            >
+              <Badge
+                size="lg"
+                className="bg-red-500 text-white font-bold"
+                content={companCounterOnStandBy[company.name]}
+              >
                 <Image
-                  onClick={() => {handleCompanyFilterChange(company.name); setSelectedCompany(company.name)}}
+                  onClick={() => {
+                    handleCompanyFilterChange(company.name);
+                    setSelectedCompany(company.name);
+                  }}
                   className="company-logo"
                   src={company.logo}
                   alt="company logo"
                 />
-                </Badge>
+              </Badge>
             </div>
           ))}
         </div>
@@ -286,10 +331,14 @@ export default function TableVisits() {
               <TableRow className="capitalize cursor-pointer" key={visitor.id}>
                 <TableCell>{visitor.visitante.nombre}</TableCell>
                 <TableCell className="hide-md">
-                  {visitor.visitante.empresa ? visitor.visitante.empresa: "No aplica"}
+                  {visitor.visitante.empresa
+                    ? visitor.visitante.empresa
+                    : "No aplica"}
                 </TableCell>
                 <TableCell className="hide-md">
-                  {visitor.visitante.cargo ? visitor.visitante.cargo : "No aplica"}
+                  {visitor.visitante.cargo
+                    ? visitor.visitante.cargo
+                    : "No aplica"}
                 </TableCell>
                 <TableCell className="hide-md">
                   <Image
