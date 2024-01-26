@@ -55,24 +55,24 @@ export default function SideBarAdmin() {
     <>
       <div className="flex h-screen">
         {/* Sidebar */}
-        <div className="hidden bg-neutral-200 sm:flex flex-col items-center pt-5 fixed h-screen w-[60px] lg:w-[170px]">
-          <div className="flex justify-center text-3xl text-neutral-600">
+        <div className="hidden bg-neutral-600 sm:flex flex-col items-center pt-5 fixed h-screen w-[60px] lg:w-[220px]">
+          <div className="flex justify-center text-3xl text-neutral-200 gap-3">
             <FontAwesomeIcon icon={faUserTie} />
+            <p className="font-bold text-white hidden lg:flex">ADMIN</p>
           </div>
-          <Divider className="my-5" />
+          <Divider className="my-5 bg-white" />
           <div className="w-full flex flex-col justify-center items-center gap-5 px-2">
             {menuItems.map((item) => (
               <Tooltip
                 key={item.name}
-                className="ml-2 flex lg:hidden"
+                className="ml-2 flex lg:hidden bg-amber-500 text-white font-bold"
                 placement="right"
                 content={item.name}
-                color="warning"
                 closeDelay={10}
               >
                 <div
                   onClick={() => setSelectedSection(item.name)}
-                  className="w-full flex justify-start items-center cursor-pointer text-neutral-700 hover:bg-neutral-500 hover:text-white rounded p-2 gap-4"
+                  className="w-full flex justify-start items-center cursor-pointer text-neutral-200 hover:bg-neutral-200 hover:text-black rounded p-2 gap-4"
                 >
                   <FontAwesomeIcon className="text-2xl" icon={item.icon} />
                   <span className="hidden lg:flex">{item.name}</span>
@@ -82,14 +82,14 @@ export default function SideBarAdmin() {
           </div>
           <div
             onClick={() => handleLogOut()}
-            className="absolute w-full flex justify-center items-center font-bold bottom-0 text-black bg-[#F4B422] hover:bg-[#00AA80] hover:text-white cursor-pointer duration-500 py-5 gap-2"
+            className="absolute w-full flex justify-center items-center font-bold bottom-0 text-white bg-black hover:text-amber-600 cursor-pointer duration-500 py-5 gap-2"
           >
             <FontAwesomeIcon className="text-2xl" icon={faRightFromBracket} />
             <span className="hidden lg:flex">Cerrar sesión</span>
           </div>
         </div>
         {/* main content */}
-        <main className="w-full sm:ml-[60px] lg:ml-[170px]">
+        <main className="w-full sm:ml-[60px] lg:ml-[210px]">
           <div className="sm:hidden flex justify-start p-5">
             <Button
               className="flex justify-start text-2xl bg-transparent p-0"
@@ -127,11 +127,12 @@ export default function SideBarAdmin() {
             <ul className="flex flex-col gap-5 text-center">
               {menuItems.map((item) => (
                 <li
-                  className="cursor-pointer hover:font-bold duration-100"
+                  className="flex gap-3 cursor-pointer hover:font-bold duration-100"
                   onClick={()=>{ setSelectedSection(item.name); setShowMenuOverlay(!showMenuOverlay);}}
                   key={item.name}
                 >
-                  {item.name}
+                  <FontAwesomeIcon className="text-2xl" icon={item.icon} />
+                  <span>{item.name}</span>
                 </li>
               ))}
             </ul>
@@ -139,7 +140,7 @@ export default function SideBarAdmin() {
           <div className="flex justify-center">
             <Button
               onClick={() => handleLogOut()}
-              className="bg-yellow-500 font-bold"
+              className="bg-amber-500 font-bold"
             >
               Cerrar sesión
             </Button>
