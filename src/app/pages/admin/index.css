@@ -43,6 +43,10 @@
   margin-right: 8px; /* Ajusta el espacio entre el círculo y el texto */
 }
 
+
+/* Menu overlay */
+
+
 /* TABLET */
 @media (max-width: 1200px) {
   .hide-md {

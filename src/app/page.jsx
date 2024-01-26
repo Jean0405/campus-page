@@ -337,7 +337,7 @@ function Page() {
           >
             Ver <FontAwesomeIcon icon={faArrowRightLong} width={20} />
           </Button>
-          <Image className="w-80" src={camperWoman2} />
+          <Image className="w-80" src={camperWoman2} alt="camper woman"/>
           {/* <--- Right text ---> */}
           <p
             className={`${stretchPro.className} absolute text-4xl font-bold -z-10`}

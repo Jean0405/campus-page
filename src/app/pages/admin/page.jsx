@@ -1,12 +1,10 @@
 "use client";
 import { useRouter } from "next/navigation";
-import TabsAdmin from "./TabsAdmin";
 import "./index.css";
 
 import { useEffect, useState } from "react";
-import { Button, Spinner } from "@nextui-org/react";
-import { getUserByToken, logOut } from "@/utils/auth";
-import { checkResponseStatus } from "@/helpers/checkResponses";
+import { Spinner } from "@nextui-org/react";
+import { getUserByToken } from "@/utils/auth";
 import SideBarAdmin from "./SideBarAdmin";
 
 function page() {
@@ -32,19 +30,6 @@ function page() {
     }
   }
 
-  const handleLogOut = async () => {
-    const token = localStorage.getItem("token");
-    let response = await logOut(token);
-
-    response = checkResponseStatus(response, 200);
-
-    if (!response) {
-      showErrorToast();
-    }
-    localStorage.removeItem("token");
-    router.push("/pages/login");
-  };
-
   useEffect(() => {
     validateAuth();
   }, []);
@@ -57,18 +42,7 @@ function page() {
         </div>
       ) : (
         <>
-          <div className="flex sm:hidden justify-center mt-5">
-            <Button
-              className="bg-yellow-500 font-bold"
-              onClick={() => handleLogOut()}
-            >
-              Cerrar sesión
-            </Button>
-          </div>
-          <div className="flex">
-            <SideBarAdmin />
-            <TabsAdmin />
-          </div>
+          <SideBarAdmin />
         </>
       )}
     </>
