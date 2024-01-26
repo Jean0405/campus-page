@@ -154,3 +154,12 @@ padding-right: 10px
   background-color: #00b297ce; 
     border-radius: 6px;
 }
+#tour_btn {
+
+background: #54C0FD;
+background: linear-gradient(180deg, #54C0FD, #e685f5);
+}
+
+#tour_text {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5); /* horizontal-offset vertical-offset blur-radius color */
+}

@@ -76,7 +76,7 @@ export const NewUserForm = () => {
               method="POST"
               className="   m-auto  "
             >
-              <div id="form" className="xl:h-[310px] xl:overflow-y-scroll xl:overflow-x-hidden  w-full appearance-none accent-transparent overflow-visible space-y-3">
+              <div id="form" className="xl:h-[346px] xl:overflow-y-scroll xl:overflow-x-hidden  w-full appearance-none accent-transparent overflow-visible space-y-3">
                 <div>
                   <label htmlFor="name" className="block">
                     Nombre Completo{" "}
@@ -389,7 +389,7 @@ export const NewUserForm = () => {
               </div>
 
               <hr />
-              <div className=" space-y-3 my-3">
+              <div className="space-y-2 mb-2">
                 <h3 className="font-bold">Condiciones</h3>
                 <div className="bg-[#FF6161] text-transparent rounded-full inline-block ">
                   {"***"}
