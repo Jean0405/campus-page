@@ -14,6 +14,7 @@ import instagram from "../../../../public/assets/instagram.svg";
 import telegram from "../../../../public/assets/telegram.svg";
 import twitter from "../../../../public/assets/twitter.svg";
 import whatsapp from "../../../../public/assets/whatsapp.svg";
+import tourBtnImg from "../../../../public/img/tourBtn.png";
 
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "./components/Slider";
@@ -108,12 +109,14 @@ function VisitUs() {
                   <Image src={requireCode} alt="requireCode" />
                   Solicitar codigo de visita
                 </Button>
+                
                     <Button
                     id="tour_btn"
                       className=" flex flex-col text-center  tracking-wide	 text-xl text-balance font-bold rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
                       as="a"
                       onClick={() => changeView("requireCode")}
                     >
+                      <Image id="tour_img" alt="confeti" src={tourBtnImg}/>
                       <p id="tour_text" className="text-white "> ¡¡¡Participa en nuestro
                         tour  por campus!!!</p>
                      
