@@ -1,6 +1,5 @@
 // /layout.jsx
 "use client";
-import "./index.css";
 import banner from "../../../../public/img/banner.jpg";
 
 import "react-toastify/dist/ReactToastify.css";
@@ -167,7 +166,7 @@ export default function Page() {
     <>
       <div className="relative h-screen grid md:grid-cols-2 place-items-center">
         {/* <------------- LEFT SECTION ------------> */}
-        <div className="left-section bg-[#2CA2FF] w-full h-full relative">
+        <div className="bg-[#2CA2FF] w-full h-full relative">
           <Image
             className="w-full h-full object-cover"
             src={banner}
@@ -175,7 +174,7 @@ export default function Page() {
             priority
           />
           <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center z-10">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold">
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold">
               COMUNIDAD{" "}
               <TypeWriter customClass="text-[#F4B422]">CAMPUSLANDS</TypeWriter>
             </h1>
