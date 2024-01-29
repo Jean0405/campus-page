@@ -14,6 +14,7 @@ import instagram from "../../../../public/assets/instagram.svg";
 import telegram from "../../../../public/assets/telegram.svg";
 import twitter from "../../../../public/assets/twitter.svg";
 import whatsapp from "../../../../public/assets/whatsapp.svg";
+import tourBtnImg from "../../../../public/img/tourBtn.png";
 
 import NavigationBar from "@/components/NavigationBar";
 import { Slider } from "./components/Slider";
@@ -101,19 +102,31 @@ function VisitUs() {
                   ¡Ya tengo codigo!
                 </Button>
                 <Button
-                      className="bg-[#A5A6F6] flex flex-col  text-000000 text-md rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
+                      className="bg-[#A5A6F6] flex flex-col   text-md rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >
                   <Image src={requireCode} alt="requireCode" />
                   Solicitar codigo de visita
                 </Button>
+                
+                    <Button
+                    id="tour_btn"
+                      className=" flex flex-col text-center  tracking-wide	 text-xl text-balance font-bold rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
+                      as="a"
+                      onClick={() => changeView("requireCode")}
+                    >
+                      <Image id="tour_img" alt="confeti" src={tourBtnImg}/>
+                      <p id="tour_text" className="text-white "> ¡¡¡Participa en nuestro
+                        tour  por campus!!!</p>
+                     
+                    </Button>
               </>
             )}
 
           
           </div>
-            <div className="flex flex-col mt-10  lg:items-start items-center">
+            <div className="flex flex-col mt-8  lg:items-start items-center">
             <div className="flex flex-col  ">
               <p className="text-md text-center lg:text-start">
                 No olvides compartir con tus amigos y conocidos este gran
@@ -134,10 +147,7 @@ function VisitUs() {
           </div>
             </div>
         </div>
-        <div className="w-full h-full">
-
         <Slider />
-        </div>
       </div>
       <Footer />
     </>

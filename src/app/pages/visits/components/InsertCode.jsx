@@ -92,7 +92,7 @@ export const InsertCode = () => {
                   name="tipo_doc"
                   id="tipo_doc"
                   onChange={(e) => setForm({ ...form, tipo_doc: e.target.value })}
-                  className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5"
+                  className=" w-full  rounded-sm py-[11.5px]  bg-[#E7E7E7] sm:text-sm -5  dark:bg-slate-800"
                   required
                 >
                   <option value=""></option>
