@@ -184,7 +184,7 @@ export const NewUserForm = () => {
                     <input
                       onChange={(e) => setForm({ ...form, tel: e.target.value })}
                       className="w-full  rounded-sm bg-[#E7E7E7] p-3 text-sm ps-8 outline-none"
-                      type="phone"
+                      type="tel"
                       id="tel"
                       name="tel"
                       minLength={8}

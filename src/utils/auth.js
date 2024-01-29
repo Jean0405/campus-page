@@ -18,6 +18,26 @@ export const login = async (user) => {
   }
 };
 
+export const register = async (user) => {
+  try {
+    const response = await (
+      await fetch(
+        `http://${process.env.NEXT_PUBLIC_API_HOSTNAME}:${process.env.NEXT_PUBLIC_API_PORT}/usuario`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(user),
+        }
+      )
+    ).json();
+    return response;
+  } catch (error) {
+    return null;
+  }
+};
+
 export const getUserByToken = async (token) => {
   try {
     if (token) {
