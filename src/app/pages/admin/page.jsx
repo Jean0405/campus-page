@@ -1,13 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
-import TabsAdmin from "./TabsAdmin";
 import "./index.css";
 
-
 import { useEffect, useState } from "react";
-import { Button, Spinner } from "@nextui-org/react";
-import { getUserByToken, logOut } from "@/utils/auth";
-import { checkResponseStatus } from "@/helpers/checkResponses";
+import { Spinner } from "@nextui-org/react";
+import { getUserByToken } from "@/utils/auth";
+import SideBarAdmin from "./SideBarAdmin";
 
 function page() {
   const router = useRouter();
@@ -19,32 +17,17 @@ function page() {
     const response = await getUserByToken(token);
 
     if (!response || response.status !== 200) {
-      router.push('/pages/login');
-    }else{
+      router.push("/pages/login");
+    } else {
       const userData = response.message.payload;
-      
+
       if (!userData || userData.rol !== "admin") {
         localStorage.removeItem("token");
-        router.push('/pages/login');
-      }else{
+        router.push("/pages/login");
+      } else {
         setIsAuth(userData);
       }
     }
-    
-  }
-
-
-  const handleLogOut = async()=>{
-    const token = localStorage.getItem("token")
-    let response = await logOut(token);
-
-    response = checkResponseStatus(response,200);
-
-    if (!response) {
-      showErrorToast();
-    }
-    localStorage.removeItem("token");
-    router.push('/pages/login');
   }
 
   useEffect(() => {
@@ -59,12 +42,7 @@ function page() {
         </div>
       ) : (
         <>
-          <div className="flex flex-col">
-            <Button className="bg-yellow-500 m-auto font-bold p-3 mt-3" onClick={()=>handleLogOut()}>Cerrar sesión</Button>
-          <div className="w-full grid place-items-center">
-          <TabsAdmin />
-          </div>
-          </div>
+          <SideBarAdmin />
         </>
       )}
     </>
