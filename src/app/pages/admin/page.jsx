@@ -7,7 +7,7 @@ import { Spinner } from "@nextui-org/react";
 import { getUserByToken } from "@/utils/auth";
 import SideBarAdmin from "./SideBarAdmin";
 
-function page() {
+function Page() {
   const router = useRouter();
   const [isAuth, setIsAuth] = useState(null);
 
@@ -49,4 +49,4 @@ function page() {
   );
 }
 
-export default page;
+export default Page;
