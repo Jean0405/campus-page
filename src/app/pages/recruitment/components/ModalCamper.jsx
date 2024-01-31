@@ -1,6 +1,7 @@
 "use client";
 import { Chip } from "@nextui-org/react";
-
+import * as Recruitment from "@/utils/recruitment";
+import { showErrorToast } from "@/helpers/Toasts";
 import React, { useEffect, useState } from "react";
 import {
   Modal,
@@ -15,26 +16,28 @@ import {
 import Image from "next/image";
 import github from "../../../../../public/img/campersGithub.svg";
 import linkedin from "../../../../../public/img/campersLinkedin.svg";
-import { getAllInfoCamper } from "@/utils/recruitment";
 
-export default function ModalCamper({ camper, getModalInfoCampers}) {
+export default function ModalCamper({ camperId}) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [modalInfo, setModalInfo] = useState({});
 
-  const getAllInfo = async () => {
-    const response = await getModalInfoCampers(camper.idUsuario);
-    setModalInfo(response.message);
+  const getModalInfoCampers = async () => {
+    const infoCamper = await Recruitment.getAllInfoCamper(camperId);
+    if (!infoCamper) {
+      showErrorToast();
+    }else{
+      console.log(infoCamper.message)
+      setModalInfo(infoCamper.message)
+    }
   }
 
-  useEffect(() => {
-    getAllInfo();
-  }, [getModalInfoCampers, camper]);
   return (
     <>
-      <Button
+     <Button
         className="w-10/12 m-auto my-3 text-lg text-[#000000] bg-[#6a7bff] font-bold rounded-lg p-2"
         onPress={() => {
-          onOpen();
+          onOpen(),
+          getModalInfoCampers()
         }}
       >
         Ver más
@@ -57,15 +60,15 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                   {/* Camper name and photo */}
                   <div className="flex flex-col text-[#0F2167] text-xl justify-center items-center">
                     <p className="text-2xl font-bold uppercase">
-                      {camper.nombre}
+                      {(modalInfo.cv) ?modalInfo.cv.nombre :"Cargando"}
                     </p>
                     <p className="text-lg text-center font-bold uppercase text-indigo-500">
-                      {camper.enfoque.nombre}
+                      {(modalInfo.cv) ?modalInfo.cv.enfoque.nombre :"Cargando" }
                     </p>
                   </div>
                   <div className=" flex justify-center items-center ">
                     <p className="text-xl font-bold text-rose-950">
-                      {camper.nivelIdioma}
+                      {(modalInfo.cv) ?modalInfo.cv.nivelIngles :"Cargando"}
                     </p>
                   </div>
                 </div>
@@ -75,7 +78,7 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                   <h2 className="text-[#0F2167] text-xl font-bold">
                     DESCRIPCIÓN
                   </h2>
-                  <p className=" text-md">{camper.acercaDeMi}</p>
+                  <p className=" text-md">{(modalInfo.cv) ?modalInfo.cv.acercaDeMi :"Cargando"}</p>
                 </div>
                 {/* Education */}
                 <div className="flex flex-col my-4">
@@ -102,7 +105,8 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                       EDUCACION
                     </h2>
                   </div>
-                  {modalInfo.educacion.map((education, index) => (
+                  {(modalInfo.educacion) ?(
+                    modalInfo.educacion.map((education, index) => (
                     <div key={index}>
                       <div className="flex justify-between my-2">
                         <h3 className=" text-md font-bold text-gray-900">
@@ -121,7 +125,9 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                         {education.titulo}
                       </Chip>
                     </div>
-                  ))}
+                  )))
+                  :"Sin registros"
+                  }
                 </div>
                 {/* Camper experience */}
                 <div className="flex flex-col my-4">
@@ -135,7 +141,7 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                     <h2 className="text-[#0F2167] font-bold text-lg ">
                       EXPERIENCIA</h2>
                   </div>
-                  {
+                  {(modalInfo.experiencia) ?(
                     modalInfo.experiencia.map((experience, index) => (
                       <div className="my-2" key={index}>
                         <div className="flex justify-between ">
@@ -151,36 +157,38 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                       </div>
 
 
-                    ))
+                    )))
+                    :"Sin registros"
                   }
                 </div>
                 {/* Camper hardskills */}
                 <div className="flex flex-col my-2">
                   <h2 className="text-[#0F2167] font-bold">HARDSKILLS</h2>
                   <div className="flex flex-wrap gap-2">
-                    {
+                     {(modalInfo.cv) && (
                       modalInfo.cv.skills.map((hardSkill, index) => (
                         <Chip key={index} color="warning" size="lg" radius="md" variant="flat" className="mt-1">{hardSkill}</Chip>
-                      ))
-                    }
+                      )))
+                    } 
                   </div>
                 </div>
                 {/* Camper softskills */}
                 <div className="flex flex-col my-2">
                   <h2 className="text-[#0F2167] font-bold">SOFTSKILLS</h2>
                   <div className="flex flex-wrap gap-2">
-                    {
+                    {(modalInfo.skills) ?(
                      modalInfo.skills.map((softSkill, index) => (
                         <Chip key={index} color="secondary" size="lg" radius="md"  variant="flat" className="mt-1">{softSkill.competencia}</Chip>
-                     ))
-                   }
+                     )))
+                     :"Sin registros"
+                   } 
                   </div>
                 </div>
                 {/* Camper contact */}
                 <div className="flex flex-col my-3 justify-center items-center gap-x-10">
                   <div className="flex flex-wrap gap-2">
                     <a
-                      href={camper.github}
+                      href={modalInfo.github}
                       target="_blank"
                       className="font-bold transition hover:scale-110"
                     >
@@ -192,7 +200,7 @@ export default function ModalCamper({ camper, getModalInfoCampers}) {
                       Github
                     </a>
                     <a
-                      href={camper.linkedin}
+                      href={modalInfo.linkedin}
                       target="_blank"
                       className="font-bold  transition hover:scale-110 "
                     >

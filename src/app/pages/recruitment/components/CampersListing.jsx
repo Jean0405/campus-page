@@ -4,6 +4,10 @@ import React, { useEffect, useState } from "react";
 import camperMen from "../../../../../public/img/camperMen.png";
 import camperWoman from "../../../../../public/img/camperWoman.png";
 import Image from "next/image";
+import {
+  Button,
+  useDisclosure
+} from "@nextui-org/react";
 
 import * as Recruitment from "@/utils/recruitment";
 import ModalCamper from "./ModalCamper";
@@ -12,7 +16,9 @@ import { showErrorToast } from "@/helpers/Toasts";
 import { Chip, Spinner } from "@nextui-org/react";
 
 function CampersListing() {
+  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [campers, setCampers] = useState([]);
+  const [showModal , setShowModal] = useState(false)
   const [loading, setLoading] = useState(false);
 
   const getAllCampers = async () => {
@@ -26,15 +32,6 @@ function CampersListing() {
     setLoading(true);
     return;
   };
-
-  const getModalInfoCampers = async (id) => {
-    const modalInfo = await Recruitment.getAllInfoCamper(id);
-    if (!modalInfo) {
-      showErrorToast();
-      return
-    };
-    return modalInfo
-  }
 
   useEffect(() => {
     getAllCampers();
@@ -62,20 +59,17 @@ function CampersListing() {
             <Spinner color="warning" label="Cargando..." />
           </div>
         ) : (
-          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-8 ">
+          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5 mt-8 ">
             {campers.map((camper, index) => (
               // <------ Camper card ------>
               <div
                 className="rounded-lg text-white flex flex-col justify-between ring ring-indigo- shadow-xl"
                 key={index}
               >
-                <div className="flex flex-col lg:flex-row items-center justify-center mb-10 ">
-                  <Image
-                    className={` ms-3 mt-2 ${
-                      camper.info_usuario.genero === "masculino"
-                        ? "w-32 h-32"
-                        : "w-32 h-32"
-                    }`}
+                <div className="flex flex-col items-center justify-center mb-10 ">
+                <div className="w-32 h-32">
+                <Image
+                    className={` ms-3 mt-2 w-full h-full object-cover object-center`}
                     src={
                       camper.info_usuario.genero === "masculino"
                         ? camperMen
@@ -83,6 +77,7 @@ function CampersListing() {
                     }
                     alt="camper avatar"
                   />
+                </div>
                   <div className="p-5 ">
                     <p className="text-[#6a7bff]   text-2xl font-extrabold my-1">
                       {camper.nombre}
@@ -113,9 +108,10 @@ function CampersListing() {
                     ))}
                   </div>
                 </div>
+              
                 <div className="flex flex-col rounded-b-lg py-3 ">
                   {/* <------ modal camper card ------> */}
-                  <ModalCamper camper={camper} getModalInfoCampers={getModalInfoCampers}/>
+                      <ModalCamper camperId={camper.idUsuario}/>
                 </div>
               </div>
             ))}
