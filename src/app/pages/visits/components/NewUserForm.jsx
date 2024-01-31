@@ -66,7 +66,7 @@ export const NewUserForm = () => {
     showForm ? (
       <div className=" w-full mt-[-20px]">
 
-        <p className="w-full lg:text-start text-center ms-3">Llenando el siguiente formulario</p>
+        <p className="w-full lg:text-start text-center ms-3">Llenar el siguiente formulario</p>
 
         <div className=" w-full py-5 ms-2">
           <div className="m-auto">

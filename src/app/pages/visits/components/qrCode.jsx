@@ -26,7 +26,7 @@ export const QRCode = () => {
         <div className="md:max-w-xl w-full py-5 m-auto">
           <p className="w-full  ms-2 mb-6 mt-2 lg:text-start text-center">
             Escribe a nuestro WhatsApp y un administrador
-            te atenderá y te dará un código de acceso
+            te atenderá y te dará un código de acceso.
           </p>
           <Image src={qrcode} className="w-full m-auto" alt="campuslands logo" />
           <div className="flex flex-col items-center justify-center  gap-3 mt-5">

@@ -74,8 +74,8 @@ export const InsertCode = () => {
       {showForm ? (
         <div>
           <p className="w-full ms-1 mt-[-20px]">
-            Ingresa el código de acceso para sacar tu cita, si no cuentas con
-            uno puedes solicitarlo
+          Ingresa el código de acceso para solicitar tu cita, si no cuentas con
+          un codigo, puedes solicitarlo.
           </p>
           <form action="POST" method="POST" onSubmit={handleSubmit} className="space-y-3 pt-5 ">
             <div className="grid md:grid-cols-[0.5fr_1fr] grid-cols-1">
