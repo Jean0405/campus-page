@@ -99,20 +99,20 @@ function VisitUs() {
                   onClick={() => changeView("insertCode")}
                 >
                   <Image src={insertCode} alt="insertCode" />
-                  ¡Ya tengo codigo!
+                  ¡Ya tengo código!
                 </Button>
                 <Button
-                      className="bg-[#A5A6F6] flex flex-col   text-md rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
+                      className="bg-[#A5A6F6] flex flex-col   text-md rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl"
                   as="a"
                   onClick={() => changeView("requireCode")}
                 >
                   <Image src={requireCode} alt="requireCode" />
-                  Solicitar codigo de visita
+                  Solicitar código de visita
                 </Button>
                 
                     <Button
                     id="tour_btn"
-                      className=" flex flex-col text-center  tracking-wide	 text-xl text-balance font-bold rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl             "
+                      className=" flex flex-col text-center  tracking-wide	 text-xl text-balance font-bold rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl"
                       as="a"
                       onClick={() => changeView("requireCode")}
                     >
@@ -130,7 +130,7 @@ function VisitUs() {
             <div className="flex flex-col  ">
               <p className="text-md text-center lg:text-start">
                 No olvides compartir con tus amigos y conocidos este gran
-                proyecto
+                proyecto.
               </p>
             </div>
           <div className="text-xl flex gap-10 mt-5">

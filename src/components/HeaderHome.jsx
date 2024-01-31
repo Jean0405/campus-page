@@ -11,7 +11,7 @@ function HeaderHome() {
           <p>Transformamos futuros a través de la educación.</p>
           <p>Garantizamos formación en programación y empleabilidad.</p>
         </div>
-        <Button className='text-white font-bold rounded-md' style={{backgroundColor:"#F4B422"}}>CONTACTANOS</Button>
+        <Button className='text-white font-bold rounded-md' style={{backgroundColor:"#F4B422"}}>CONTÁCTANOS</Button>
     </div>
   )
 }

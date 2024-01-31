@@ -200,8 +200,8 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Username"
-              placeholder="Enter your username"
+              label="Usuario"
+              placeholder="Ingresa tu usuario"
               value={signIn.username}
               onChange={(e) =>
                 setSignIn({
@@ -213,8 +213,8 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Password"
-              placeholder="Enter your password"
+              label="Contraseña"
+              placeholder="Ingresa tu contraseña"
               endContent={
                 <button
                   className="focus:outline-none"
@@ -244,7 +244,7 @@ export default function Page() {
                 onClick={() => setIsRegistered(!isRegistered)}
                 className="text-[#000087] font-bold hover:text-black cursor-pointer"
               >
-                Registrate
+                Regístrate
               </span>
             </p>
             <button
@@ -280,8 +280,8 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Username"
-              placeholder="Ingresa tu nombre de usuario"
+              label="Usuario"
+              placeholder="Ingresa tu usuario"
               isRequired
               value={signUp.username}
               onChange={(e) =>
@@ -309,7 +309,7 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Password"
+              label="Contraseña"
               placeholder="Ingresa tu contraseña"
               isRequired
               endContent={
@@ -337,7 +337,7 @@ export default function Page() {
             />
             <RadioGroup
               orientation="horizontal"
-              label="Selecciona tu genero"
+              label="Selecciona tu género"
               isRequired
               value={signUp.genre}
               onChange={(e) =>

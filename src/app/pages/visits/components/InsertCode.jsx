@@ -131,7 +131,7 @@ export const InsertCode = () => {
             </div>
 
             <div className="">
-              <label htmlFor="codigo">Codigo
+              <label htmlFor="codigo">Código
                 <Image
                   className="w-2 h-2 inline mb-3"
                   src={ask}
@@ -159,7 +159,7 @@ export const InsertCode = () => {
                 onClick={handleGoBack}
                 className="block w-full rounded-md bg-[#FF5C5C] text-lg text-white "
               >
-                Atras
+                Volver
               </Button>
             </div>
           </form>

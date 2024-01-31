@@ -37,7 +37,7 @@ export default function App() {
       href: "/pages/visits",
     },
     {
-      name: "Iniciar Sesion",
+      name: "Iniciar sesión",
       href: "/pages/login",
     },
   ];

@@ -21,7 +21,7 @@ export const Requirements = () => {
                         src={hamburguer}
                         alt="campuslands logo"
                     />
-                    <a>Que necesitas  <Image
+                    <a>¿Qué necesitas?<Image
                         className="w-2 ms-2 me-8 inline"
                         src={rightDash}
                         alt="campuslands logo"
@@ -77,11 +77,11 @@ export const Requirements = () => {
 
                 
                 <div className='w-full flex flex-col justify-center  items-center lg:md:p-0 p-5  xl:border-0 lg:border-r border-none  '>
-                    <p className='md:max-w-72  md:text-lg text-sm '>Estar 8 horas diarias presenciales en el Campus, de lunes a viernes. (6am - 2pm  o  2pm - 10pm)</p>
+                    <p className='md:max-w-72  md:text-lg text-sm '>Estar 8 horas diarias presenciales en el Campus, de lunes a viernes. (6am - 2pm  o  2pm - 10pm).</p>
                 </div>
                 <div className='w-full flex flex-col justify-center lg:border-l border-l  items-center lg:md:p-0 p-5'>
-                    <h2 className='font-bold md:text-xl text-md'>¡Animate!</h2>
-                    <p className="md:text-lg text-sm">unete a este increí  ble viaje</p>
+                    <h2 className='font-bold md:text-xl text-md'>¡Anímate!</h2>
+                    <p className="md:text-lg text-sm">Únete a este increíble viaje</p>
                     <a>Inscripción
                         <Image
                             className="w-4 h-4 inline ms-2"

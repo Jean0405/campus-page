@@ -289,7 +289,7 @@ function Page() {
             color="warning"
             className="btn-hover text-white mt-6 h-14 font-extrabold text-large"
           >
-            Unete Ahora{" "}
+            Únete Ahora{" "}
             <Image alt="right arrow" className="w-5 ml-2" src={right_arrow_white} />{" "}
           </Button>
         </div>
@@ -451,18 +451,18 @@ function Page() {
               className="mainH2Visits flex text-4xl lg:text-5xl xl:text-4xl font-bold mb-4"
               style={{ lineHeight: "55px" }}
             >
-              Si Quieres Saber Más Puedes <br /> Visitarnos En Nuestras <br />{" "}
-              Instalaciones
+              Si quieres saber más puedes <br /> visitarnos en nuestras <br />{" "}
+              instalaciones
             </h2>
             <div
-              className="divButtonCita flex justify-between p-5 bg-white z-10"
+              className="divButtonCita flex justify-between p-5 bg-white z-10 hover:bg-gray-200"
               style={{ width: "400px" }}
             >
               <Link href="/pages/visits">
 
               <div className="calendarVisitas flex gap-5">
                 <Image src={calendar} className="w-7 h-7" alt="calendar" />
-                <p className="text-xl">Agendar Cita</p>
+                <p className="text-xl">Agendar cita</p>
                   <Image
                     src={right_arrow}
                     className="rightArrow ms-20 w-10 h-10"
@@ -489,7 +489,7 @@ function Page() {
           </div>
           <div className="hidden xl:flex flex-col mt-14">
             <p className="text-xl" style={{ maxWidth: "35rem" }}>
-              No olvides compartir con tus amigos y conocidos este gran proyecto{" "}
+              No olvides compartir con tus amigos y conocidos este gran proyecto.
             </p>
             <div className=" text-xl flex gap-14 mt-5">
               {socialNetworks.map((item, index) => (
@@ -510,7 +510,7 @@ function Page() {
         </div>
         <div className="redesDiv xl:hidden">
           <p className="text-xl">
-            No olvides compartir con tus amigos y conocidos este gran proyecto{" "}
+            No olvides compartir con tus amigos y conocidos este gran proyecto.
           </p>
           <div className="socialNetworks">
             {socialNetworks.map((item, index) => (
