@@ -66,8 +66,6 @@ export default function Page() {
         progress: undefined,
         theme: "colored",
       });
-      setUsername("");
-      setPassword("");
     } else {
       console.log(response);
       if (response.status !== 200) {
@@ -171,9 +169,9 @@ export default function Page() {
 
   return (
     <>
-      <div className="relative h-screen grid md:grid-cols-2 place-items-center">
+      <div className="relative h-screen grid md:grid-cols-2 place-items-center overflow-hidden">
         {/* <------------- LEFT SECTION ------------> */}
-        <div className="bg-[#2CA2FF] w-full h-full relative">
+        <div className="bg-[#2CA2FF] w-full h-[370px] sm:h-[500px] md:h-screen relative">
           <Image
             className="w-full h-full object-cover"
             src={banner}
@@ -195,7 +193,6 @@ export default function Page() {
           } flex-col items-center justify-center rounded-3xl p-5 gap-10`}
         >
           <div className="text-center">
-            {/* <Image width={200} src={logo} alt="campus logo" priority/> */}
             <h1 className="text-3xl text-[#000087] font-bold">
               INICIO DE SESIÓN
             </h1>
@@ -273,7 +270,7 @@ export default function Page() {
         <div
           className={`${
             isRegistered ? "flex" : "hidden"
-          } flex-col items-center justify-center rounded-3xl p-5 gap-10`}
+          } flex-col justify-center items-center rounded-3xl p-5 gap-10`}
         >
           <div className="text-center">
             <h1 className="text-3xl text-[#000087] font-bold">REGISTRO</h1>
@@ -283,7 +280,7 @@ export default function Page() {
               estaremos encantados de tenerte a bordo
             </p>
           </div>
-          <form onSubmit={handleSignUp} className="flex flex-col gap-5">
+          <form onSubmit={handleSignUp} className="w-full flex flex-col gap-5">
             <Input
               size="lg"
               variant="underlined"
@@ -416,6 +413,11 @@ export default function Page() {
             isRegistered ? "bg-[#00AA80]" : "bg-[#F4B422]"
           } duration-700 hidden md:flex absolute w-12 h-12 lg:w-16 lg:h-16 rotate-45`}
         ></span>
+          <span className="absolute hidden md:flex w-20 h-20 bg-yellow-200 rounded-full bottom-[20px] right-[50px] -z-10"></span>
+          <span className="absolute hidden md:flex w-32 h-32 bg-yellow-200 rounded-full bottom-[100px] right-[120px] -z-10"></span>
+          <span className="absolute hidden md:flex w-28 h-28 bg-blue-200 rounded-full top-[100px] right-[80px] -z-10"></span>
+          <span className="absolute hidden md:flex w-16 h-16 bg-blue-100 rounded-full top-[220px] right-[150px] -z-10"></span>
+          <span className="absolute md:hidden w-32 h-32 bg-blue-100 rounded-full bottom-[370px] right-[-20px] -z-10"></span>
       </div>
       <ToastContainer />
     </>
