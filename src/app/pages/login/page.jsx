@@ -81,20 +81,21 @@ export default function Page() {
           progress: undefined,
           theme: "colored",
         });
-        setSignIn({
-          username: "",
-          password: "",
+      }else{
+        toast.success("Registro exitoso", {
+          position: "bottom-right",
+          autoClose: 3000,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "colored",
         });
+        setIsRegistered(false)
+        setIsVisible(true)
       }
     }
-    setSignUp({
-      username: "",
-      password: "",
-      genre: "",
-      phone: "",
-      email: "",
-      city: "",
-    });
   };
   // Handle sign in form submission (LOGIN)
   const handleSignIn = async (e) => {
@@ -112,10 +113,6 @@ export default function Page() {
         draggable: true,
         progress: undefined,
         theme: "colored",
-      });
-      setSignIn({
-        username: "",
-        password: "",
       });
     } else {
       // Validate if the status of the response is not correct
@@ -137,6 +134,16 @@ export default function Page() {
           //Validate user rol to redirect
           if (user.message.payload.rol === "admin") {
             localStorage.setItem("token", response.token);
+            toast.success("Inicio de sesion exitoso", {
+              position: "bottom-right",
+              autoClose: 3000,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "colored",
+            });
             router.push("/pages/admin");
           } else {
             console.log("Eres un " + user.message.payload.rol);//SHOULD BE REFACTORED TO REDIRECT TO CAMPER PAGE 

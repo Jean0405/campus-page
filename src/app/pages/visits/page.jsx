@@ -76,13 +76,13 @@ function VisitUs() {
          {
           buttonPressed ? (
               <p className="hidden">
-                Ingresa el código de acceso para sacar tu cita, si no cuentas con
-                uno puedes solicitarlo
+                Ingresa el código de acceso para solicitar tu cita, si no cuentas con
+                un codigo, puedes solicitarlo.
               </p>
           ) : (
                 <p className="lg:w-10/12 w-10/12 text-center lg:text-start ms-1">
-                  Ingresa el código de acceso para sacar tu cita, si no cuentas con
-                  uno puedes solicitarlo
+                Ingresa el código de acceso para solicitar tu cita, si no cuentas con
+                un codigo, puedes solicitarlo.
                 </p>
           )
          }
@@ -110,7 +110,7 @@ function VisitUs() {
                   Solicitar código de visita
                 </Button>
                 
-                    <Button
+                    {/* <Button
                     id="tour_btn"
                       className=" flex flex-col text-center  tracking-wide	 text-xl text-balance font-bold rounded-lg py-14 transition hover:scale-105 shadow hover:shadow-2xl"
                       as="a"
@@ -120,7 +120,7 @@ function VisitUs() {
                       <p id="tour_text" className="text-white "> ¡¡¡Participa en nuestro
                         tour  por campus!!!</p>
                      
-                    </Button>
+                    </Button> */}
               </>
             )}
 

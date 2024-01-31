@@ -50,7 +50,7 @@ export const ExistedUserForm = () => {
   return (
     showForm ? (
       <div className="h-full max-w-lg mt-[-20px]">
-        <p className="w-full ms-2"> llenando el siguiente formulario</p>
+        <p className="w-full ms-2"> Llenar el siguiente formulario</p>
         <div className="md:max-w-xl max-w-xs py-5 ">
           <div>
             <form

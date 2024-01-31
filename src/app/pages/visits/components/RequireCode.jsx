@@ -83,8 +83,8 @@ export const RequireCode = () => {
           <>
             <div>
               <p className="w-full ms-1 mt-[-20px]">
-                Ingresa el código de acceso para sacar tu cita, si no cuentas con
-                uno puedes solicitarlo
+              Ingresa el código de acceso para solicitar tu cita, si no cuentas con
+                un codigo, puedes solicitarlo.
               </p>
               <form
                 action="POST"
