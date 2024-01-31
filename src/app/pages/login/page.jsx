@@ -81,20 +81,8 @@ export default function Page() {
           progress: undefined,
           theme: "colored",
         });
-        setSignIn({
-          username: "",
-          password: "",
-        });
       }
     }
-    setSignUp({
-      username: "",
-      password: "",
-      genre: "",
-      phone: "",
-      email: "",
-      city: "",
-    });
   };
   // Handle sign in form submission (LOGIN)
   const handleSignIn = async (e) => {
@@ -112,10 +100,6 @@ export default function Page() {
         draggable: true,
         progress: undefined,
         theme: "colored",
-      });
-      setSignIn({
-        username: "",
-        password: "",
       });
     } else {
       // Validate if the status of the response is not correct
