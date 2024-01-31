@@ -130,17 +130,17 @@ export default function ModalVisits({ visitor, setListVisitors}) {
                 </div>
               </ModalBody>
               <ModalFooter>
-              {!isSelected ? (
+              {!isSelected & visitor.estado !== "aceptado" & visitor.estado !== "realizado"  ? (
                   <>
                     <Button className="bg-green-300" onPress={()=>{onClose(); acceptVisits()}}>
                       Aceptar
                     </Button>
                   </>
-                ):(
+                ):visitor.estado !== "realizado" ? (
                   <Button className="bg-yellow-300" onPress={()=>{onClose(); reassign();}}>
                       Reasignar
                     </Button>
-                )}
+                ):(<div>Cerrada</div>)}
               </ModalFooter>
             </>
           )}
