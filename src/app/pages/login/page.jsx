@@ -66,6 +66,8 @@ export default function Page() {
         progress: undefined,
         theme: "colored",
       });
+      setUsername("");
+      setPassword("");
     } else {
       console.log(response);
       if (response.status !== 200) {
@@ -79,7 +81,7 @@ export default function Page() {
           progress: undefined,
           theme: "colored",
         });
-      }else{
+      } else {
         toast.success("Registro exitoso", {
           position: "bottom-right",
           autoClose: 3000,
@@ -90,8 +92,8 @@ export default function Page() {
           progress: undefined,
           theme: "colored",
         });
-        setIsRegistered(false)
-        setIsVisible(true)
+        setIsRegistered(false);
+        setIsVisible(true);
       }
     }
   };
@@ -144,7 +146,7 @@ export default function Page() {
             });
             router.push("/pages/admin");
           } else {
-            console.log("Eres un " + user.message.payload.rol);//SHOULD BE REFACTORED TO REDIRECT TO CAMPER PAGE 
+            console.log("Eres un " + user.message.payload.rol); //SHOULD BE REFACTORED TO REDIRECT TO CAMPER PAGE
             return;
           }
         } else {
@@ -169,9 +171,9 @@ export default function Page() {
 
   return (
     <>
-      <div className="relative h-screen grid md:grid-cols-2 place-items-center overflow-hidden">
+      <div className="relative h-screen grid md:grid-cols-2 place-items-center">
         {/* <------------- LEFT SECTION ------------> */}
-        <div className="bg-[#2CA2FF] w-full h-[370px] sm:h-[500px] md:h-screen relative">
+        <div className="bg-[#2CA2FF] w-full h-full relative">
           <Image
             className="w-full h-full object-cover"
             src={banner}
@@ -193,6 +195,7 @@ export default function Page() {
           } flex-col items-center justify-center rounded-3xl p-5 gap-10`}
         >
           <div className="text-center">
+            {/* <Image width={200} src={logo} alt="campus logo" priority/> */}
             <h1 className="text-3xl text-[#000087] font-bold">
               INICIO DE SESIÓN
             </h1>
@@ -200,12 +203,12 @@ export default function Page() {
               Bienvenido de vuelta, identificate y despega con nosotros
             </p>
           </div>
-          <form onSubmit={handleSignIn} className="flex flex-col gap-5">
+          <form onSubmit={handleSignIn} className="w-full flex flex-col gap-5">
             <Input
               size="lg"
               variant="underlined"
-              label="Usuario"
-              placeholder="Ingresa tu usuario"
+              label="Username"
+              placeholder="Enter your username"
               value={signIn.username}
               onChange={(e) =>
                 setSignIn({
@@ -217,8 +220,8 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Contraseña"
-              placeholder="Ingresa tu contraseña"
+              label="Password"
+              placeholder="Enter your password"
               endContent={
                 <button
                   className="focus:outline-none"
@@ -248,7 +251,7 @@ export default function Page() {
                 onClick={() => setIsRegistered(!isRegistered)}
                 className="text-[#000087] font-bold hover:text-black cursor-pointer"
               >
-                Regístrate
+                Registrate
               </span>
             </p>
             <button
@@ -270,7 +273,7 @@ export default function Page() {
         <div
           className={`${
             isRegistered ? "flex" : "hidden"
-          } flex-col justify-center items-center rounded-3xl p-5 gap-10`}
+          } flex-col items-center justify-center rounded-3xl p-5 gap-10`}
         >
           <div className="text-center">
             <h1 className="text-3xl text-[#000087] font-bold">REGISTRO</h1>
@@ -284,8 +287,8 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Usuario"
-              placeholder="Ingresa tu usuario"
+              label="Username"
+              placeholder="Ingresa tu nombre de usuario"
               isRequired
               value={signUp.username}
               onChange={(e) =>
@@ -313,7 +316,7 @@ export default function Page() {
             <Input
               size="lg"
               variant="underlined"
-              label="Contraseña"
+              label="Password"
               placeholder="Ingresa tu contraseña"
               isRequired
               endContent={
@@ -341,7 +344,7 @@ export default function Page() {
             />
             <RadioGroup
               orientation="horizontal"
-              label="Selecciona tu género"
+              label="Selecciona tu genero"
               isRequired
               value={signUp.genre}
               onChange={(e) =>
@@ -413,11 +416,10 @@ export default function Page() {
             isRegistered ? "bg-[#00AA80]" : "bg-[#F4B422]"
           } duration-700 hidden md:flex absolute w-12 h-12 lg:w-16 lg:h-16 rotate-45`}
         ></span>
-          <span className="absolute hidden md:flex w-20 h-20 bg-yellow-200 rounded-full bottom-[20px] right-[50px] -z-10"></span>
-          <span className="absolute hidden md:flex w-32 h-32 bg-yellow-200 rounded-full bottom-[100px] right-[120px] -z-10"></span>
-          <span className="absolute hidden md:flex w-28 h-28 bg-blue-200 rounded-full top-[100px] right-[80px] -z-10"></span>
-          <span className="absolute hidden md:flex w-16 h-16 bg-blue-100 rounded-full top-[220px] right-[150px] -z-10"></span>
-          <span className="absolute md:hidden w-32 h-32 bg-blue-100 rounded-full bottom-[370px] right-[-20px] -z-10"></span>
+        <span className="absolute hidden lg:flex w-20 h-20 bg-yellow-200 rounded-full bottom-[20px] right-[50px] -z-10"></span>
+        <span className="absolute hidden lg:flex w-32 h-32 bg-yellow-200 rounded-full bottom-[100px] right-[120px] -z-10"></span>
+        <span className="absolute hidden lg:flex w-28 h-28 bg-blue-200 rounded-full top-[100px] right-[80px] -z-10"></span>
+        <span className="absolute hidden lg:flex w-16 h-16 bg-blue-100 rounded-full top-[220px] right-[150px] -z-10"></span>
       </div>
       <ToastContainer />
     </>
