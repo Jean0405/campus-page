@@ -1,12 +1,12 @@
 .bannerPri{
-    background-image: url(../../public/img/imagen_final.png);
+    background-image: url(../../../../public/img/imagen_final.png);
     background-size: cover;
     background-position: center;
     height: 32rem;
 }
 
 .imageAbout{
-    background-image: url(../../public/img/img1.jpg);
+    background-image: url(../../../../public/img/img1.jpg);
     background-size: cover;
     background-position: center;
     height: 32rem;

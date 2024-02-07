@@ -2,9 +2,10 @@
 
 import React from 'react'
 import NavigationBar from "@/components/NavigationBar"
-import HeaderHome from '@/components/HeaderHome'
-import AboutUs from '@/components/AboutUs'
+import HeaderHome from './components/HeaderHome'
+import AboutUs from './components/AboutUs'
 import CampersListing from '@/app/pages/recruitment/components/CampersListing'
+import SuccesStories from './components/SuccesStories'
 
 function Home() {
   return (
@@ -13,6 +14,7 @@ function Home() {
       <HeaderHome />
       <AboutUs />
       <CampersListing />
+      <SuccesStories/>
     </>
   )
 }

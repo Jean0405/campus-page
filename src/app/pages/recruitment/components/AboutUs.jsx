@@ -1,12 +1,12 @@
 import React from 'react'
-import "./prueba.css"
+import "../styles.css"
 
 function AboutUs() {
   return (
     <div className='my-10 grid grid-cols-1 lg:grid-cols-2 gap-5 mx-5 lg:mx-10' id='aboutUs'>
         <div className='flex flex-col items-center justify-center gap-3 lg:px-14'>
             <h1 className='text-center text-2xl sm:text-3xl md:text-4xl font-bold' style={{color:'#000087'}}>Más de <span style={{color:'#F4B422'}}> <span className='md:text-5xl'>10</span> años</span> de experiencia</h1>
-            <p className='text-center text-sm md:text-xl'>Nuestro objetivo es aumentar la productividad del sector de la construcción facilitando un trabajo colaborativo efectivo y la digitalización de procesos de forma sencilla, fiable y rentable.</p>
+            <p className='text-justify sm:text-center text-md md:text-xl'>Nuestro objetivo es aumentar la productividad del sector de la construcción facilitando un trabajo colaborativo efectivo y la digitalización de procesos de forma sencilla, fiable y rentable.</p>
         </div>
         <div className='relative max-h-80 bg-sky-400 flex justify-center items-center lg:rounded-tl-3xl lg:rounded-br-3xl imageAbout'>
             <span className='hidden rounded-3xl absolute w-60 h-10 lg:block -top-3 -right-3' style={{backgroundColor:'#F4B422'}}></span>

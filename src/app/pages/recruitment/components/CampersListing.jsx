@@ -1,11 +1,10 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 import camperMen from "../../../../../public/img/camperMen.png";
 import camperWoman from "../../../../../public/img/camperWoman.png";
 import Image from "next/image";
 import {
-  Button,
   useDisclosure
 } from "@nextui-org/react";
 
@@ -23,7 +22,6 @@ function CampersListing() {
 
   const getAllCampers = async () => {
     const campers = await Recruitment.getCampers();
-    console.log(campers);
     if (!campers) {
       showErrorToast();
       return;
@@ -41,11 +39,11 @@ function CampersListing() {
     <div className="p-5 bg-white bg-opacity-90" id="campers">
       {/* <------ Section title ------> */}
       <div className="mb-10">
-        <h1 className="text-center sm:text-left text-yellow-500 text-4xl sm:text-5xl md:text-6xl font-bold ">
+        <h1 className="text-center sm:text-left text-yellow-500 text-5xl sm:text-5xl md:text-6xl font-bold ">
           Talento
         </h1>
         <h1
-          className="text-center sm:text-left text-5xl sm:text-6xl md:text-7xl font-extrabold"
+          className="text-center sm:text-left text-4xl sm:text-6xl md:text-7xl font-extrabold"
           style={{ color: "#000087" }}
         >
           Campuslands

@@ -1,7 +1,6 @@
 "use client"
 import { Button } from '@nextui-org/react'
-import "./prueba.css"
-import React from 'react'
+import "../styles.css"
 
 function HeaderHome() {
   return (
