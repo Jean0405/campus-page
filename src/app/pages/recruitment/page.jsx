@@ -6,6 +6,7 @@ import HeaderHome from './components/HeaderHome'
 import AboutUs from './components/AboutUs'
 import CampersListing from '@/app/pages/recruitment/components/CampersListing'
 import SuccesStories from './components/SuccesStories'
+import Footer from '@/components/Footer'
 
 function Home() {
   return (
@@ -15,6 +16,7 @@ function Home() {
       <AboutUs />
       <CampersListing />
       <SuccesStories/>
+      <Footer/>
     </>
   )
 }
