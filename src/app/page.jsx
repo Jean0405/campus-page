@@ -49,7 +49,7 @@ import Autoincrement from "@/components/Autoincrement";
 
 function Page() {
   useEffect(() => {
-    AOS.init({ duration: 900 });
+    AOS.init({ duration: 500 });
   });
 
   const socialNetworks = [ 
