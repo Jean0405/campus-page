@@ -34,7 +34,7 @@ export default function ModalCamper({ camperId}) {
   return (
     <>
      <Button
-        className="w-10/12 m-auto my-3 text-lg text-[#000000] bg-[#6a7bff] font-bold rounded-lg p-2"
+        className="w-10/12 m-auto my-3 text-lg text-[#000000] bg-indigo-300 hover:bg-[#6a7bff] font-bold rounded-lg p-2"
         onPress={() => {
           onOpen(),
           getModalInfoCampers()

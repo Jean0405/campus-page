@@ -5,7 +5,11 @@ import camperMen from "../../../../../public/img/camperMen.png";
 import camperWoman from "../../../../../public/img/camperWoman.png";
 import Image from "next/image";
 import {
-  useDisclosure
+  Button,
+  Checkbox,
+  CheckboxGroup,
+  Radio,
+  RadioGroup,
 } from "@nextui-org/react";
 
 import * as Recruitment from "@/utils/recruitment";
@@ -14,11 +18,28 @@ import { showErrorToast } from "@/helpers/Toasts";
 
 import { Chip, Spinner } from "@nextui-org/react";
 
+const skills = [
+  "Php",
+  "Node",
+  ".Net",
+  "Express",
+  "Typescript",
+  "MySQL",
+  "Javascript",
+  "React",
+  "MongoDB",
+  "Python",
+  "AWS",
+  "Azure",
+];
+
+const routes = ["Node", "Java", ".Net"];
+const englishLevels = ["A1", "A2", "B1", "B2", "C1"];
+
 function CampersListing() {
-  const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const [campers, setCampers] = useState([]);
-  const [showModal , setShowModal] = useState(false)
   const [loading, setLoading] = useState(false);
+  const [checkFilter, setCheckFilter] = useState(false);
 
   const getAllCampers = async () => {
     const campers = await Recruitment.getCampers();
@@ -30,6 +51,14 @@ function CampersListing() {
     setLoading(true);
     return;
   };
+
+
+  // Submit campers filter
+  const handleSubmitFilter = (e) =>{
+    e.preventDefault();
+    console.log("submit filter");
+    setCheckFilter(!checkFilter);
+  }
 
   useEffect(() => {
     getAllCampers();
@@ -49,8 +78,51 @@ function CampersListing() {
           Campuslands
         </h1>
       </div>
-
-      <div className="mt-5 px-10 m-auto">
+      <div className="flex flex-col gap-2">
+        <Button className={`w-[5rem] font-bold ${!checkFilter ? "bg-yellow-500 text-[#000087]" : "bg-[#000087] text-white"}`} onClick={() => setCheckFilter(!checkFilter)}>FILTRAR</Button>
+        {checkFilter && (
+          <form onSubmit={handleSubmitFilter} className="bg-gray-200 flex flex-col gap-5 w-full rounded-lg p-3">
+            {/* Skills filter */}
+            <div>
+              <h3 className="font-bold mb-1">HABILIDADES</h3>
+              <CheckboxGroup orientation="horizontal" color="warning">
+                {skills.map((skill) => (
+                  <Checkbox key={skill.toLowerCase()} value={skill}>
+                    {skill}
+                  </Checkbox>
+                ))}
+              </CheckboxGroup>
+            </div>
+            {/* Route filter */}
+            <div>
+              <h3 className="font-bold mb-1">RUTAS</h3>
+              <CheckboxGroup orientation="horizontal" color="warning">
+                {routes.map((route) => (
+                  <Checkbox key={route.toLowerCase()} value={route}>
+                    {route}
+                  </Checkbox>
+                ))}
+              </CheckboxGroup>
+            </div>
+            {/* English level filter */}
+            <div>
+              <h3 className="font-bold mb-1">NIVEL DE INGLÉS</h3>
+              <RadioGroup
+                color="warning"
+                orientation="horizontal"
+              >
+                {
+                  englishLevels.map(level =>(
+                    <Radio key={level} value={level}>{level}</Radio>
+                  ))
+                }
+              </RadioGroup>
+            </div>
+            <Button type="submit" className="bg-yellow-500 m-auto">BUSCAR</Button>
+          </form>
+        )}
+      </div>
+      <div className="mt-5 m-auto">
         {/* <------ Campers card container -------> */}
         {!loading ? (
           <div className="grid place-items-center text-center mt-10 mb-20">
@@ -61,23 +133,32 @@ function CampersListing() {
             {campers.map((camper, index) => (
               // <------ Camper card ------>
               <div
-                className="rounded-lg overflow-hidden text-white flex flex-col justify-between" style={{boxShadow: '-5px 5px 10px #dbdada'}}
+                className="rounded-lg overflow-hidden text-white flex flex-col justify-between"
+                style={{ boxShadow: "-5px 5px 10px #dbdada" }}
                 key={index}
               >
                 <div className="flex flex-col mb-5 bg-indigo-300">
-                <div className="w-full h-36 flex justify-center">
-                <Image
-                    className={` ms-3 mt-2 w-36 h-full rounded-full  border-4 border-white`}
-                    style={{backgroundColor: (camper.info_usuario.genero == "masculino") ?'#00AA80' :'#F4B422'}}
-                    src={
-                      camper.info_usuario.genero === "masculino"
-                        ? camperMen
-                        : camperWoman
-                    }
-                    alt="camper avatar"
-                  />
-                </div>
-                  <div className="p-2 relative top-6 bg-white mx-2" style={{boxShadow: '0px 5px 15px #ccc'}}>
+                  <div className="w-full h-36 flex justify-center">
+                    <Image
+                      className={` ms-3 mt-2 w-36 h-full rounded-full  border-4 border-white`}
+                      style={{
+                        backgroundColor:
+                          camper.info_usuario.genero == "masculino"
+                            ? "#00AA80"
+                            : "#F4B422",
+                      }}
+                      src={
+                        camper.info_usuario.genero === "masculino"
+                          ? camperMen
+                          : camperWoman
+                      }
+                      alt="camper avatar"
+                    />
+                  </div>
+                  <div
+                    className="p-2 relative top-6 bg-indigo-50 mx-2"
+                    style={{ boxShadow: "0px 5px 15px #ccc" }}
+                  >
                     <p className="text-[#6a7bff] text-center text-2xl font-extrabold my-1">
                       {camper.nombre}
                     </p>
@@ -93,7 +174,7 @@ function CampersListing() {
                 </div>
 
                 <div className="my-2">
-                <div className="flex flex-wrap justify-center gap-2  mt-5">
+                  <div className="flex flex-wrap justify-center gap-2  mt-5">
                     {camper.skills.map((hardSkill, index) => (
                       <Chip
                         key={index}
@@ -109,7 +190,7 @@ function CampersListing() {
                 </div>
                 <div className="flex flex-col rounded-b-lg py-3 ">
                   {/* <------ modal camper card ------> */}
-                      <ModalCamper camperId={camper.idUsuario}/>
+                  <ModalCamper camperId={camper.idUsuario} />
                 </div>
               </div>
             ))}
