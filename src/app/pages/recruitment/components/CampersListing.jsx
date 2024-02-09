@@ -1,6 +1,10 @@
 "use client";
 import { useEffect, useState } from "react";
 
+// Icons imports
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import camperMen from "../../../../../public/img/camperMen.png";
 import camperWoman from "../../../../../public/img/camperWoman.png";
 import Image from "next/image";
@@ -19,27 +23,32 @@ import { showErrorToast } from "@/helpers/Toasts";
 import { Chip, Spinner } from "@nextui-org/react";
 
 const skills = [
-  "Php",
-  "Node",
-  ".Net",
-  "Express",
-  "Typescript",
-  "MySQL",
-  "Javascript",
-  "React",
-  "MongoDB",
-  "Python",
-  "AWS",
-  "Azure",
+  "php",
+  "node",
+  ".net",
+  "express",
+  "typescript",
+  "mySQL",
+  "javascript",
+  "react",
+  "mongoDB",
+  "python",
+  "aws",
+  "azure",
 ];
-
-const routes = ["Node", "Java", ".Net"];
 const englishLevels = ["A1", "A2", "B1", "B2", "C1"];
 
 function CampersListing() {
   const [campers, setCampers] = useState([]);
+  const [focus, setFocus] = useState([]);
   const [loading, setLoading] = useState(false);
   const [checkFilter, setCheckFilter] = useState(false);
+  const [filterSelected, setFilterSelected] = useState("none");
+  const [selectedData, setSelectedData] = useState({
+    skills: [],
+    enfoque: null,
+    nivelIngles: "",
+  });
 
   const getAllCampers = async () => {
     const campers = await Recruitment.getCampers();
@@ -52,20 +61,60 @@ function CampersListing() {
     return;
   };
 
+  const getAllFocus = async () => {
+    const response = await Recruitment.getAllFocus();
+    if (!campers) {
+      return;
+    }
+    setFocus(response.message);
+    return;
+  };
 
   // Submit campers filter
-  const handleSubmitFilter = (e) =>{
+  const handleSubmitFilter = async(e) => {
     e.preventDefault();
-    console.log("submit filter");
+
+    const dataToSend = {};
+    if (filterSelected === "skills") {
+      if (selectedData.skills.length > 0) {
+        dataToSend.skills = selectedData.skills;
+      }
+    } else if (filterSelected === "routes") {
+      if (selectedData.enfoque) {
+        dataToSend.enfoque = selectedData.enfoque;
+      }
+    }
+
+    if (selectedData.nivelIngles) {
+      dataToSend.nivelIngles = selectedData.nivelIngles;
+    }
+
+    let response = await Recruitment.getCampersByFilter(dataToSend);
+    if (!response || response.status !== 200) {
+      showErrorToast();
+      return;
+    }
+
+    const initialState = {
+      skills: [],
+      enfoque: null,
+      nivelIngles: "",
+    };
+    console.log(dataToSend);
+    console.log(response.message);
+    setCampers(response.message);
+    setSelectedData(initialState);
+    setFilterSelected("none");
     setCheckFilter(!checkFilter);
-  }
+  };
 
   useEffect(() => {
+    getAllFocus();
     getAllCampers();
   }, []);
 
   return (
-    <div className="p-5 bg-white bg-opacity-90" id="campers">
+    <div className="p-5 lg:px-20 bg-white bg-opacity-90" id="campers">
       {/* <------ Section title ------> */}
       <div className="mb-10">
         <h1 className="text-center sm:text-left text-yellow-500 text-5xl sm:text-5xl md:text-6xl font-bold ">
@@ -78,47 +127,123 @@ function CampersListing() {
           Campuslands
         </h1>
       </div>
-      <div className="flex flex-col gap-2">
-        <Button className={`w-[5rem] font-bold ${!checkFilter ? "bg-yellow-500 text-[#000087]" : "bg-[#000087] text-white"}`} onClick={() => setCheckFilter(!checkFilter)}>FILTRAR</Button>
+      <div className="flex flex-col items-center sm:items-start gap-2">
+        <Button
+          className={`w-[5rem] font-bold ${
+            !checkFilter
+              ? "bg-yellow-500 text-[#000087]"
+              : "bg-[#000087] text-white"
+          }`}
+          onClick={() => setCheckFilter(!checkFilter)}
+        >
+          FILTRAR
+        </Button>
         {checkFilter && (
-          <form onSubmit={handleSubmitFilter} className="bg-gray-200 flex flex-col gap-5 w-full rounded-lg p-3">
+          <form
+            onSubmit={handleSubmitFilter}
+            className="bg-gray-200 flex flex-col gap-5 w-full rounded-lg p-3"
+          >
+            <h1 className="italic">
+              <span className="font-bold">NOTA:</span> No puedes filtrar por
+              rutas y habilidades al mismo tiempo.
+            </h1>
             {/* Skills filter */}
-            <div>
-              <h3 className="font-bold mb-1">HABILIDADES</h3>
-              <CheckboxGroup orientation="horizontal" color="warning">
-                {skills.map((skill) => (
-                  <Checkbox key={skill.toLowerCase()} value={skill}>
-                    {skill}
-                  </Checkbox>
-                ))}
-              </CheckboxGroup>
-            </div>
+            <h3
+              onClick={() =>
+                filterSelected === "skills"
+                  ? setFilterSelected("none")
+                  : setFilterSelected("skills")
+              }
+              className={`flex justify-between items-center ${
+                filterSelected === "skills" ? "bg-yellow-500" : "bg-gray-300"
+              } w-[9rem] text-center font-bold rounded-lg cursor-pointer mb-1 p-2`}
+            >
+              HABILIDADES <FontAwesomeIcon icon={faPlus} />
+            </h3>
+            {filterSelected === "skills" && (
+              <div>
+                <CheckboxGroup className="capitalize" orientation="horizontal" color="warning">
+                  {skills.map((skill) => (
+                    <Checkbox
+                      key={skill.toLowerCase()}
+                      value={skill}
+                      checked={selectedData.skills.includes(skill)}
+                      onChange={(e) => {
+                        const value = e.target.value;
+                        setSelectedData((prevState) => ({
+                          ...prevState,
+                          skills: prevState.skills.includes(value)
+                            ? prevState.skills.filter((item) => item !== value)
+                            : [...prevState.skills, value],
+                        }));
+                      }}
+                    >
+                      {skill}
+                    </Checkbox>
+                  ))}
+                </CheckboxGroup>
+              </div>
+            )}
             {/* Route filter */}
-            <div>
-              <h3 className="font-bold mb-1">RUTAS</h3>
-              <CheckboxGroup orientation="horizontal" color="warning">
-                {routes.map((route) => (
-                  <Checkbox key={route.toLowerCase()} value={route}>
-                    {route}
-                  </Checkbox>
-                ))}
-              </CheckboxGroup>
-            </div>
+            <h3
+              onClick={() =>
+                filterSelected === "routes"
+                  ? setFilterSelected("none")
+                  : setFilterSelected("routes")
+              }
+              className={`flex justify-between items-center border-2 ${
+                filterSelected === "routes" ? "bg-yellow-500" : "bg-gray-300"
+              } w-[9rem] text-center font-bold rounded-lg cursor-pointer mb-1 p-2`}
+            >
+              RUTAS <FontAwesomeIcon icon={faPlus} />
+            </h3>
+            {filterSelected === "routes" && (
+              <div>
+                <RadioGroup color="warning" orientation="horizontal">
+                  {focus.length > 0 ? (
+                    focus.map((focus) => (
+                      <Radio
+                        key={focus.id}
+                        value={focus.id}
+                        onChange={(e) =>
+                          setSelectedData((prevState) => ({
+                            ...prevState,
+                            enfoque: Number(e.target.value),
+                          }))
+                        }
+                      >
+                        {focus.nombre}
+                      </Radio>
+                    ))
+                  ) : (
+                    <Spinner color="warning"></Spinner>
+                  )}
+                </RadioGroup>
+              </div>
+            )}
             {/* English level filter */}
             <div>
               <h3 className="font-bold mb-1">NIVEL DE INGLÉS</h3>
-              <RadioGroup
-                color="warning"
-                orientation="horizontal"
-              >
-                {
-                  englishLevels.map(level =>(
-                    <Radio key={level} value={level}>{level}</Radio>
-                  ))
-                }
+              <RadioGroup color="warning" orientation="horizontal">
+                {englishLevels.map((level) => (
+                  <Radio
+                    key={level}
+                    value={level}
+                    onChange={(e) =>
+                      setSelectedData((prevState) => ({
+                        ...prevState,
+                        nivelIngles: e.target.value,
+                      }))
+                    }
+                  >
+                    {level}
+                  </Radio>
+                ))}
               </RadioGroup>
             </div>
-            <Button type="submit" className="bg-yellow-500 m-auto">BUSCAR</Button>
+            <Button type="submit" className="bg-yellow-500 m-auto">
+              BUSCAR
+            </Button>
           </form>
         )}
       </div>
@@ -129,8 +254,10 @@ function CampersListing() {
             <Spinner color="warning" label="Cargando..." />
           </div>
         ) : (
-          <div className=" grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-8 ">
-            {campers.map((camper, index) => (
+          <div className={`grid grid-cols-1 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10 mt-8`}>
+            {campers.length === 0 ? (
+              <div className="col-span-4 text-center font-bold text-2xl sm:text-3xl">No hay registros.</div>
+            ):campers.map((camper, index) => (
               // <------ Camper card ------>
               <div
                 className="rounded-lg overflow-hidden text-white flex flex-col justify-between"
