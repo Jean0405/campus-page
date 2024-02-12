@@ -11,10 +11,24 @@ import Footer from "@/components/Footer";
 import FormRecruitment from "./components/FormRecruitment";
 
 function Home() {
-  const [isFormActive, setIsFormActive] = useState(false);
+  const [isFormActive, setIsFormActive] = useState(true);
+  const [formData, setFormData] = useState({
+    company_name: "",
+    company_nit: "",
+    company_description:"",
+    email: "",
+    phone: "",
+    full_name: "",
+    role: "",
+    english_level: "",
+    developers_cantity: 0,
+    service: "full time",
+    technologies: [],
+  })
+
   return (
     <>
-      {isFormActive ? (
+      {!isFormActive? (
         <>
           <NavigationBar />
           <HeaderHome />
@@ -24,7 +38,7 @@ function Home() {
           <Footer />
         </>
       ) : (
-        <FormRecruitment setIsFormActive={setIsFormActive}/>
+        <FormRecruitment setIsFormActive={setIsFormActive} setFormData={setFormData} formData={formData}/>
       )}
     </>
   );

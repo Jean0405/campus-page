@@ -117,14 +117,14 @@ function CampersListing() {
     <div className="p-5 lg:px-20 bg-white bg-opacity-90" id="campers">
       {/* <------ Section title ------> */}
       <div className="mb-10">
-        <h1 className="text-center sm:text-left text-yellow-500 text-5xl sm:text-5xl md:text-6xl font-bold ">
-          Talento
+        <h1 className="text-center sm:text-left text-yellow-500 text-5xl md:text-6xl font-bold ">
+          Nuestro
         </h1>
         <h1
-          className="text-center sm:text-left text-4xl sm:text-6xl md:text-7xl font-extrabold"
+          className="text-center sm:text-left text-5xl sm:text-6xl md:text-7xl font-extrabold"
           style={{ color: "#000087" }}
         >
-          Campuslands
+          Talento
         </h1>
       </div>
       <div className="flex flex-col items-center sm:items-start gap-2">

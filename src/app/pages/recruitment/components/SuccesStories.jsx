@@ -34,7 +34,7 @@ const success_stories = [
 
 function SuccesStories() {
   return (
-    <div className="w-full grid grid-cols-1 lg:grid-cols-2 place-items-center gap-8 py-5 px-10 my-20 overflow-hidden">
+    <div className="w-full grid grid-cols-1 lg:grid-cols-2 place-items-center gap-8 py-5 px-5 my-20 overflow-hidden">
       <div className="flex justify-center items-center order-last lg:order-first mt-5 lg:mt-0">
         <Swiper
           effect={"cards"}
@@ -66,14 +66,14 @@ function SuccesStories() {
       </div>
       <div className=" w-full flex flex-col items-center lg:items-end gap-3">
         <div className="text-center">
-          <h1 className=" m:text-end text-[#000087] text-5xl md:text-6xl md:text-7xl font-extrabold">
+          <h1 className="text-center lg:text-end text-[#000087] text-5xl md:text-6xl lg:text-7xl font-extrabold">
             Nuestros casos de
           </h1>
-          <h1 className="text-yellow-500 text-8xl md:text-9xl font-extrabold">
+          <h1 className="text-yellow-500 text-5xl md:text-6xl md:text-7xl font-extrabold text-center lg:text-end">
             éxito
           </h1>
         </div>
-        <p className="text-justify sm:text-end text-MD md:text-xl max-w-[1000px]">
+        <p className="text-justify lg:text-end text-MD md:text-xl max-w-[1000px]">
           Nuestra sección de casos de éxito destaca cómo nuestros estudiantes
           han superado desafíos, alcanzado metas ambiciosas y construido
           carreras sólidas en programación. Cada historia refleja el poder de
