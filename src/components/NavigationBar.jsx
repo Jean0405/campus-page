@@ -12,7 +12,7 @@ import {
 } from "@nextui-org/react";
 import Link from "next/link";
 
-export default function App() {
+export default function NavigationBar() {
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const menuItems = [
