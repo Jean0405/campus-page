@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import NavigationBar from "@/components/NavigationBar";
 import FormHeader from "./FormHeader";
 import { Radio, RadioGroup } from "@nextui-org/react";
+import { validateFirstForm } from "@/validations/recruitmentSchema";
 
 const englishLevels = ["A1", "A2", "B1", "B2", "C1"];
 const devsCantity = ["1", "1 - 2", "3 - 6", "7 - 9", "Indefinido"];
@@ -32,10 +33,46 @@ const techs = [
 
 const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
   const [selectedSection, setSelectedSection] = useState("first");
+  const [data, setData] = useState({
+    company_name: '',
+    company_nit: '',
+    email: '',
+  });
 
-  const handleValidateForm = (event, section) => {
+  const handleChange=(e)=>{
+    const { name, value } = e.target;
+    setData(prev =>({
+      ...prev,
+      [name]:value
+    }))
+    console.log(data);
+  }
+
+  const handleValidateForm = async(event) => {
     event.preventDefault();
-    setSelectedSection(section);
+    try {
+      if (selectedSection === "first") {
+
+        let dataToValidate = {
+          company_name: data.company_name,
+          company_nit: data.company_nit,
+          email: data.email
+        }
+        await validateFirstForm.validate(dataToValidate, { abortEarly: false });
+          setData(setFormData({
+            ...formData,
+            ...dataToValidate
+          }));
+          setSelectedSection("second");
+      }
+    } catch (error) {
+      if (error.errors) {
+        console.error('Errores de validación:', error.errors[0]);
+      } else {
+        console.error('Error de validación desconocido:', error);
+      }
+    }
+    
   };
 
   return (
@@ -60,6 +97,8 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
                   placeholder="Nombre de tu empresa"
+                  name="company_name"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2 md:col-span-1 flex flex-col gap-1">
@@ -67,7 +106,9 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                 <input
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
-                  placeholder="Nombre de tu empresa"
+                  placeholder="Nit de tu empresa"
+                  name="company_nit"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2 flex flex-col gap-1">
@@ -75,7 +116,9 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                 <input
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
-                  placeholder="Nombre de tu empresa"
+                  placeholder="correo electrónico"
+                  name="email"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -83,7 +126,7 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
             <div className="flex justify-end mt-4">
               <button
                 onClick={(event) => {
-                  handleValidateForm(event, "second");
+                  handleValidateForm(event);
                 }}
                 className="bg-sky hover:bg-red-500 font-bold text-white rounded-lg transition-all duration-500 p-2"
               >
