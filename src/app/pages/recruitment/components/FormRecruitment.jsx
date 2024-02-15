@@ -305,7 +305,8 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
               <div className="col-span-2 md:col-span-1 flex flex-col justify-end gap-1">
                 <label>Pon tu código aquí</label>
                 <input
-                  className="bg-gray-200 border-2 focus:border-yellow outline-none rounded-lg p-2"
+                  className="bg-gray-200 border
+                  -2 focus:border-yellow outline-none rounded-lg p-2"
                   type="text"
                   placeholder="Ingresa el código"
                 />
