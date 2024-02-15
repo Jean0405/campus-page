@@ -22,7 +22,7 @@ function Home() {
     role: "",
     english_level: "",
     developers_cantity: 0,
-    service: "full time",
+    service: "",
     technologies: [],
   })
 

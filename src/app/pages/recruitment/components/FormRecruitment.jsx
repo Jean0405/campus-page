@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import NavigationBar from "@/components/NavigationBar";
 import FormHeader from "./FormHeader";
 import { Radio, RadioGroup } from "@nextui-org/react";
-import { validateFirstForm } from "@/validations/recruitmentSchema";
+import { validateFirstForm, validateSecondForm } from "@/validations/recruitmentSchema";
+import { ToastContainer } from 'react-toastify';
+import { showErrorFormToast } from "@/helpers/Toasts";
 
 const englishLevels = ["A1", "A2", "B1", "B2", "C1"];
 const devsCantity = ["1", "1 - 2", "3 - 6", "7 - 9", "Indefinido"];
@@ -34,9 +36,17 @@ const techs = [
 const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
   const [selectedSection, setSelectedSection] = useState("first");
   const [data, setData] = useState({
-    company_name: '',
-    company_nit: '',
-    email: '',
+    company_name: "",
+    company_nit: "",
+    company_description:"",
+    email: "",
+    phone: "",
+    full_name: "",
+    role: "",
+    english_level: "",
+    developers_cantity: 0,
+    service: "",
+    technologies: [],
   });
 
   const handleChange=(e)=>{
@@ -56,7 +66,7 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
         let dataToValidate = {
           company_name: data.company_name,
           company_nit: data.company_nit,
-          email: data.email
+          email: data.email,
         }
         await validateFirstForm.validate(dataToValidate, { abortEarly: false });
           setData(setFormData({
@@ -64,21 +74,37 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
             ...dataToValidate
           }));
           setSelectedSection("second");
+
+      }else if (selectedSection === "second"){
+
+        let dataToValidate = {
+          full_name: data.full_name,
+          role: data.role,
+          phone: data.phone,
+          company_description: data.company_description
+        }
+        await validateSecondForm.validate(dataToValidate, { abortEarly: false });
+          setData(setFormData({
+            ...formData,
+            ...dataToValidate
+          }));
+          setSelectedSection("third");
+
       }
     } catch (error) {
       if (error.errors) {
-        console.error('Errores de validación:', error.errors[0]);
+        showErrorFormToast(error.errors[0])
       } else {
         console.error('Error de validación desconocido:', error);
       }
     }
-    
+    console.log(formData);
   };
 
   return (
     <div>
       <NavigationBar />
-      <main className="grid lg:grid-cols-3 pt-[4rem] px-5">
+      <main className="grid lg:grid-cols-3 pt-[4rem] px-20">
         {/* <----------- FORM -----------> */}
         <form className="col-span-2 w-full flex flex-col gap-5">
           {/* <--- DESKTOP FORM HEADER ---> */}
@@ -148,6 +174,8 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
                   placeholder="Nombre del solicitante"
+                  name="full_name"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2 md:col-span-1 flex flex-col gap-1">
@@ -156,6 +184,8 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
                   placeholder="Cargo que cumples en tu empresa"
+                  name="role"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2 md:col-span-1 flex flex-col gap-1">
@@ -164,6 +194,8 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
                   placeholder="Teléfono"
+                  name="phone"
+                  onChange={handleChange}
                 />
               </div>
               <div className="col-span-2 flex flex-col gap-1">
@@ -171,8 +203,9 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
                 <textarea
                   className="bg-gray-200 border-2 focus:border-sky outline-none rounded-lg p-2"
                   type="text"
-                  maxLength={300}
                   placeholder="Descripción sobre los servicios y/o productos de tu empresa"
+                  name="company_description"
+                  onChange={handleChange}
                 />
               </div>
             </div>
@@ -372,6 +405,7 @@ const FormRecruitment = ({ setIsFormActive, setFormData, formData }) => {
           </section>
         </form>
       </main>
+      <ToastContainer/>
     </div>
   );
 };

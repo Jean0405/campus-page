@@ -25,12 +25,22 @@ export const showSuccessToast = () => {
     progress: undefined,
     theme: "light",
   });
- 
 };
- export const showErrorFormToast = (message) => {
+export const showErrorFormToast = (message) => {
   toast.error(message, {
     position: "bottom-right",
-    autoClose: 3000,
+    hideProgressBar: true,
+    closeOnClick: true,
+    draggable: true,
+    progress: undefined,
+    theme: "colored",
+  });
+};
+
+export const invalidCodeToast = () => {
+  toast.info("Ingresaste un codigo invalido", {
+    position: "bottom-right",
+    autoClose: 5000,
     hideProgressBar: false,
     closeOnClick: true,
     pauseOnHover: true,
@@ -38,18 +48,4 @@ export const showSuccessToast = () => {
     progress: undefined,
     theme: "colored",
   });
-}
-
-
-export const invalidCodeToast = () => {
-  toast.info('Ingresaste un codigo invalido', {
-       position: "bottom-right",
-       autoClose: 5000,
-       hideProgressBar: false,
-       closeOnClick: true,
-       pauseOnHover: true,
-       draggable: true,
-       progress: undefined,
-       theme: "colored",
-     });
-}
+};
