@@ -10,7 +10,15 @@ const config = {
     "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        sky: "#2CA2FF",
+        blue: "#000080",
+        yellow: "#ECAC22",
+        emerald: "#00AA80",
+        purple: "#A5A6F6",
+      },
+    },
   },
   darkMode: "class",
   plugins: [nextui()],
